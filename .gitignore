@@ -1,0 +1,11 @@
+# Sistema Operacional e Editor
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+.vscode/
+.idea/
+
+# Arquivos temporários de teste e auditoria
+test_slide0.png
+slide0.png
