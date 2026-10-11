@@ -8,6 +8,9 @@
 2. Daniel Cemin Militão
 3. Davi Vargas Limeira
 
+> 🌐 **Apresentação Interativa Online (GitHub Pages):**  
+> ### 👉 **[https://davivarlim.github.io/seminario-calculo-b-casca-esferica/](https://davivarlim.github.io/seminario-calculo-b-casca-esferica/)**
+
 ---
 
 ## 🌟 Estrutura da Apresentação Didática (17 Slides de Ecrã Inteiro)
