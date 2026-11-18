@@ -6,8 +6,10 @@
 
 const SLIDE_TITLES = [
   'Capa Oficial',
-  'PARTE 1: Definição Formal no R³ e Pitágoras',
-  'PARTE 1: Círculo Perfeito e Região Geradora',
+  'PARTE 1: O que é uma Esfera e Seu Volume',
+  'PARTE 1: Definição no R³ e Origem de dₓᵧ e d',
+  'PARTE 1: Por Que Isolar y (e Não x ou z)?',
+  'PARTE 1: Região Geradora e Revolução 360°',
   'PARTE 1: Elementos Constituintes',
   'PARTE 1: GeoGebra (R=5, r=3)',
   'PARTE 2: Soma de Riemann à Integral',
@@ -109,6 +111,16 @@ const ACTIONS = {
   revolve: () => { revolution.rotating = true; },
   'revolve-reset': resetRevolution,
   layer: setTankLayer,
+  'pyth-step': btn => {
+    pythStep = btn.dataset.step;
+    document.querySelectorAll('[data-action="pyth-step"]').forEach(b => b.classList.toggle('active', b === btn));
+    drawPythagoras3D();
+  },
+  'why-y-mode': btn => {
+    whyYMode = btn.dataset.mode;
+    document.querySelectorAll('[data-action="why-y-mode"]').forEach(b => b.classList.toggle('active', b === btn));
+    drawWhyIsolateY();
+  },
   'pulse-center': () => {
     pulseCard('card-geom-centro');
     flash('dot-origin-s2', { r: 11, filter: 'drop-shadow(0 0 16px #f59e0b)' }, { r: 7, filter: 'drop-shadow(0 0 8px #f59e0b)' });
@@ -158,6 +170,26 @@ function setupCanvas(canvas) {
   return { ctx, width, height };
 }
 
+const cLine = (ctx, x1, y1, x2, y2, dash = []) => {
+  ctx.save(); ctx.setLineDash(dash);
+  ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+  ctx.restore();
+};
+const cDot = (ctx, x, y, r, color) => {
+  ctx.fillStyle = color;
+  ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+};
+const cPillText = (ctx, text, x, y, color, align = 'left', font = 'bold 11.5px Inter, sans-serif') => {
+  ctx.save(); ctx.font = font; ctx.textAlign = align;
+  const w = ctx.measureText(text).width + 8;
+  const rx = align === 'right' ? x - w + 4 : align === 'center' ? x - w / 2 : x - 4;
+  ctx.fillStyle = 'rgba(6, 20, 35, 0.88)';
+  ctx.fillRect(rx, y - 11, w, 15);
+  ctx.fillStyle = color;
+  ctx.fillText(text, x, y);
+  ctx.restore();
+};
+
 function createStage(slide, containerId, { cam = [0, 3, 9], ambient = 0.6, light = 1.1, autoRotate = 0.8, clipping = false } = {}) {
   const el = $(containerId);
   const [w, h] = sizeOf(el);
@@ -200,165 +232,404 @@ function resizeStage(st) {
 }
 
 const SCENES = {
-  2: buildRevolution,
-  6: buildDisks,
-  10: buildShellCut,
-  11: buildFloat,
-  12: buildFloatSlider,
-  13: buildTank,
-  17: buildTankLayers
+  4: buildRevolution,
+  8: buildDisks,
+  12: buildShellCut,
+  13: buildFloat,
+  14: buildFloatSlider,
+  15: buildTank,
+  19: buildTankLayers
 };
 
+let pythStep = 'all';
+let whyYMode = 'x-axis';
+
 function activateScene(i) {
-  if (i === 1) drawPythagoras3D();
-  if (i === 2) drawRegion2D();
-  if (i === 5) drawRiemann2D();
+  if (i === 1) drawSphereIntro();
+  if (i === 2) drawPythagoras3D();
+  if (i === 3) drawWhyIsolateY();
+  if (i === 4) drawRegion2D();
+  if (i === 7) drawRiemann2D();
   if (!SCENES[i] || typeof THREE === 'undefined') return;
   if (stages[i]) resizeStage(stages[i]);
   else stages[i] = SCENES[i](i);
 }
 
 /* ==========================================================================
-   SLIDE 1 — PITÁGORAS NO ESPAÇO 3D (DISTÂNCIA d = √(x² + y² + z²))
+   SLIDE 1 — ESFERA, SEMICÍRCULO E EXEMPLO DE VOLUME
+   ========================================================================== */
+
+function drawSphereIntro() {
+  const canvas = $('canvas-sphere-intro');
+  if (!canvas) return;
+  const R = +($('slider-intro-r')?.value || 3);
+  if ($('intro-r-val')) $('intro-r-val').textContent = `${R} cm`;
+
+  const numPi = 4 * R * R * R;
+  const exactPi = numPi % 3 === 0 ? `${numPi / 3}π` : `(${numPi}/3)π`;
+  const vol = (numPi / 3) * Math.PI;
+  if ($('intro-status')) {
+    $('intro-status').innerHTML =
+      `Exemplo com <strong class="c-cyan">R = ${R} cm</strong> &bull; Centro <strong class="c-white">C(0,0,0)</strong> &bull; ` +
+      `Volume da esfera: <strong class="c-green">V = ${exactPi} &approx; ${fmt(vol, 2)} cm&sup3;</strong>`;
+  }
+
+  const { ctx, width, height } = setupCanvas(canvas);
+  const topH = height - 86;
+  const maxRad = Math.min(width * 0.145, topH * 0.28);
+  const rad = maxRad * (0.40 + 0.60 * (R / 6));
+
+  // Painel Esquerdo: 1. Semicírculo Plano (y ≥ 0)
+  const leftX = width * 0.235;
+  const scy = topH * 0.56;
+  ctx.save();
+  ctx.textAlign = 'center';
+  ctx.font = 'bold 12.5px Inter, sans-serif';
+  ctx.fillStyle = '#38bdf8';
+  ctx.fillText('1. Semicírculo Plano (y ≥ 0)', leftX, 26);
+
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.55)'; ctx.lineWidth = 1.3;
+  cLine(ctx, leftX - maxRad - 20, scy, leftX + maxRad + 20, scy);
+  cLine(ctx, leftX, scy + 12, leftX, scy - maxRad - 18);
+
+  ctx.fillStyle = 'rgba(56, 189, 248, 0.24)';
+  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.4;
+  ctx.beginPath(); ctx.arc(leftX, scy, rad, Math.PI, 0); ctx.closePath();
+  ctx.fill(); ctx.stroke();
+
+  const a2 = 42 * Math.PI / 180;
+  const rx = leftX + rad * Math.cos(a2), ry = scy - rad * Math.sin(a2);
+  ctx.strokeStyle = '#7dd3fc'; ctx.lineWidth = 2.2;
+  cLine(ctx, leftX, scy, rx, ry);
+  cDot(ctx, leftX, scy, 4, '#ffffff');
+  cDot(ctx, rx, ry, 4, '#38bdf8');
+
+  ctx.textAlign = 'left';
+  ctx.font = 'bold 11.5px Inter, sans-serif';
+  ctx.fillStyle = '#7dd3fc';
+  ctx.fillText(`R = ${R}`, leftX + (rad + 7) * Math.cos(a2), scy - (rad + 7) * Math.sin(a2));
+  ctx.fillStyle = '#cbd5e1';
+  ctx.fillText('C', leftX - 13, scy - 6);
+
+  ctx.textAlign = 'center';
+  ctx.font = '600 11px Inter, sans-serif';
+  ctx.fillStyle = '#94a3b8';
+  ctx.fillText(`-${R}`, leftX - rad, scy + 15);
+  ctx.fillText('0', leftX, scy + 15);
+  ctx.fillText(`${R}`, leftX + rad, scy + 15);
+
+  // Indicador de giro no eixo x
+  ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 1.6;
+  ctx.beginPath();
+  ctx.ellipse(leftX + maxRad + 8, scy, 6, 13, 0, 0.35, Math.PI * 1.75);
+  ctx.stroke();
+  ctx.fillStyle = '#fbbf24';
+  ctx.font = 'bold 11px Inter, sans-serif';
+  ctx.fillText('Gira 360° no eixo x', leftX, scy + 40);
+  ctx.restore();
+
+  // Seta central de transição 2D -> 3D
+  const ax1 = width * 0.445, ax2 = width * 0.53, ayMid = topH * 0.49;
+  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.2;
+  cLine(ctx, ax1, ayMid, ax2, ayMid);
+  ctx.beginPath();
+  ctx.moveTo(ax2 - 7, ayMid - 5); ctx.lineTo(ax2, ayMid); ctx.lineTo(ax2 - 7, ayMid + 5);
+  ctx.stroke();
+  ctx.save();
+  ctx.textAlign = 'center';
+  ctx.font = 'bold 11px Inter, sans-serif';
+  ctx.fillStyle = '#fbbf24'; ctx.fillText('Giro', (ax1 + ax2) / 2, ayMid - 9);
+  ctx.fillStyle = '#94a3b8'; ctx.fillText('360°', (ax1 + ax2) / 2, ayMid + 17);
+  ctx.restore();
+
+  // Painel Direito: 2. Esfera no Espaço (Centro C e Raio R)
+  const rightX = width * 0.735, sphY = topH * 0.49;
+  ctx.save();
+  ctx.textAlign = 'center';
+  ctx.font = 'bold 12.5px Inter, sans-serif';
+  ctx.fillStyle = '#34d399';
+  ctx.fillText('2. Esfera no Espaço (Centro C)', rightX, 26);
+
+  const sg = ctx.createRadialGradient(rightX - rad * 0.32, sphY - rad * 0.32, rad * 0.08, rightX, sphY, rad);
+  sg.addColorStop(0, 'rgba(125, 211, 252, 0.55)');
+  sg.addColorStop(0.55, 'rgba(2, 132, 199, 0.28)');
+  sg.addColorStop(1, 'rgba(6, 20, 35, 0.55)');
+  ctx.fillStyle = sg;
+  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.2;
+  ctx.beginPath(); ctx.arc(rightX, sphY, rad, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+  ctx.strokeStyle = 'rgba(125, 211, 252, 0.35)'; ctx.lineWidth = 1.2;
+  ctx.beginPath(); ctx.ellipse(rightX, sphY, rad, rad * 0.26, 0, 0, Math.PI * 2); ctx.stroke();
+
+  // Centro C e dois raios mostrando equidistância R
+  const p1x = rightX + rad * Math.cos(-0.48), p1y = sphY + rad * Math.sin(-0.48);
+  const p2x = rightX + rad * Math.cos(0.92), p2y = sphY + rad * Math.sin(0.92);
+  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.2;
+  cLine(ctx, rightX, sphY, p1x, p1y);
+  ctx.strokeStyle = '#fbbf24'; ctx.lineWidth = 1.8;
+  cLine(ctx, rightX, sphY, p2x, p2y, [4, 3]);
+  cDot(ctx, rightX, sphY, 4.5, '#ffffff');
+  cDot(ctx, p1x, p1y, 4, '#38bdf8');
+  cDot(ctx, p2x, p2y, 4, '#fbbf24');
+
+  cPillText(ctx, 'C', rightX - 11, sphY - 8, '#ffffff', 'center', 'bold 11.5px Inter, sans-serif');
+  ctx.textAlign = 'left';
+  ctx.font = 'bold 11.5px Inter, sans-serif';
+  ctx.fillStyle = '#7dd3fc';
+  ctx.fillText(`R = ${R} cm`, rightX + (rad + 7) * Math.cos(-0.48), sphY + (rad + 7) * Math.sin(-0.48));
+  ctx.fillStyle = '#fbbf24';
+  ctx.fillText('dist. = R', rightX + (rad + 7) * Math.cos(0.92), sphY + (rad + 7) * Math.sin(0.92) + 5);
+
+  ctx.textAlign = 'center';
+  ctx.font = '600 11px Inter, sans-serif';
+  ctx.fillStyle = '#cbd5e1';
+  ctx.fillText('Todo ponto da borda fica', rightX, sphY + maxRad + 24);
+  ctx.fillText('sempre à distância R de C', rightX, sphY + maxRad + 38);
+  ctx.restore();
+
+  // Cartão inferior com o exemplo numérico de volume
+  const bx = 18, by = height - 74, bw = width - 36, bh = 60;
+  ctx.save();
+  ctx.fillStyle = 'rgba(13, 33, 56, 0.78)';
+  ctx.strokeStyle = 'rgba(56, 189, 248, 0.45)';
+  ctx.lineWidth = 1.4;
+  ctx.beginPath(); ctx.roundRect(bx, by, bw, bh, 8); ctx.fill(); ctx.stroke();
+
+  ctx.textAlign = 'center';
+  ctx.font = 'bold 11.5px Inter, sans-serif';
+  ctx.fillStyle = '#fbbf24';
+  ctx.fillText('Cálculo do Volume da Esfera (Exemplo Numérico Interativo)', width / 2, by + 21);
+  ctx.font = 'bold 13px Inter, sans-serif';
+  ctx.fillStyle = '#e2e8f0';
+  ctx.fillText(
+    `V  =  (4/3)·π·${R}³  =  (4/3)·π·${R * R * R}  =  ${exactPi}  ≈  ${fmt(vol, 2)} cm³`,
+    width / 2, by + 44
+  );
+  ctx.restore();
+}
+
+/* ==========================================================================
+   SLIDE 2 — PITÁGORAS NO ESPAÇO 3D (ORIGEM DE d_xy e d)
    ========================================================================== */
 
 function drawPythagoras3D() {
   const canvas = $('canvas-pythagoras-3d');
   if (!canvas) return;
   const { ctx, width, height } = setupCanvas(canvas);
-  const cx = width * 0.48;
-  const cy = height * 0.46;
+  const cx = width * 0.48, cy = height * 0.46;
   const rad = Math.min(width * 0.36, height * 0.34);
-  const R = 5, r = 3;
-  const rPx = rad * (r / R);
+  const R = 5, r = 3, rPx = rad * (r / R);
 
-  const line = (x1, y1, x2, y2, dash = []) => {
-    ctx.save();
-    ctx.setLineDash(dash);
-    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
-    ctx.restore();
-  };
-  const dot = (x, y, size, color) => {
-    ctx.fillStyle = color;
-    ctx.beginPath(); ctx.arc(x, y, size, 0, Math.PI * 2); ctx.fill();
-  };
+  const showBase = pythStep === 'all' || pythStep === 'base';
+  const showHeight = pythStep === 'all' || pythStep === 'height';
+  const showShell = pythStep === 'all' || pythStep === 'shell';
 
-  // Esfera externa (R=5) e interna (r=3)
-  ctx.fillStyle = 'rgba(56, 189, 248, 0.08)';
-  ctx.strokeStyle = 'rgba(56, 189, 248, 0.75)';
-  ctx.lineWidth = 2;
+  if ($('pyth-status-desc')) {
+    const msgs = {
+      all: '<strong class="c-cyan">d<sub>xy</sub></strong> (chão xy) + altura <strong class="c-cyan">z</strong> geram <strong class="c-amber">d = &radic;(x&sup2; + y&sup2; + z&sup2;)</strong>',
+      base: '<strong class="c-cyan">Passo 1 (chão xy):</strong> catetos x e y formam d<sub>xy</sub>&sup2; = x&sup2; + y&sup2;',
+      height: '<strong class="c-amber">Passo 2 (subida em z):</strong> d&sup2; = d<sub>xy</sub>&sup2; + z&sup2; = x&sup2; + y&sup2; + z&sup2;',
+      shell: '<strong class="c-cyan">Passo 3 (casca):</strong> r &le; d &le; R &hArr; r&sup2; &le; x&sup2; + y&sup2; + z&sup2; &le; R&sup2;'
+    };
+    $('pyth-status-desc').innerHTML = msgs[pythStep] || msgs.all;
+  }
+
+  // Esferas (destacadas ou suaves dependendo da etapa)
+  ctx.fillStyle = showShell ? 'rgba(56, 189, 248, 0.1)' : 'rgba(56, 189, 248, 0.03)';
+  ctx.strokeStyle = showShell ? 'rgba(56, 189, 248, 0.8)' : 'rgba(56, 189, 248, 0.25)';
+  ctx.lineWidth = showShell ? 2.2 : 1.2;
   ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
 
-  ctx.fillStyle = 'rgba(6, 20, 35, 0.75)';
-  ctx.strokeStyle = 'rgba(248, 113, 113, 0.78)';
-  ctx.lineWidth = 1.8;
+  ctx.fillStyle = 'rgba(6, 20, 35, 0.72)';
+  ctx.strokeStyle = showShell ? 'rgba(248, 113, 113, 0.85)' : 'rgba(248, 113, 113, 0.28)';
+  ctx.lineWidth = showShell ? 2 : 1.2;
   ctx.setLineDash([5, 4]);
   ctx.beginPath(); ctx.arc(cx, cy, rPx, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
   ctx.setLineDash([]);
 
-  // Equador em perspectiva
-  ctx.strokeStyle = 'rgba(56, 189, 248, 0.25)';
-  ctx.lineWidth = 1.2;
+  ctx.strokeStyle = 'rgba(56, 189, 248, 0.22)'; ctx.lineWidth = 1.1;
   ctx.beginPath(); ctx.ellipse(cx, cy, rad, rad * 0.3, 0, 0, Math.PI * 2); ctx.stroke();
 
-  // Eixos 3D isométricos (x, y, z)
-  const proj = (x, y, z) => [
-    cx + (y - x * 0.52) * (rad / R),
-    cy + (x * 0.34 - z) * (rad / R)
-  ];
+  const proj = (x, y, z) => [cx + (y - x * 0.52) * (rad / R), cy + (x * 0.34 - z) * (rad / R)];
   const [xEndX, xEndY] = proj(5.6, 0, 0);
   const [yEndX, yEndY] = proj(0, 5.8, 0);
   const [zEndX, zEndY] = proj(0, 0, 5.5);
 
   ctx.strokeStyle = 'rgba(148, 163, 184, 0.55)'; ctx.lineWidth = 1.3;
-  line(cx, cy, xEndX, xEndY);
-  line(cx, cy, yEndX, yEndY);
-  line(cx, cy, zEndX, zEndY);
-
-  ctx.font = 'bold 12px Inter, sans-serif';
-  ctx.fillStyle = '#94a3b8';
+  cLine(ctx, cx, cy, xEndX, xEndY);
+  cLine(ctx, cx, cy, yEndX, yEndY);
+  cLine(ctx, cx, cy, zEndX, zEndY);
+  ctx.font = 'bold 12px Inter, sans-serif'; ctx.fillStyle = '#94a3b8';
   ctx.fillText('x', xEndX - 10, xEndY + 12);
   ctx.fillText('y', yEndX + 6, yEndY + 4);
   ctx.fillText('z', zEndX - 4, zEndY - 8);
 
-  // Ponto P(x, y, z) dentro da casca (d ≈ 4, entre r=3 e R=5)
   const px = 2.4, py = 2.2, pz = 2.35;
   const [ax, ay] = proj(px, 0, 0);
   const [bx, by] = proj(px, py, 0);
   const [px2d, py2d] = proj(px, py, pz);
 
-  // Triângulo 1 (base xy): x e y -> diagonal p
-  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.2;
-  line(cx, cy, ax, ay);
-  ctx.strokeStyle = '#34d399'; ctx.lineWidth = 2.2;
-  line(ax, ay, bx, by);
-  ctx.strokeStyle = 'rgba(203, 213, 225, 0.75)'; ctx.lineWidth = 1.8;
-  line(cx, cy, bx, by, [4, 3]);
-
-  // Triângulo 2 (vertical p e z -> hipotenusa d)
-  ctx.strokeStyle = '#c084fc'; ctx.lineWidth = 2.2;
-  line(bx, by, px2d, py2d);
-  ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 3;
-  line(cx, cy, px2d, py2d);
-
-  // Rótulos dos catetos e da distância d
-  dot(cx, cy, 4, '#ffffff');
-  dot(bx, by, 3, '#cbd5e1');
-  dot(px2d, py2d, 5, '#f59e0b');
-
-  const pillText = (text, x, y, color, align = 'left') => {
-    ctx.save();
-    ctx.font = 'bold 11.5px Inter, sans-serif';
-    ctx.textAlign = align;
-    const w = ctx.measureText(text).width + 8;
-    const rx = align === 'right' ? x - w + 4 : align === 'center' ? x - w / 2 : x - 4;
-    ctx.fillStyle = 'rgba(6, 20, 35, 0.86)';
-    ctx.fillRect(rx, y - 11, w, 15);
-    ctx.fillStyle = color;
-    ctx.fillText(text, x, y);
-    ctx.restore();
-  };
-
-  ctx.font = 'bold 12px Inter, sans-serif';
+  // Triângulo 1 (chão xy): x e y -> d_xy
+  ctx.globalAlpha = showBase ? 1 : 0.28;
+  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.4; cLine(ctx, cx, cy, ax, ay);
+  ctx.strokeStyle = '#34d399'; ctx.lineWidth = 2.4; cLine(ctx, ax, ay, bx, by);
+  ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 2.1; cLine(ctx, cx, cy, bx, by, [4, 3]);
   ctx.fillStyle = '#38bdf8'; ctx.fillText('x', (cx + ax) / 2 - 18, (cy + ay) / 2 - 4);
   ctx.fillStyle = '#34d399'; ctx.fillText('y', (ax + bx) / 2, (ay + by) / 2 + 15);
-  pillText('p = √(x²+y²)', bx + 8, by + 14, '#cbd5e1', 'left');
+  cPillText(ctx, 'dₓᵧ = √(x²+y²)', bx + 8, by + 14, '#e2e8f0', 'left');
+
+  // Triângulo 2 (vertical d_xy e z -> distância 3D d)
+  ctx.globalAlpha = showHeight ? 1 : 0.25;
+  ctx.strokeStyle = '#cbd5e1'; ctx.lineWidth = 1.9; cLine(ctx, cx, cy, bx, by, [4, 3]);
+  ctx.strokeStyle = '#c084fc'; ctx.lineWidth = 2.5; cLine(ctx, bx, by, px2d, py2d);
   ctx.fillStyle = '#c084fc'; ctx.fillText('z', bx + 7, (by + py2d) / 2);
-  pillText('d = √(x²+y²+z²)', (cx + px2d) / 2 - 8, (cy + py2d) / 2 - 12, '#fbbf24', 'right');
+
+  ctx.globalAlpha = (showHeight || showShell) ? 1 : 0.3;
+  ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 3.2; cLine(ctx, cx, cy, px2d, py2d);
+  cPillText(ctx, 'd = √(x²+y²+z²)', (cx + px2d) / 2 - 8, (cy + py2d) / 2 - 12, '#fbbf24', 'right');
+  ctx.globalAlpha = 1;
+
+  cDot(ctx, cx, cy, 4, '#ffffff');
+  cDot(ctx, bx, by, 3, '#cbd5e1');
+  cDot(ctx, px2d, py2d, 5, '#f59e0b');
   ctx.fillStyle = '#ffffff'; ctx.fillText('P(x, y, z)', px2d + 8, py2d - 4);
   ctx.fillStyle = '#94a3b8'; ctx.fillText('C(0,0,0)', cx - 56, cy + 4);
 
-  // Rótulos de R e r nas bordas
+  ctx.globalAlpha = showShell ? 1 : 0.35;
   ctx.fillStyle = '#38bdf8'; ctx.fillText('R = 5 (borda)', cx - rad + 4, cy - rad + 16);
-  ctx.save();
-  ctx.textAlign = 'center';
+  ctx.save(); ctx.textAlign = 'center';
   ctx.fillStyle = '#f87171'; ctx.fillText('r = 3 (oco)', cx, cy + rPx - 12);
   ctx.restore();
 
-  // Régua inferior mostrando r ≤ d ≤ R
-  const barW = Math.min(width - 60, 420);
-  const bx0 = (width - barW) / 2;
-  const barY = height - 26;
-  const rStop = bx0 + barW * (r / R);
-  const dStop = bx0 + barW * (4 / R);
-
-  ctx.strokeStyle = 'rgba(248, 113, 113, 0.55)'; ctx.lineWidth = 4;
-  line(bx0, barY, rStop, barY);
-  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 6;
-  line(rStop, barY, bx0 + barW, barY);
-
-  dot(bx0, barY, 3.5, '#94a3b8');
-  dot(rStop, barY, 4.5, '#f87171');
-  dot(dStop, barY, 5, '#f59e0b');
-  dot(bx0 + barW, barY, 4.5, '#38bdf8');
-
-  ctx.save();
-  ctx.textAlign = 'center';
-  ctx.font = '600 11px Inter, sans-serif';
+  const barW = Math.min(width - 60, 420), bx0 = (width - barW) / 2, barY = height - 26;
+  const rStop = bx0 + barW * (r / R), dStop = bx0 + barW * (4 / R);
+  ctx.strokeStyle = 'rgba(248, 113, 113, 0.55)'; ctx.lineWidth = 4; cLine(ctx, bx0, barY, rStop, barY);
+  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 6; cLine(ctx, rStop, barY, bx0 + barW, barY);
+  cDot(ctx, bx0, barY, 3.5, '#94a3b8'); cDot(ctx, rStop, barY, 4.5, '#f87171');
+  cDot(ctx, dStop, barY, 5, '#f59e0b'); cDot(ctx, bx0 + barW, barY, 4.5, '#38bdf8');
+  ctx.save(); ctx.textAlign = 'center'; ctx.font = '600 11px Inter, sans-serif';
   ctx.fillStyle = '#94a3b8'; ctx.fillText('0', bx0, barY + 15);
   ctx.fillStyle = '#f87171'; ctx.fillText('r = 3', rStop, barY + 15);
   ctx.fillStyle = '#fbbf24'; ctx.fillText('d (na casca)', dStop, barY - 10);
   ctx.fillStyle = '#38bdf8'; ctx.fillText('R = 5', bx0 + barW, barY + 15);
+  ctx.restore();
+  ctx.globalAlpha = 1;
+}
+
+/* ==========================================================================
+   SLIDE 3 — POR QUE ISOLAR y (E NÃO x OU z)?
+   ========================================================================== */
+
+function drawWhyIsolateY() {
+  const canvas = $('canvas-why-y');
+  if (!canvas) return;
+  const { ctx, width, height } = setupCanvas(canvas);
+  const ox = width * 0.48, oy = height * 0.50;
+  const rad = Math.min(width * 0.30, (height - 140) * 0.36);
+
+  if ($('why-y-status')) {
+    const msgs = {
+      'x-axis': 'Com rotação no <strong class="c-cyan">eixo x</strong>, a altura <strong class="c-amber">y</strong> é o raio de cada fatia: <strong class="c-white">y = &radic;(R&sup2; &minus; x&sup2;)</strong>',
+      'y-axis': 'Isolaríamos <strong class="c-amber">x = &radic;(R&sup2; &minus; y&sup2;)</strong> apenas se girássemos em volta do <strong class="c-cyan">eixo y</strong>.',
+      'sign-plus': '<strong class="c-cyan">Folha 2D (z = 0):</strong> z só nasce ao girar. E escolhemos só <strong class="c-green">y &ge; 0</strong> para não contar o volume 2x.'
+    };
+    $('why-y-status').innerHTML = msgs[whyYMode] || msgs['x-axis'];
+  }
+
+  // Eixos 2D base
+  const xHighlight = whyYMode !== 'y-axis';
+  ctx.strokeStyle = xHighlight ? '#38bdf8' : 'rgba(148, 163, 184, 0.45)';
+  ctx.lineWidth = xHighlight ? 2.4 : 1.3;
+  cLine(ctx, ox - rad - 36, oy, ox + rad + 36, oy);
+
+  ctx.strokeStyle = whyYMode === 'y-axis' ? '#38bdf8' : 'rgba(148, 163, 184, 0.45)';
+  ctx.lineWidth = whyYMode === 'y-axis' ? 2.4 : 1.3;
+  cLine(ctx, ox, oy + rad + 20, ox, oy - rad - 26);
+
+  ctx.font = 'bold 11.5px Inter, sans-serif';
+  ctx.fillStyle = xHighlight ? '#38bdf8' : '#94a3b8';
+  ctx.fillText(whyYMode === 'y-axis' ? 'x' : 'Eixo de giro: x', ox + rad - 12, oy + 16);
+  ctx.fillStyle = whyYMode === 'y-axis' ? '#38bdf8' : '#94a3b8';
+  ctx.fillText(whyYMode === 'y-axis' ? 'Eixo de giro: y' : 'y', ox + 8, oy - rad - 14);
+
+  if (whyYMode === 'x-axis') {
+    ctx.fillStyle = 'rgba(56, 189, 248, 0.16)';
+    ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.arc(ox, oy, rad, Math.PI, 0); ctx.fill(); ctx.stroke();
+
+    const ux = 0.52, uy = Math.sqrt(1 - ux * ux);
+    const sx = ox + rad * ux, sy = oy - rad * uy, sliceH = rad * uy;
+
+    // Disco girado em torno do eixo x (elipse vertical em perspectiva)
+    ctx.strokeStyle = 'rgba(245, 158, 11, 0.55)'; ctx.lineWidth = 1.6;
+    ctx.beginPath(); ctx.ellipse(sx, oy, 18, sliceH, 0, -Math.PI / 2, Math.PI / 2); ctx.stroke();
+    ctx.setLineDash([4, 3]);
+    ctx.beginPath(); ctx.ellipse(sx, oy, 18, sliceH, 0, Math.PI / 2, Math.PI * 1.5); ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2; cLine(ctx, ox, oy, sx, oy);
+    ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 3; cLine(ctx, sx, oy, sx, sy);
+    cDot(ctx, ox, oy, 3.5, '#ffffff');
+    cDot(ctx, sx, sy, 4.5, '#fbbf24');
+
+    ctx.fillStyle = '#cbd5e1'; ctx.fillText('x', (ox + sx) / 2 - 4, oy + 16);
+    cPillText(ctx, 'y = raio da fatia', sx + 12, (oy + sy) / 2, '#fbbf24', 'left');
+    cPillText(ctx, 'y = √(R² − x²)', sx - 8, sy - 12, '#7dd3fc', 'center');
+  } else if (whyYMode === 'y-axis') {
+    ctx.fillStyle = 'rgba(192, 132, 252, 0.16)';
+    ctx.strokeStyle = '#c084fc'; ctx.lineWidth = 2.5;
+    ctx.beginPath(); ctx.arc(ox, oy, rad, -Math.PI / 2, Math.PI / 2); ctx.fill(); ctx.stroke();
+
+    const uy = 0.52, ux = Math.sqrt(1 - uy * uy);
+    const hy = oy - rad * uy, hx = ox + rad * ux, sliceW = rad * ux;
+
+    ctx.strokeStyle = 'rgba(245, 158, 11, 0.55)'; ctx.lineWidth = 1.6;
+    ctx.beginPath(); ctx.ellipse(ox, hy, sliceW, 16, 0, 0, Math.PI); ctx.stroke();
+    ctx.setLineDash([4, 3]);
+    ctx.beginPath(); ctx.ellipse(ox, hy, sliceW, 16, 0, Math.PI, Math.PI * 2); ctx.stroke();
+    ctx.setLineDash([]);
+
+    ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 2; cLine(ctx, ox, oy, ox, hy);
+    ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 3; cLine(ctx, ox, hy, hx, hy);
+    cDot(ctx, ox, oy, 3.5, '#ffffff');
+    cDot(ctx, hx, hy, 4.5, '#fbbf24');
+
+    ctx.fillStyle = '#cbd5e1'; ctx.fillText('y', ox - 16, (oy + hy) / 2);
+    cPillText(ctx, 'x seria o raio', (ox + hx) / 2, hy - 12, '#fbbf24', 'center');
+    cPillText(ctx, 'x = √(R² − y²)', hx + 8, hy + 4, '#d8b4fe', 'left');
+  } else {
+    // Sem z no 2D e comparativo sinal + vs sinal -
+    ctx.fillStyle = 'rgba(56, 189, 248, 0.2)';
+    ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.6;
+    ctx.beginPath(); ctx.arc(ox, oy, rad, Math.PI, 0); ctx.fill(); ctx.stroke();
+
+    ctx.fillStyle = 'rgba(248, 113, 113, 0.12)';
+    ctx.strokeStyle = '#f87171'; ctx.lineWidth = 2.2;
+    ctx.setLineDash([6, 4]);
+    ctx.beginPath(); ctx.arc(ox, oy, rad, 0, Math.PI); ctx.fill(); ctx.stroke();
+    ctx.setLineDash([]);
+
+    cPillText(ctx, 'Folha 2D (z = 0): z nasce só no giro 360°', ox, 24, '#cbd5e1', 'center');
+    cPillText(ctx, 'y = +√(R² − x²)  [Usada: y ≥ 0]', ox, oy - rad * 0.52, '#34d399', 'center');
+    cPillText(ctx, 'y = −√(R² − x²)  [Se girasse junto, duplicaria!]', ox, oy + rad * 0.55, '#fca5a5', 'center');
+  }
+
+  // Faixa resumo fixa no rodapé do canvas
+  const bx = 18, by = height - 56, bw = width - 36, bh = 44;
+  ctx.save();
+  ctx.fillStyle = 'rgba(13, 33, 56, 0.8)';
+  ctx.strokeStyle = 'rgba(56, 189, 248, 0.4)';
+  ctx.lineWidth = 1.3;
+  ctx.beginPath(); ctx.roundRect(bx, by, bw, bh, 7); ctx.fill(); ctx.stroke();
+  ctx.textAlign = 'center';
+  ctx.font = 'bold 12px Inter, sans-serif';
+  ctx.fillStyle = '#e2e8f0';
+  const summary = {
+    'x-axis': 'Eixo no x  ⇒  o raio vertical vale y  ⇒  isolamos y em função de x!',
+    'y-axis': 'Se o eixo fosse vertical (y), o raio seria x e isolaríamos x(y).',
+    'sign-plus': 'No 2D usamos só (x, y) sem z; no giro 360° em x basta a metade y ≥ 0.'
+  };
+  ctx.fillText(summary[whyYMode], width / 2, by + 27);
   ctx.restore();
 }
 
@@ -540,7 +811,7 @@ function buildRevolution(slide) {
 
 function resetRevolution() {
   Object.assign(revolution, { rotating: false, angle: 0 });
-  stages[2]?.setAngle(0.01);
+  stages[4]?.setAngle(0.01);
   s1Status(S1_IDLE);
 }
 
@@ -838,7 +1109,7 @@ function setTankLayer(btn) {
   document.querySelectorAll('[data-layer]').forEach(b => b.classList.toggle('active', b === btn));
   $('s4-state-text').textContent = TANK_MODES[tankMode].text;
   $('s4-pipe-legend').hidden = tankMode !== 'limits';
-  stages[17]?.applyLayer();
+  stages[19]?.applyLayer();
 }
 
 function buildTankLayers(slide) {
@@ -898,6 +1169,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (floatSlicePlane) floatSlicePlane.constant = sliceZ(+e.target.value);
   });
 
+  $('slider-intro-r')?.addEventListener('input', drawSphereIntro);
   $('slider-riemann-n')?.addEventListener('input', drawRiemann2D);
 
   window.addEventListener('keydown', e => {
@@ -907,9 +1179,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   window.addEventListener('resize', () => {
-    if (current === 1) drawPythagoras3D();
-    if (current === 2) drawRegion2D();
-    if (current === 5) drawRiemann2D();
+    if (current === 1) drawSphereIntro();
+    if (current === 2) drawPythagoras3D();
+    if (current === 3) drawWhyIsolateY();
+    if (current === 4) drawRegion2D();
+    if (current === 7) drawRiemann2D();
     resizeStage(stages[current]);
   });
 
