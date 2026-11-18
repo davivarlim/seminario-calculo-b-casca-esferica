@@ -8,12 +8,12 @@
   <!-- Google Fonts (Inter & Fira Code) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
   <!-- Estilos da Apresentação -->
   <link rel="stylesheet" href="style.css" />
 
-  <!-- KaTeX para Renderização de Fórmulas Matemáticas em Alta Performance -->
+  <!-- KaTeX para Renderização de Fórmulas Matemáticas -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
@@ -25,120 +25,114 @@
 <body class="on-cover">
 
   <!-- ========================================================================
-       BARRA SUPERIOR (HEADER) COM LOGO OFICIAL EM ALTA RESOLUÇÃO E ABAS
+       BARRA SUPERIOR (HEADER)
        ======================================================================== -->
   <header class="app-header">
     <div class="header-brand">
-      <div class="header-logo-container" title="Universidade Federal de Pelotas • IFM">
+      <div class="header-logo-container" title="UFPel • IFM">
         <img src="logo_ifm_brasao.png" alt="Brasão UFPel IFM" class="header-logo-img" />
       </div>
       <div class="header-title-group">
-        <h1 class="header-title">UNIVERSIDADE FEDERAL DE PELOTAS</h1>
-        <span class="header-subtitle">Instituto de Física e Matemática &bull; DEMAT &bull; CLMD &bull; Cálculo B</span>
+        <h1 class="header-title">UFPel &bull; IFM &bull; CLMD / UAB</h1>
+        <span class="header-subtitle">Cálculo B &bull; Casca de Esfera</span>
       </div>
       <div class="header-clmd-container" title="Licenciatura em Matemática a Distância - CLMD">
         <img src="logo_clmd_clean.png" alt="Logo CLMD" class="header-clmd-img" />
       </div>
     </div>
 
-    <!-- Pílulas de Navegação Direta pelos 17 Slides -->
-    <nav class="nav-sections" id="nav-sections-container">
+    <!-- Pílulas de Navegação Direta pelos 19 Slides -->
+    <nav class="nav-sections" id="nav-sections-container" aria-label="Navegação por slides">
       <button class="nav-tab active" data-target="0" title="Slide 1: Capa Oficial">
         <span class="nav-tab-num">★</span>
         <span class="nav-tab-label">Capa</span>
       </button>
 
-      <!-- Grupo Parte 1 -->
       <div class="nav-group-pill" title="PARTE 1: Fundamentação Matemática">
         <span class="nav-group-tag">P1</span>
-        <button class="nav-tab-mini" data-target="1" title="1. Definição Formal (R=5, r=3)">1</button>
-        <button class="nav-tab-mini" data-target="2" title="2. Propriedades Geométricas (5 Desenhos)">2</button>
-        <button class="nav-tab-mini" data-target="3" title="3. GeoGebra Fundamentação">3</button>
+        <button class="nav-tab-mini" data-target="1" title="1. Definição Formal no ℝ³ e Pitágoras">1</button>
+        <button class="nav-tab-mini" data-target="2" title="2. Círculo Perfeito e Região Geradora">2</button>
+        <button class="nav-tab-mini" data-target="3" title="3. Elementos Constituintes">3</button>
+        <button class="nav-tab-mini" data-target="4" title="4. GeoGebra (R=5, r=3)">4</button>
       </div>
 
-      <!-- Grupo Parte 2 -->
       <div class="nav-group-pill" title="PARTE 2: Dedução do Volume">
         <span class="nav-group-tag">P2</span>
-        <button class="nav-tab-mini" data-target="4" title="Método dos Discos">4</button>
-        <button class="nav-tab-mini" data-target="5" title="Passos 3.1 & 3.2: Montagem">5</button>
-        <button class="nav-tab-mini" data-target="6" title="Passo 3.3: Primitiva">6</button>
-        <button class="nav-tab-mini" data-target="7" title="Passo 3.4: Teorema Fundamental">7</button>
-        <button class="nav-tab-mini" data-target="8" title="Passo 3.5: Fórmula Final">8</button>
+        <button class="nav-tab-mini" data-target="5" title="Soma de Riemann à Integral">5</button>
+        <button class="nav-tab-mini" data-target="6" title="Discos vs. Cascas Cilíndricas">6</button>
+        <button class="nav-tab-mini" data-target="7" title="Montagem e Propriedades">7</button>
+        <button class="nav-tab-mini" data-target="8" title="Antiderivada (Primitiva)">8</button>
+        <button class="nav-tab-mini" data-target="9" title="Teorema Fundamental do Cálculo">9</button>
+        <button class="nav-tab-mini" data-target="10" title="Fórmula Final e Derivada">10</button>
       </div>
 
-      <!-- Grupo Parte 3 -->
       <div class="nav-group-pill" title="PARTE 3: Problema Numérico">
         <span class="nav-group-tag">P3</span>
-        <button class="nav-tab-mini" data-target="9" title="Flutuador: Enunciado">9</button>
-        <button class="nav-tab-mini" data-target="10" title="Resolução & SI">10</button>
+        <button class="nav-tab-mini" data-target="11" title="Flutuador: Enunciado">11</button>
+        <button class="nav-tab-mini" data-target="12" title="Resolução, SI e Interpretação">12</button>
       </div>
 
-      <!-- Grupo Parte 4 -->
-      <div class="nav-group-pill" title="PARTE 4: Aplicação Inédita">
+      <div class="nav-group-pill" title="PARTE 4: Aplicação Contextualizada">
         <span class="nav-group-tag">P4</span>
-        <button class="nav-tab-mini" data-target="11" title="Tanque Criogênico LH₂">11</button>
-        <button class="nav-tab-mini" data-target="12" title="GeoGebra: Curvas 2D & 180°">12</button>
-        <button class="nav-tab-mini" data-target="13" title="GeoGebra: 3D & Translúcido">13</button>
-        <button class="nav-tab-mini" data-target="14" title="Cálculo do Isolamento">14</button>
-        <button class="nav-tab-mini" data-target="15" title="Discussão Crítica">15</button>
+        <button class="nav-tab-mini" data-target="13" title="Tanque Criogênico LH₂">13</button>
+        <button class="nav-tab-mini" data-target="14" title="GeoGebra: Curvas 2D e 180°">14</button>
+        <button class="nav-tab-mini" data-target="15" title="GeoGebra: 3D Paramétrico">15</button>
+        <button class="nav-tab-mini" data-target="16" title="Integral do Isolamento e Massa">16</button>
+        <button class="nav-tab-mini" data-target="17" title="Discussão Crítica">17</button>
       </div>
 
-      <button class="nav-tab" data-target="16" title="Slide 17: Conclusão">
+      <button class="nav-tab" data-target="18" title="Slide 19: Conclusão">
         <span class="nav-tab-num">✔</span>
         <span class="nav-tab-label">Fim</span>
       </button>
     </nav>
 
     <div class="header-actions">
-      <button id="btn-fullscreen" class="btn-icon" data-action="fullscreen" title="Alternar Ecrã Inteiro (F)">
+      <button id="btn-fullscreen" class="btn-icon" data-action="fullscreen" title="Alternar Tela Cheia (F)">
         <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
       </button>
     </div>
   </header>
 
   <!-- ========================================================================
-       PALCO PRINCIPAL: 17 SLIDES DE ECRÃ INTEIRO
+       PALCO PRINCIPAL: 19 SLIDES DE TELA INTEIRA
        ======================================================================== -->
   <main class="presentation-stage">
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 00 (Slide 1 de 17): CAPA OFICIAL DA APRESENTAÇÃO
-         ---------------------------------------------------------------------- -->
+    <!-- ======================================================================
+         SLIDE 00 (1 de 19): CAPA OFICIAL
+         ====================================================================== -->
     <section class="slide active" id="sec-0" data-slide="0">
       <div class="cover-layout-full">
-        
-        <!-- Faixa Institucional Oficial em Toda a Extensão do Slide (Full-Width & Alta Resolução) -->
         <div class="cover-header-brand">
           <div class="inst-banner-fullwidth">
             <div class="inst-banner-side left">
-              <img src="logo_ifm_brasao.png" alt="IFM • Brasão UFPel" class="inst-logo-hd" />
+              <img src="logo_ifm_brasao.png" alt="UFPel • IFM" class="inst-logo-hd" />
             </div>
             <div class="inst-banner-center">
               <h1 class="inst-title-hd">UNIVERSIDADE FEDERAL DE PELOTAS</h1>
-              <p class="inst-line-hd">Instituto de Física e Matemática</p>
-              <p class="inst-line-hd">Departamento de Educação Matemática</p>
+              <p class="inst-line-hd">Instituto de Física e Matemática &bull; CLMD / UAB</p>
               <p class="inst-line-hd">Curso de Licenciatura em Matemática a Distância</p>
             </div>
             <div class="inst-banner-side right">
-              <img src="logo_clmd_clean.png" alt="CLMD UFPel" class="inst-logo-hd clmd" />
+              <img src="logo_clmd_clean.png" alt="Logo CLMD" class="inst-logo-hd clmd" />
             </div>
           </div>
         </div>
 
-        <!-- Grade Principal em 2 Colunas: Ocupação Harmoniosa sem Espaços Vazios -->
         <div class="cover-main-grid">
-          
-          <!-- Coluna 1: Identificação, Título e Equipe -->
           <div class="cover-info-card">
             <div class="cover-badge-row">
-              <span class="cover-badge-seminar">Seminário de Avaliação Presencial</span>
-              <span class="cover-badge-course">Licenciatura em Matemática a Distância</span>
+              <span class="cover-badge-seminar">Seminário Investigativo &bull; N2</span>
+              <span class="cover-badge-course">02/12/2026 &bull; 19h</span>
             </div>
 
-            <h2 class="cover-main-title">Casca de Esfera</h2>
-            <p class="cover-main-subtitle">
-              Região delimitada por duas esferas concêntricas: fundamentação formal no $\mathbb{R}^3$, dedução analítica pelo Método dos Discos e aplicações industriais e criogênicas.
-            </p>
+            <div>
+              <h2 class="cover-main-title">Casca de Esfera</h2>
+              <p class="cover-main-subtitle">
+                Região delimitada por duas esferas concêntricas — da definição no $\mathbb{R}^3$ às aplicações em engenharia.
+              </p>
+            </div>
 
             <div class="cover-meta-grid">
               <div class="cover-meta-item">
@@ -160,19 +154,18 @@
             </div>
 
             <div class="cover-footer-action">
-              <button id="btn-start-presentation" class="btn-start">
+              <button id="btn-start-presentation" class="btn-start" data-target="1">
                 <span>Iniciar Apresentação</span>
                 <span class="arrow">&rarr;</span>
               </button>
-              <span class="cover-nav-hint">Pressione <kbd>&rarr;</kbd> ou <kbd>Espaço</kbd></span>
+              <span class="cover-nav-hint">Atalhos: <kbd>&rarr;</kbd> ou <kbd>Espaço</kbd></span>
             </div>
           </div>
 
-          <!-- Coluna 2: As 4 Etapas Obrigatórias Descritas -->
           <div class="cover-stages-card">
             <div class="stages-header">
               <span class="stages-badge">ROTEIRO DO SEMINÁRIO</span>
-              <h3 class="stages-title">Estrutura das 4 Etapas Obrigatórias</h3>
+              <h3 class="stages-title">4 Etapas Obrigatórias</h3>
             </div>
 
             <div class="stages-list">
@@ -180,614 +173,679 @@
                 <div class="stage-num-badge">PARTE 1</div>
                 <div class="stage-info">
                   <h4>Fundamentação Matemática</h4>
-                  <p>Definição formal no $\mathbb{R}^3$, 5 elementos geométricos individuais e modelagem no GeoGebra.</p>
+                  <p>Definição no $\mathbb{R}^3$, Pitágoras, círculo perfeito, elementos e GeoGebra ($R=5, r=3$).</p>
                 </div>
               </div>
 
-              <div class="stage-item-card" data-target="4">
+              <div class="stage-item-card" data-target="5">
                 <div class="stage-num-badge">PARTE 2</div>
                 <div class="stage-info">
-                  <h4>Dedução da Fórmula do Volume via Cálculo Diferencial</h4>
-                  <p>Justificativa dos Discos (teto e piso imediatos), desenvolvimento passo a passo e Teorema Fundamental.</p>
-                </div>
-              </div>
-
-              <div class="stage-item-card" data-target="9">
-                <div class="stage-num-badge">PARTE 3</div>
-                <div class="stage-info">
-                  <h4>Aplicação das Fórmulas (Problema Numérico)</h4>
-                  <p>Flutuador mecânico de aço sob alta pressão ($R=10\text{ cm}, e=2\text{ cm}$), cálculo e conversão ao SI ($0{,}002044\text{ m}^3$).</p>
+                  <h4>Dedução do Volume via Integral</h4>
+                  <p>Soma de Riemann, Método dos Discos, primitivas e Teorema Fundamental.</p>
                 </div>
               </div>
 
               <div class="stage-item-card" data-target="11">
+                <div class="stage-num-badge">PARTE 3</div>
+                <div class="stage-info">
+                  <h4>Aplicação Numérica (Geometria Espacial)</h4>
+                  <p>Flutuador de aço ($R=10\text{ cm}, e=2\text{ cm}$), unidades SI e interpretação.</p>
+                </div>
+              </div>
+
+              <div class="stage-item-card" data-target="13">
                 <div class="stage-num-badge">PARTE 4</div>
                 <div class="stage-info">
-                  <h4>Aplicação Contextualizada</h4>
-                  <p>Tanque criogênico de hidrogênio líquido a $-253^\circ\text{C}$, volume da casca de perlita e discussão crítica.</p>
+                  <h4>Aplicação Inédita &amp; Crítica</h4>
+                  <p>Tanque criogênico de $LH_2$ ($-253^\circ\text{C}$), integral do isolamento e limitações.</p>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 01 (Slide 2 de 17): PARTE 1 — DEFINIÇÃO FORMAL NO R³
-         ---------------------------------------------------------------------- -->
+    <!-- ======================================================================
+         SLIDE 01 (2 de 19): PARTE 1 — DEFINIÇÃO FORMAL NO R³ E PITÁGORAS 3D
+         ====================================================================== -->
     <section class="slide" id="sec-1" data-slide="1">
       <div class="slide-container">
-        
         <div class="content-pane">
-          <div class="section-tag-row">
-            <span class="section-tag">PARTE 1</span>
-            <span class="section-tag-desc">Fundamentação Matemática</span>
+          <div class="pane-head">
+            <div class="section-tag-row">
+              <span class="section-tag">PARTE 1</span>
+              <span class="section-tag-desc">Fundamentação Matemática</span>
+            </div>
+            <h2 class="slide-heading">1. Definição Formal no $\mathbb{R}^3$ e Pitágoras no Espaço</h2>
           </div>
 
-          <h2 class="slide-heading">1. Definição Formal no $\mathbb{R}^3$ e Região Geradora</h2>
-
-          <div class="didactic-param-badge">
-            <span class="param-icon">📌</span>
-            <span class="param-text">
-              <strong>Parâmetros Didáticos Iniciais:</strong> Adotamos como referência <strong>$R = 5$</strong> (raio externo) e <strong>$r = 3$</strong> (raio interno), com espessura <strong>$e = R - r = 2$</strong> para toda a fundamentação teórica inicial.
-            </span>
+          <div class="var-ref-bar">
+            <span class="var-ref-title">Referências:</span>
+            <span class="var-ref-item"><strong>$\mathcal{S}$</strong> = sólido no $\mathbb{R}^3$</span>
+            <span class="var-ref-item"><strong>$R = 5$</strong> = raio externo (maior)</span>
+            <span class="var-ref-item"><strong>$r = 3$</strong> = raio interno (menor)</span>
+            <span class="var-ref-item"><strong>$e = R - r = 2$</strong> = espessura</span>
+            <span class="var-ref-item"><strong>$d$</strong> = distância até a origem</span>
+            <span class="var-ref-item"><strong>$(x,y,z)$</strong> = ponto no espaço</span>
           </div>
 
           <div class="card card-accent-blue">
-            <p class="paragraph-strong">
-              A <strong>casca esférica</strong> (ou <em>coroa esférica</em>) é um sólido de revolução tridimensional gerado pela rotação de uma região plana $\mathcal{R}$, contida no plano cartesiano $\mathbb{R}^2$, em torno do eixo das abcissas (eixo $x$).
-            </p>
-            <p class="paragraph-sub">
-              Região plana geradora $\mathcal{R}$ no semiplano superior ($y \ge 0$):
-            </p>
-            <div class="math-box">
-              $$\mathcal{R} = \left\{ (x, y) \in \mathbb{R}^2 \;\middle|\; r^2 \le x^2 + y^2 \le R^2, \; y \ge 0 \right\}$$
+            <h4 class="card-title">Definição Formal da Casca Esférica no $\mathbb{R}^3$</h4>
+            <div class="math-box-hero">
+              $$\mathcal{S} = \left\{ (x, y, z) \in \mathbb{R}^3 \;\middle|\; r^2 \le x^2 + y^2 + z^2 \le R^2 \right\}$$
             </div>
-          </div>
-
-          <div class="card card-subtle">
-            <h4 class="card-title">Superfícies de Fronteira no $\mathbb{R}^3$</h4>
-            <ul class="styled-list">
-              <li><strong>Fronteira Externa:</strong> $S_{\text{ext}}: x^2 + y^2 + z^2 = R^2$ ($R = 5$)</li>
-              <li><strong>Cavidade Interna:</strong> $S_{\text{int}}: x^2 + y^2 + z^2 = r^2$ ($r = 3$)</li>
-              <li><strong>Sólido Tridimensional:</strong> $r^2 \le x^2 + y^2 + z^2 \le R^2$</li>
+            <ul class="cue-list">
+              <li><strong>Fronteira Externa ($d = R$):</strong> <span class="math-nowrap">$x^2 + y^2 + z^2 = R^2 \;\; (R = 5)$</span></li>
+              <li><strong>Cavidade Interna ($d = r$):</strong> <span class="math-nowrap">$x^2 + y^2 + z^2 = r^2 \;\; (r = 3)$</span></li>
             </ul>
           </div>
 
-          <div class="didactic-note-card">
-            <div class="note-header">
-              <span class="icon">💡</span>
-              <strong>Por que restringir ao semiplano superior $y \ge 0$?</strong>
-            </div>
-            <p>
-              Se considerássemos o anel circular completo ($y \in [-R, R]$) e rotacionássemos $360^\circ$ em torno do eixo $x$, o semicírculo inferior varreria o mesmo espaço já ocupado pelo superior, duplicando o volume ($720^\circ$). A restrição a $y \ge 0$ garante a bijetividade geométrica da revolução.
-            </p>
+          <div class="card card-subtle">
+            <h4 class="card-title">De Onde Vem $x^2 + y^2 + z^2$? (Teorema de Pitágoras 3D)</h4>
+            <ul class="cue-list">
+              <li><strong>Base $xy$ (2D):</strong> a diagonal do retângulo vale <span class="math-nowrap">$p^2 = x^2 + y^2$</span>.</li>
+              <li><strong>Subida em $z$ (3D):</strong> <span class="math-nowrap">$d^2 = p^2 + z^2 = x^2 + y^2 + z^2 \implies d = \sqrt{x^2 + y^2 + z^2}$</span>.</li>
+              <li><strong>Na parede sólida:</strong> <span class="math-nowrap">$r \le \sqrt{x^2 + y^2 + z^2} \le R \iff r^2 \le x^2 + y^2 + z^2 \le R^2$</span>.</li>
+            </ul>
           </div>
         </div>
 
         <div class="visual-pane">
           <div class="viz-header-bar">
-            <span class="viz-title">Região Geradora $\mathcal{R}$ (2D) & Revolução $360^\circ$ no Eixo $x$ (3D)</span>
+            <span class="viz-title">Pitágoras no Espaço $\mathbb{R}^3$: Distância $d$ entre $r$ e $R$</span>
+          </div>
+          <div class="single-canvas-wrap">
+            <canvas id="canvas-pythagoras-3d"></canvas>
+          </div>
+          <div class="viz-status-bar">
+            <span>Elevamos $r \le d \le R$ ao quadrado para eliminar a raiz: <strong class="c-cyan">$r^2 \le x^2 + y^2 + z^2 \le R^2$</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SLIDE 02 (3 de 19): PARTE 1 — CÍRCULO DE PITÁGORAS E REGIÃO GERADORA
+         ====================================================================== -->
+    <section class="slide" id="sec-2" data-slide="2">
+      <div class="slide-container">
+        <div class="content-pane">
+          <div class="pane-head">
+            <div class="section-tag-row">
+              <span class="section-tag">PARTE 1</span>
+              <span class="section-tag-desc">Construção por Revolução</span>
+            </div>
+            <h2 class="slide-heading">2. Do Círculo de Pitágoras à Região Geradora $\mathcal{R}$</h2>
+          </div>
+
+          <div class="var-ref-bar">
+            <span class="var-ref-title">Referências:</span>
+            <span class="var-ref-item"><strong>$\mathcal{R}$</strong> = região plana</span>
+            <span class="var-ref-item"><strong>$R = 5$</strong> = raio maior</span>
+            <span class="var-ref-item"><strong>$r = 3$</strong> = raio menor</span>
+            <span class="var-ref-item"><strong>$f(x), g(x)$</strong> = curvas ext. e int.</span>
+            <span class="var-ref-item"><strong>$[-R, R],\; [-r, r]$</strong> = intervalos em $x$</span>
+          </div>
+
+          <div class="card card-accent-blue">
+            <h4 class="card-title">Por Que Aparece a Raiz Quadrada? (Pitágoras no Plano $\mathbb{R}^2$)</h4>
+            <ul class="cue-list">
+              <li><strong>Círculo perfeito:</strong> catetos $x, y$ e hipotenusa $R$ dão <span class="math-nowrap">$x^2 + y^2 = R^2$</span>.</li>
+              <li><strong>Isolando $y$:</strong> <span class="math-nowrap">$y^2 = R^2 - x^2 \implies y = \pm\sqrt{R^2 - x^2}$</span>.</li>
+              <li><strong>Apenas $y \ge 0$ (sinal $+$):</strong> ao girar $360^\circ$ no eixo $x$, evita duplicar o volume.</li>
+            </ul>
+          </div>
+
+          <div class="card card-subtle">
+            <h4 class="card-title">Região Geradora $\mathcal{R} \subset \mathbb{R}^2$ e Intervalos</h4>
+            <div class="math-box-hero">
+              $$\mathcal{R} = \left\{ (x, y) \in \mathbb{R}^2 \;\middle|\; r^2 \le x^2 + y^2 \le R^2,\; y \ge 0 \right\}$$
+            </div>
+            <ul class="cue-list">
+              <li><strong>Curva externa:</strong> <span class="math-nowrap">$f(x)=\sqrt{R^2-x^2}$ no intervalo $[-R, R]$ ($[-5, 5]$)</span></li>
+              <li><strong>Curva interna:</strong> <span class="math-nowrap">$g(x)=\sqrt{r^2-x^2}$ no intervalo $[-r, r]$ ($[-3, 3]$)</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="visual-pane">
+          <div class="viz-header-bar">
+            <span class="viz-title">Região $\mathcal{R}$ (2D) &amp; Revolução $360^\circ$ no Eixo $x$ (3D)</span>
             <div class="viz-actions">
-              <button id="btn-s1-rotate" class="btn-action" data-action="revolve">
-                <span class="btn-icon-symbol">🔄</span> Gerar Rotação
-              </button>
+              <button id="btn-s1-rotate" class="btn-action" data-action="revolve">🔄 Gerar Rotação</button>
               <button id="btn-s1-reset" class="btn-action secondary" data-action="revolve-reset">Reiniciar</button>
             </div>
           </div>
 
           <div class="s1-dual-canvas-grid">
             <div class="canvas-2d-box">
-              <div class="canvas-badge">Plano Cartesiano 2D: $R=5$ e $r=3$</div>
+              <div class="canvas-badge">Plano 2D: Pitágoras, $\mathcal{R}$ e Intervalos</div>
               <canvas id="canvas-2d-s1"></canvas>
             </div>
             <div class="canvas-3d-box">
-              <div class="canvas-badge">Espaço Tridimensional $\mathbb{R}^3$</div>
+              <div class="canvas-badge">Espaço $\mathbb{R}^3$</div>
               <div class="canvas-3d-wrapper" id="container-3d-s1"></div>
             </div>
           </div>
 
           <div class="viz-status-bar">
-            <span id="s1-status-desc">Ângulo de Rotação: <strong id="s1-angle-val" style="color: var(--accent-cyan);">0&deg;</strong> &bull; Clique em "Gerar Rotação"</span>
+            <span id="s1-status-desc">Ângulo de Rotação: <strong class="c-cyan">0&deg;</strong> &bull; Clique em "Gerar Rotação"</span>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 02 (Slide 3 de 17): PARTE 1 — ELEMENTOS CONSTITUINTES (FIGURAS AMPLIADAS)
-         ---------------------------------------------------------------------- -->
-    <section class="slide" id="sec-2" data-slide="2">
+    <!-- ======================================================================
+         SLIDE 03 (4 de 19): PARTE 1 — ELEMENTOS CONSTITUINTES (5 DESENHOS)
+         ====================================================================== -->
+    <section class="slide" id="sec-3" data-slide="3">
       <div class="slide-container full-width-layout">
-        
         <div class="content-pane-header">
           <div class="section-tag-row">
             <span class="section-tag">PARTE 1</span>
             <span class="section-tag-desc">Geometria do Sólido</span>
           </div>
-          <h2 class="slide-heading">2. Propriedades Geométricas e Elementos Constituintes ($R=5, r=3$)</h2>
-          <p class="slide-subheading">
-            Representação gráfica individual ampliada para cada elemento métrico fundamental — adotando o modelo didático com <strong>$R = 5\text{ cm}$</strong> e <strong>$r = 3\text{ cm}$</strong> ($e = 2\text{ cm}$):
-          </p>
+          <h2 class="slide-heading">3. Elementos Constituintes e Simetrias ($R=5\text{ cm},\; r=3\text{ cm}$)</h2>
         </div>
 
-        <!-- Grid 3 no topo + 2 na base para FIGURAS GRANDES E NÍTIDAS -->
+        <div class="var-ref-bar">
+          <span class="var-ref-title">Referências:</span>
+          <span class="var-ref-item"><strong>$C(0,0,0)$</strong> = centro comum</span>
+          <span class="var-ref-item"><strong>$R = 5\text{ cm}$</strong> = raio externo (maior)</span>
+          <span class="var-ref-item"><strong>$r = 3\text{ cm}$</strong> = raio interno (menor)</span>
+          <span class="var-ref-item"><strong>$e = R - r = 2\text{ cm}$</strong> = espessura</span>
+          <span class="var-ref-item"><strong>$V_{\text{ext}}, V_{\text{int}}$</strong> = volumes das esferas</span>
+          <span class="var-ref-item"><strong>$O(3)$</strong> = simetria esférica</span>
+        </div>
+
         <div class="geometric-props-grid-large">
-          
-          <!-- Elemento 1: Centro -->
-          <div class="geom-prop-card span-2" id="card-geom-centro" data-element="centro">
+          <!-- 1: Centro -->
+          <div class="geom-prop-card span-2" id="card-geom-centro">
             <div class="geom-prop-header">
               <span class="prop-badge">1</span>
               <h3 class="prop-title">Centro $C(0,0,0)$</h3>
-              <button class="btn-card-action" data-action="pulse-center" title="Destacar coordenadas de origem">🎯 Destacar</button>
+              <button class="btn-card-action" data-action="pulse-center">🎯 Destacar</button>
             </div>
             <div class="geom-drawing-box">
               <svg viewBox="0 0 280 135" class="geom-svg">
-                <!-- Eixos Cartesianos com setas -->
-                <line x1="20" y1="58" x2="260" y2="58" stroke="rgba(255,255,255,0.3)" stroke-width="1.8" />
-                <line x1="140" y1="8" x2="140" y2="104" stroke="rgba(255,255,255,0.3)" stroke-width="1.8" />
-                <!-- Círculos concêntricos pontilhados amplos -->
+                <line x1="20" y1="58" x2="260" y2="58" stroke="rgba(255,255,255,0.28)" stroke-width="1.8" />
+                <line x1="140" y1="8" x2="140" y2="104" stroke="rgba(255,255,255,0.28)" stroke-width="1.8" />
                 <circle cx="140" cy="58" r="46" fill="none" stroke="rgba(56,189,248,0.25)" stroke-width="1.5" stroke-dasharray="3,3" />
                 <circle cx="140" cy="58" r="26" fill="none" stroke="rgba(245,158,11,0.25)" stroke-width="1.5" stroke-dasharray="3,3" />
-                <!-- Ondas de radar contínuas na origem -->
                 <circle cx="140" cy="58" r="7" class="center-radar-ring" fill="none" stroke="#f59e0b" />
                 <circle cx="140" cy="58" r="7" class="center-radar-ring ring-delay" fill="none" stroke="#f59e0b" />
-                <!-- Ponto do Centro Gigante e Brilhante -->
                 <circle cx="140" cy="58" r="7" id="dot-origin-s2" fill="#f59e0b" filter="drop-shadow(0 0 8px #f59e0b)" />
                 <circle cx="140" cy="58" r="2.5" fill="#ffffff" />
                 <text x="154" y="52" fill="#f59e0b" font-weight="800" font-size="14">C(0,0,0)</text>
                 <text x="250" y="52" fill="#94a3b8" font-size="12">x</text>
                 <text x="146" y="20" fill="#94a3b8" font-size="12">y</text>
-                <text x="140" y="122" fill="#f59e0b" font-size="11" font-weight="600" text-anchor="middle">Origem Fixa Comum do Espaço ℝ³</text>
+                <text x="140" y="122" fill="#f59e0b" font-size="11" font-weight="600" text-anchor="middle">Origem Comum das Esferas</text>
               </svg>
             </div>
             <div class="geom-prop-desc">
-              <p><strong>Definição:</strong> Origem fixa do sistema tridimensional.</p>
-              <p class="highlight-val">Exemplo: Ponto $C(0,0,0)$ de simetria radial absoluta.</p>
+              <p>Ponto fixo equidistante de cada camada.</p>
             </div>
           </div>
 
-          <!-- Elemento 2: Raio Externo -->
-          <div class="geom-prop-card span-2" id="card-geom-raio-ext" data-element="raio-ext">
+          <!-- 2: Raio Externo -->
+          <div class="geom-prop-card span-2" id="card-geom-raio-ext">
             <div class="geom-prop-header">
               <span class="prop-badge">2</span>
               <h3 class="prop-title">Raio Externo ($R$)</h3>
-              <button class="btn-card-action" data-action="sweep-ext" title="Varrer raio na casca externa">📏 Varrer R=5</button>
+              <button class="btn-card-action" data-action="sweep-ext">📏 Varrer R=5</button>
             </div>
             <div class="geom-drawing-box">
               <svg viewBox="0 0 280 135" class="geom-svg">
-                <!-- Semicírculo maior grande -->
                 <path d="M 90 58 A 50 50 0 0 1 190 58 Z" fill="rgba(56,189,248,0.18)" stroke="#38bdf8" stroke-width="2.5" />
                 <line x1="75" y1="58" x2="205" y2="58" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
-                <!-- Centro -->
                 <circle cx="140" cy="58" r="4" fill="#ffffff" />
-                <!-- Vetor Raio Externo Espesso -->
                 <line id="line-raio-ext-s2" x1="140" y1="58" x2="190" y2="58" stroke="#38bdf8" stroke-width="3.5" />
                 <circle cx="190" cy="58" r="4" fill="#38bdf8" />
-                <text x="156" y="50" fill="#38bdf8" font-weight="900" font-size="14">R = 5 cm</text>
-                <text x="140" y="122" fill="#cbd5e1" font-size="11" font-weight="600" text-anchor="middle">Superfície Externa: x² + y² + z² = 25</text>
+                <text x="156" y="50" fill="#38bdf8" font-weight="800" font-size="14">R = 5 cm</text>
+                <text x="140" y="122" fill="#cbd5e1" font-size="11" font-weight="600" text-anchor="middle">x² + y² + z² = 25</text>
               </svg>
             </div>
             <div class="geom-prop-desc">
-              <p><strong>Definição:</strong> Distância do centro à casca exterior.</p>
-              <p class="highlight-val">Exemplo Didático: $R = 5\text{ cm} \implies V_{\text{ext}} = \frac{4}{3}\pi R^3$.</p>
+              <p>Distância à superfície externa ($V_{\text{ext}} = \frac{4}{3}\pi R^3$).</p>
             </div>
           </div>
 
-          <!-- Elemento 3: Raio Interno -->
-          <div class="geom-prop-card span-2" id="card-geom-raio-int" data-element="raio-int">
+          <!-- 3: Raio Interno -->
+          <div class="geom-prop-card span-2" id="card-geom-raio-int">
             <div class="geom-prop-header">
               <span class="prop-badge">3</span>
               <h3 class="prop-title">Raio Interno ($r$)</h3>
-              <button class="btn-card-action" data-action="pulse-int" title="Destacar cavidade oca interior">⭕ Cavidade r=3</button>
+              <button class="btn-card-action" data-action="pulse-int">⭕ Cavidade r=3</button>
             </div>
             <div class="geom-drawing-box">
               <svg viewBox="0 0 280 135" class="geom-svg">
-                <!-- Casca externa pontilhada e cavidade oca preenchida -->
                 <path d="M 90 58 A 50 50 0 0 1 190 58 Z" fill="none" stroke="rgba(255,255,255,0.15)" stroke-dasharray="3,3" />
                 <path id="path-cavidade-s2" d="M 110 58 A 30 30 0 0 1 170 58 Z" fill="rgba(248,113,113,0.25)" stroke="#f87171" stroke-width="2.5" />
                 <line x1="75" y1="58" x2="205" y2="58" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
                 <circle cx="140" cy="58" r="4" fill="#ffffff" />
-                <!-- Vetor Raio Interno -->
                 <line x1="140" y1="58" x2="140" y2="28" stroke="#f87171" stroke-width="3.5" />
                 <circle cx="140" cy="28" r="4" fill="#f87171" />
-                <text x="148" y="46" fill="#f87171" font-weight="900" font-size="14">r = 3 cm</text>
-                <text x="140" y="122" fill="#f87171" font-size="11" font-weight="600" text-anchor="middle">Cavidade Oca Interior: 0 &lt; r &lt; R</text>
+                <text x="148" y="46" fill="#f87171" font-weight="800" font-size="14">r = 3 cm</text>
+                <text x="140" y="122" fill="#f87171" font-size="11" font-weight="600" text-anchor="middle">Cavidade Oca (0 &lt; r &lt; R)</text>
               </svg>
             </div>
             <div class="geom-prop-desc">
-              <p><strong>Definição:</strong> Raio da cavidade oca interior.</p>
-              <p class="highlight-val">Exemplo Didático: $r = 3\text{ cm} \implies V_{\text{int}} = \frac{4}{3}\pi r^3$.</p>
+              <p>Raio da cavidade vazia ($V_{\text{int}} = \frac{4}{3}\pi r^3$).</p>
             </div>
           </div>
 
-          <!-- Elemento 4: Espessura (Largo na Linha 2) -->
-          <div class="geom-prop-card span-3" id="card-geom-espessura" data-element="espessura">
+          <!-- 4: Espessura -->
+          <div class="geom-prop-card span-3" id="card-geom-espessura">
             <div class="geom-prop-header">
               <span class="prop-badge">4</span>
               <h3 class="prop-title">Espessura da Parede ($e = R - r$)</h3>
-              <button class="btn-card-action" data-action="thickness" title="Medir espessura métrica">📐 Medir e=2</button>
+              <button class="btn-card-action" data-action="thickness">📐 Medir e=2</button>
             </div>
             <div class="geom-drawing-box">
               <svg viewBox="0 0 420 135" class="geom-svg">
-                <!-- Seção Transversal Completa com Parede Sólida Hachurada centrada em cy=48 -->
                 <circle cx="210" cy="48" r="44" fill="rgba(56,189,248,0.25)" stroke="#38bdf8" stroke-width="2" />
-                <circle cx="210" cy="48" r="26" fill="#06182a" stroke="#f87171" stroke-width="2" />
-                <!-- Linhas de cota da espessura com animação de pulso contínuo -->
+                <circle cx="210" cy="48" r="26" fill="#071728" stroke="#f87171" stroke-width="2" />
                 <line x1="236" y1="48" x2="254" y2="48" class="thickness-pulsing-line" stroke="#f59e0b" stroke-width="3.5" />
                 <line x1="236" y1="40" x2="236" y2="56" stroke="#f59e0b" stroke-width="2" />
                 <line x1="254" y1="40" x2="254" y2="56" stroke="#f59e0b" stroke-width="2" />
-                <text x="245" y="34" fill="#f59e0b" font-weight="900" font-size="13" text-anchor="middle">e = 2 cm</text>
+                <text x="245" y="34" fill="#f59e0b" font-weight="800" font-size="13" text-anchor="middle">e = 2 cm</text>
                 <text x="105" y="52" fill="#38bdf8" font-size="11" font-weight="700">Parede Sólida</text>
                 <text x="210" y="52" fill="#f87171" font-size="11" text-anchor="middle">Vazio</text>
-                <!-- Descrição bem abaixo da figura com bastante folga livre -->
-                <text x="210" y="122" fill="#f59e0b" font-size="11.5" font-weight="700" text-anchor="middle">Fórmula da Espessura: e = R - r = 5 - 3 = 2 cm</text>
+                <text x="210" y="122" fill="#f59e0b" font-size="11.5" font-weight="700" text-anchor="middle">Seção Transversal: e = R − r = 2 cm</text>
               </svg>
             </div>
             <div class="geom-prop-desc">
-              <p><strong>Definição:</strong> Diferença entre raios externos e internos ($e = R - r$).</p>
-              <p class="highlight-val">Exemplo: Espessura da chapa $e = 2\text{ cm}$. Se $e \to 0$, tende à casca delgada ideal de área $4\pi R^2$.</p>
+              <p>Seções planas são arruelas no meio ($|x| &lt; r$) e discos nas pontas ($r \le |x| \le R$).</p>
             </div>
           </div>
 
-          <!-- Elemento 5: Simetria (Largo na Linha 2) com ANIMAÇÃO CONTÍNUA DE ROTAÇÃO 360° -->
-          <div class="geom-prop-card span-3" id="card-geom-simetria" data-element="simetria">
+          <!-- 5: Simetria -->
+          <div class="geom-prop-card span-3" id="card-geom-simetria">
             <div class="geom-prop-header">
               <span class="prop-badge">5</span>
               <h3 class="prop-title">Simetria Radial e Axial ($O(3)$)</h3>
-              <button class="btn-card-action active" id="btn-toggle-spin" data-action="spin-symmetry" title="Pausar ou Retomar Giro Contínuo">🔄 360° Contínuo</button>
+              <button class="btn-card-action active" id="btn-toggle-spin" data-action="spin-symmetry">🔄 360° Contínuo</button>
             </div>
             <div class="geom-drawing-box">
               <svg viewBox="0 0 420 135" class="geom-svg">
-                <!-- Esfera 3D Isométrica Externa Fixa -->
                 <circle cx="210" cy="48" r="42" fill="rgba(56,189,248,0.08)" stroke="#38bdf8" stroke-width="2" />
-                
-                <!-- GRUPO COM ROTAÇÃO CONTÍNUA DOS EIXOS E ANÉIS EM 360° -->
                 <g class="anim-spinning-symmetry-axes" id="group-symm-axes">
-                  <!-- Equador em perspectiva -->
                   <ellipse cx="210" cy="48" rx="42" ry="14" fill="none" stroke="rgba(56,189,248,0.65)" stroke-width="1.8" stroke-dasharray="3,2" />
-                  <!-- Meridiano em perspectiva -->
                   <ellipse cx="210" cy="48" rx="15" ry="42" fill="none" stroke="rgba(245,158,11,0.55)" stroke-width="1.6" stroke-dasharray="3,2" />
-                  <!-- Eixos cartesianos axiais de rotação -->
                   <line x1="130" y1="48" x2="290" y2="48" stroke="#38bdf8" stroke-width="2" />
                   <line x1="210" y1="4" x2="210" y2="92" stroke="#f59e0b" stroke-width="2" />
                   <line x1="155" y1="12" x2="265" y2="84" stroke="#34d399" stroke-width="1.8" stroke-dasharray="3,3" />
                 </g>
-
                 <circle cx="210" cy="48" r="4.5" fill="#ffffff" />
                 <text x="295" y="45" fill="#38bdf8" font-size="11" font-weight="700">Eixo x</text>
                 <text x="214" y="16" fill="#f59e0b" font-size="11" font-weight="700">Eixo y</text>
-                <!-- Descrição bem abaixo da figura com bastante folga livre -->
-                <text x="210" y="122" fill="#cbd5e1" font-size="11" font-weight="600" text-anchor="middle">Invariante sob rotação em torno de qualquer reta que passe pelo centro C(0,0,0)</text>
+                <text x="210" y="122" fill="#cbd5e1" font-size="11" font-weight="600" text-anchor="middle">Invariante sob rotação/reflexão em torno da origem</text>
               </svg>
             </div>
             <div class="geom-prop-desc">
-              <p><strong>Definição:</strong> Simetria esférica plena (invariante sob rotações e reflexões ortogonais).</p>
-              <p class="highlight-val">Exemplo: Infinitos planos axiais dividem a casca em hemisférios idênticos invariantes.</p>
+              <p>Qualquer plano que passa por $C(0,0,0)$ divide a casca em dois hemisférios iguais.</p>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 03 (Slide 4 de 17): PARTE 1 — ITEM 3: GEOGEBRA FUNDAMENTAÇÃO (R=5, r=3)
-         ---------------------------------------------------------------------- -->
-    <section class="slide" id="sec-3" data-slide="3">
+    <!-- ======================================================================
+         SLIDE 04 (5 de 19): PARTE 1 — GEOGEBRA FUNDAMENTAÇÃO
+         ====================================================================== -->
+    <section class="slide" id="sec-4" data-slide="4">
       <div class="slide-container full-width-layout">
-        
         <div class="content-pane-header">
           <div class="section-tag-row">
             <span class="section-tag">PARTE 1</span>
-            <span class="section-tag-desc">Software Matemático &bull; Modelagem no GeoGebra</span>
+            <span class="section-tag-desc">Software Matemático</span>
           </div>
-          <h2 class="slide-heading">3. Modelagem Computacional no GeoGebra ($R=5, r=3$)</h2>
-          <p class="slide-subheading">
-            Construção autoral das curvas semicirculares geradoras e revolução 3D para os parâmetros didáticos de referência:
-          </p>
+          <h2 class="slide-heading">4. Modelagem no GeoGebra ($R = 5,\; r = 3$)</h2>
+        </div>
+
+        <div class="var-ref-bar">
+          <span class="var-ref-title">Referências:</span>
+          <span class="var-ref-item"><strong>$R = 5$</strong> = raio maior</span>
+          <span class="var-ref-item"><strong>$r = 3$</strong> = raio menor</span>
+          <span class="var-ref-item"><strong>$f(x)$</strong> = arco externo</span>
+          <span class="var-ref-item"><strong>$g(x)$</strong> = arco interno</span>
+          <span class="var-ref-item"><strong>$a$</strong> = região anelar ($y \ge 0$)</span>
+          <span class="var-ref-item"><strong>$x, y, z$</strong> = eixos 3D</span>
         </div>
 
         <div class="geogebra-slots-grid">
-          
-          <!-- Slot 1: Gráfico 2D -->
-          <div class="geogebra-slot-card" id="geogebra-slot-2d">
+          <div class="geogebra-slot-card">
             <div class="slot-header">
-              <span class="slot-badge">PRINT 01</span>
-              <h4>Gráfico 2D no GeoGebra: Curvas e Região Sombreada</h4>
+              <span class="slot-badge">2D</span>
+              <h4>Região Geradora $\mathcal{R}$ no Plano Cartesiano</h4>
             </div>
-            
             <div class="slot-body">
-              <img id="img-geogebra-2d" src="geogebra_2d.png" alt="Print do Gráfico 2D no GeoGebra" class="geogebra-print-img" onerror="this.style.display='none'; document.getElementById('placeholder-2d').style.display='flex';" />
-              
-              <div id="placeholder-2d" class="geogebra-placeholder-box" style="display: none;">
-                <div class="placeholder-icon">📐</div>
-                <div class="placeholder-title">Aguardando Print 2D do GeoGebra</div>
-                <div class="placeholder-desc">
-                  Plote $y=\sqrt{25-x^2}$ e $y=\sqrt{9-x^2}$, tire o print e salve como:<br />
-                  <code class="file-code">geogebra_2d.png</code> nesta pasta.
-                </div>
-              </div>
+              <img src="geogebra_2d.png" alt="Gráfico 2D no GeoGebra" class="geogebra-print-img" />
             </div>
-            
             <div class="slot-footer">
-              <div class="geo-footer-line">
-                <strong>Curvas Geradoras:</strong> $f(x) = \sqrt{25 - x^2}$ e $g(x) = \sqrt{9 - x^2}$
-              </div>
-              <div class="geo-footer-line">
-                <strong>Região Plana Sombreada:</strong> $a: 9 \le x^2 + y^2 \le 25 \wedge y \ge 0$
-              </div>
-              <div class="geo-footer-sub">
-                Intervalos de definição: $[-5, 5]$ para o raio externo e $[-3, 3]$ para o raio interno.
-              </div>
+              <div class="geo-footer-line"><strong>Funções Geradoras:</strong> $f(x)=\sqrt{25-x^2}$ em $[-5,5]$ e $g(x)=\sqrt{9-x^2}$ em $[-3,3]$</div>
+              <div class="geo-footer-sub"><strong>Região Plana Sombreada:</strong> $a:\; 9 \le x^2 + y^2 \le 25 \;\wedge\; y \ge 0$</div>
             </div>
           </div>
 
-          <!-- Slot 2: Gráfico 3D -->
-          <div class="geogebra-slot-card" id="geogebra-slot-3d">
+          <div class="geogebra-slot-card">
             <div class="slot-header">
-              <span class="slot-badge">PRINT 02</span>
-              <h4>Janela de Visualização 3D do GeoGebra: Revolução no Eixo $x$</h4>
+              <span class="slot-badge">3D</span>
+              <h4>Sólido de Revolução ($360^\circ$ no Eixo $x$)</h4>
             </div>
-
             <div class="slot-body">
-              <img id="img-geogebra-3d" src="geogebra_3d.png" alt="Print da Janela 3D no GeoGebra" class="geogebra-print-img" onerror="this.style.display='none'; document.getElementById('placeholder-3d').style.display='flex';" />
-
-              <div id="placeholder-3d" class="geogebra-placeholder-box" style="display: none;">
-                <div class="placeholder-icon">🌐</div>
-                <div class="placeholder-title">Aguardando Print 3D do GeoGebra</div>
-                <div class="placeholder-desc">
-                  Na Janela 3D, gire a região em torno do eixo $x$, tire o print e salve como:<br />
-                  <code class="file-code">geogebra_3d.png</code> nesta pasta.
-                </div>
-              </div>
+              <img src="geogebra_3d.png" alt="Janela 3D no GeoGebra" class="geogebra-print-img" />
             </div>
-
             <div class="slot-footer">
-              <div class="geo-footer-line">
-                <strong>Eixos Cartesianos:</strong> Vermelho (Eixo $x$), Verde (Eixo $y$), Azul (Eixo $z$)
-              </div>
-              <div class="geo-footer-line">
-                <strong>Casca 3D Translúcida:</strong> Casca externa ($R=5$) e cavidade interna oca ($r=3$)
-              </div>
-              <div class="geo-footer-sub">
-                A revolução de $360^\circ$ no eixo $x$ gera a casca esférica tridimensional com espessura $e = 2$.
-              </div>
+              <div class="geo-footer-line"><strong>Revolução ($360^\circ$ no eixo $x$):</strong> Casca externa ($R = 5$) e cavidade oca ($r = 3$)</div>
+              <div class="geo-footer-sub"><strong>Eixos cartesianos:</strong> Vermelho ($x$), Verde ($y$), Azul ($z$)</div>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 04 (Slide 5 de 17): PARTE 2 — DISCOS VS CASCAS CILÍNDRICAS
-         ---------------------------------------------------------------------- -->
-    <section class="slide" id="sec-4" data-slide="4">
+    <!-- ======================================================================
+         SLIDE 05 (6 de 19): PARTE 2 — DA SOMA DE RIEMANN À INTEGRAL
+         ====================================================================== -->
+    <section class="slide" id="sec-5" data-slide="5">
       <div class="slide-container">
-        
         <div class="content-pane">
-          <div class="section-tag-row">
-            <span class="section-tag">PARTE 2</span>
-            <span class="section-tag-desc">Dedução do Volume</span>
+          <div class="pane-head">
+            <div class="section-tag-row">
+              <span class="section-tag">PARTE 2</span>
+              <span class="section-tag-desc">Rigor do Cálculo Integral</span>
+            </div>
+            <h2 class="slide-heading">Da Soma de Riemann à Integral Definida</h2>
           </div>
 
-          <h2 class="slide-heading">Método dos Discos vs. Cascas Cilíndricas</h2>
-
-          <div class="alert-banner">
-            <span class="alert-icon">💡</span>
-            <span class="alert-text"><strong>Por que usamos o Método dos Discos e NÃO as Cascas Cilíndricas?</strong></span>
+          <div class="var-ref-bar">
+            <span class="var-ref-title">Referências:</span>
+            <span class="var-ref-item"><strong>$R$</strong> = raio maior</span>
+            <span class="var-ref-item"><strong>$r$</strong> = raio menor</span>
+            <span class="var-ref-item"><strong>$n$</strong> = nº de fatias</span>
+            <span class="var-ref-item"><strong>$\Delta x = \frac{2R}{n}$</strong> = largura da fatia</span>
+            <span class="var-ref-item"><strong>$x_i^*$</strong> = ponto da fatia $i$</span>
+            <span class="var-ref-item"><strong>$y(x)$</strong> = raio da seção</span>
+            <span class="var-ref-item"><strong>$V_n, V$</strong> = volumes aprox. e exato</span>
           </div>
 
           <div class="card card-accent-blue">
-            <h4 class="card-title">1. A Vantagem dos Discos: Função Teto e Piso Imediatas</h4>
-            <p class="paragraph-sub">
-              No fatiamento perpendicular ao eixo $x$, as fronteiras superior e inferior são imediatas e elementares:
-            </p>
-            <ul class="styled-list">
-              <li><strong>Esfera Externa:</strong> $\text{Teto} = f(x) = \sqrt{R^2 - x^2}$ e $\text{Piso} = y = 0$.</li>
-              <li><strong>Esfera Interna:</strong> $\text{Teto} = g(x) = \sqrt{r^2 - x^2}$ e $\text{Piso} = y = 0$.</li>
+            <h4 class="card-title">1. Fatiamento em $n$ Discos Elementares</h4>
+            <ul class="cue-list">
+              <li>Partição de $[-R, R]$ em $n$ fatias de largura $\Delta x = \frac{R - (-R)}{n} = \frac{2R}{n}$.</li>
+              <li>Volume do cilindro fino ($V_{\text{cil}} = \pi \cdot \text{raio}^2 \cdot h$): $\Delta V_i \approx \pi [y(x_i^*)]^2 \Delta x$.</li>
             </ul>
-            <p class="didactic-highlight">
-              <strong>Cancelamento Direto da Raiz:</strong> A área da seção transversal é $\pi [y(x)]^2 = \pi (\sqrt{R^2 - x^2})^2 = \pi (R^2 - x^2)$. A raiz quadrada anula-se na hora com o expoente quadrático!
-            </p>
           </div>
 
           <div class="card card-subtle">
-            <h4 class="card-title" style="color: var(--accent-red);">2. A Complexidade Inviável das Cascas Cilíndricas</h4>
-            <ul class="styled-list">
-              <li>
-                <strong>Integração com Raízes Complicadas:</strong> Integrando em $y$ em torno do eixo $x$, o integrando conteria $2\pi y \sqrt{R^2 - y^2}$.
-              </li>
-              <li>
-                <strong>Divisão em Duas Regiões no Eixo $y$:</strong> A casca teria que ser fatiada em $[0, r]$ (diferença entre duas esferas) e em $[r, R]$ (apenas esfera externa), tornando as contas longas e desnecessárias.
-              </li>
+            <h4 class="card-title">2. Soma de Riemann e Passagem ao Limite</h4>
+            <div class="steps-stack">
+              <div class="math-box">
+                $$V_n = \sum_{i=1}^{n} \pi \left[y(x_i^*)\right]^2 \Delta x$$
+              </div>
+              <div class="math-box-hero">
+                $$V = \lim_{n \to \infty} \sum_{i=1}^{n} \pi \left[y(x_i^*)\right]^2 \Delta x = \int_{-R}^{R} \pi \left[y(x)\right]^2 dx$$
+              </div>
+              <ul class="cue-list" style="flex: none;">
+                <li>Aplicamos essa integral a <span class="math-nowrap">$f(x)=\sqrt{R^2-x^2}$</span> (ext.) e <span class="math-nowrap">$g(x)=\sqrt{r^2-x^2}$</span> (int.).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual-pane">
+          <div class="viz-header-bar">
+            <span class="viz-title">Aproximação por Discos de Riemann ($R=5$)</span>
+            <div class="slider-control-group">
+              <label for="slider-riemann-n">Fatias $n$:</label>
+              <input type="range" id="slider-riemann-n" min="4" max="40" step="2" value="8" />
+              <span id="riemann-n-val">8</span>
+            </div>
+          </div>
+
+          <div class="riemann-canvas-wrap">
+            <canvas id="canvas-riemann"></canvas>
+          </div>
+
+          <div class="viz-status-bar">
+            <span id="riemann-status">Soma $V_8$: <strong class="c-cyan">--</strong> &bull; Integral Exata: <strong class="c-amber">523,60</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SLIDE 06 (7 de 19): PARTE 2 — DISCOS VS CASCAS CILÍNDRICAS
+         ====================================================================== -->
+    <section class="slide" id="sec-6" data-slide="6">
+      <div class="slide-container">
+        <div class="content-pane">
+          <div class="pane-head">
+            <div class="section-tag-row">
+              <span class="section-tag">PARTE 2</span>
+              <span class="section-tag-desc">Escolha do Método</span>
+            </div>
+            <h2 class="slide-heading">Método dos Discos (Arruelas) vs. Cascas</h2>
+          </div>
+
+          <div class="var-ref-bar">
+            <span class="var-ref-title">Referências:</span>
+            <span class="var-ref-item"><strong>$R$</strong> = raio externo (maior)</span>
+            <span class="var-ref-item"><strong>$r$</strong> = raio interno (menor)</span>
+            <span class="var-ref-item"><strong>$f(x), g(x)$</strong> = curvas externa e interna</span>
+            <span class="var-ref-item"><strong>$A(x)$</strong> = área da seção</span>
+            <span class="var-ref-item"><strong>$h(y)$</strong> = largura horizontal</span>
+          </div>
+
+          <div class="card card-accent-blue">
+            <h4 class="card-title">Método Escolhido: Discos / Anéis (Arruelas)</h4>
+            <ul class="cue-list">
+              <li><strong>Fórmulas:</strong> Discos $V = \pi\int_a^b [f(x)]^2\,dx$ &bull; Arruelas $V = \pi\int_a^b \left([f(x)]^2 - [g(x)]^2\right)dx$.</li>
+              <li><strong>Elimina a raiz:</strong> $\pi[y(x)]^2 = \pi(\sqrt{R^2-x^2})^2 = \pi(R^2-x^2)$ (polinômio direto).</li>
+              <li><strong>Miolo ($|x| &lt; r$):</strong> $A(x) = \pi(R^2-x^2) - \pi(r^2-x^2) = \pi(R^2-r^2)$ (área constante).</li>
+            </ul>
+          </div>
+
+          <div class="card card-subtle">
+            <h4 class="card-title" style="color: var(--accent-red);">Por que NÃO Cascas Cilíndricas?</h4>
+            <ul class="cue-list">
+              <li><strong>Fórmula:</strong> $V = 2\pi\int_a^b y \cdot h(y)\,dy \implies 2\pi\int y\sqrt{R^2-y^2}\,dy$ (mantém a raiz).</li>
+              <li>Exigiria dividir a região no eixo $y$ em $[0, r]$ (arruelas) e $[r, R]$ (só externa).</li>
             </ul>
           </div>
         </div>
 
         <div class="visual-pane">
           <div class="viz-header-bar">
-            <span class="viz-title">Visualização 3D: Seções Circulares & Camadas Concêntricas</span>
+            <span class="viz-title">Fatiamento 3D no Eixo $x$ ($R=5,\; r=3$)</span>
             <div class="viz-actions">
-              <button class="btn-tool active" id="btn-s2-disks-anim" data-toggle="anim" title="Animar fatiamento dos discos">
-                <span>▶ Fatiar Discos</span>
-              </button>
-              <button class="btn-tool" id="btn-s2-disks-mode" data-toggle="cut" title="Alternar entre Raio-X e Corte 90°">
-                <span>🌓 Corte 90°</span>
-              </button>
-              <button class="btn-tool active" id="btn-s2-disks-spin" data-toggle="spin" title="Pausar / Retomar Rotação 360°">
-                <span>🔄 360°</span>
-              </button>
+              <button class="btn-tool active" data-toggle="anim">▶ Fatiar</button>
+              <button class="btn-tool" data-toggle="cut">🌓 Corte 90°</button>
+              <button class="btn-tool active" data-toggle="spin">🔄 360°</button>
             </div>
           </div>
           <div class="canvas-3d-wrapper" id="container-3d-s2-disks">
-            <div class="overlay-3d-instructions">
-              <span>🖱️ Arraste para orbitar &bull; Esferas concêntricas ($R=5, r=3$) e disco animado</span>
-            </div>
+            <div class="overlay-3d-instructions">🖱️ Arraste para orbitar</div>
           </div>
           <div class="viz-legend-bar">
-            <div class="legend-item"><span class="dot dot-cyan"></span> Raio Externo $R(x) = \sqrt{R^2 - x^2}$</div>
-            <div class="legend-item"><span class="dot dot-red"></span> Raio Interno $r(x) = \sqrt{r^2 - x^2}$</div>
-            <div class="legend-item"><span class="dot dot-amber"></span> Seção Anular $A(x) = \pi(R^2 - r^2 - x^2)$</div>
+            <div class="legend-item"><span class="dot dot-cyan"></span> Raio Ext. $\sqrt{R^2 - x^2}$</div>
+            <div class="legend-item"><span class="dot dot-red"></span> Raio Int. $\sqrt{r^2 - x^2}$</div>
+            <div class="legend-item"><span class="dot dot-amber"></span> Seção Anular $A(x) = \pi(R^2 - r^2)$</div>
           </div>
           <div class="viz-status-bar">
-            <span>Posição da Seção: <strong id="s2-disk-pos-text" style="color: var(--accent-cyan);">$x = 0{,}0$</strong> | Área Anular: <strong id="s2-disk-area-text" style="color: var(--accent-amber);">$\pi(R^2 - r^2) = 16\pi$</strong></span>
+            <span>Posição: <strong id="s2-disk-pos-text" class="c-cyan">x = 0,0</strong> &bull; Área: <strong id="s2-disk-area-text" class="c-amber">π(R² − r²) = 16π</strong></span>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 05 (Slide 6 de 15): PARTE 2 — PASSOS 3.1 & 3.2: MONTAGEM E SIMPLIFICAÇÃO
-         ---------------------------------------------------------------------- -->
-    <section class="slide" id="sec-5" data-slide="5">
+    <!-- ======================================================================
+         SLIDE 07 (8 de 19): PARTE 2 — MONTAGEM, SIMPLIFICAÇÃO E PROPRIEDADES
+         ====================================================================== -->
+    <section class="slide" id="sec-7" data-slide="7">
       <div class="slide-container full-width-layout">
-        
         <div class="content-pane-header">
           <div class="section-tag-row">
             <span class="section-tag">PARTE 2</span>
             <span class="section-tag-desc">Desenvolvimento Algébrico</span>
           </div>
-          <h2 class="slide-heading">Passos 3.1 & 3.2: Montagem da Equação e Simplificação</h2>
-          <p class="slide-subheading">
-            A fórmula geral do volume por revolução no eixo $x$ é dada por: <strong>$V = \pi \int_{a}^{b} [y(x)]^2 dx$</strong>
-          </p>
+          <h2 class="slide-heading">Montagem da Integral e Propriedades Operatórias</h2>
+        </div>
+
+        <div class="var-ref-bar">
+          <span class="var-ref-title">Referências:</span>
+          <span class="var-ref-item"><strong>$R$</strong> = raio externo (maior)</span>
+          <span class="var-ref-item"><strong>$r$</strong> = raio interno (menor)</span>
+          <span class="var-ref-item"><strong>$x$</strong> = posição axial</span>
+          <span class="var-ref-item"><strong>$f(x), g(x)$</strong> = raios das seções</span>
+          <span class="var-ref-item"><strong>$u$</strong> = radicando ($R^2-x^2$ ou $r^2-x^2$)</span>
+          <span class="var-ref-item"><strong>$c$</strong> = constante ($\pi$)</span>
         </div>
 
         <div class="math-steps-grid">
-          
           <div class="math-step-card">
             <div class="step-badge-row">
-              <span class="step-num-badge">PASSO 3.1</span>
-              <span class="step-title-badge">Montando a Equação da Casca Esférica</span>
+              <span class="step-num-badge">PASSO 1</span>
+              <span class="step-title-badge">Montagem: $V = \pi \int_a^b [y(x)]^2 dx$</span>
             </div>
-            <p>Substituímos as funções geradoras $f(x)$ e $g(x)$ na fórmula geral de revolução:</p>
-            <div class="math-box-large">
-              $$V = \pi \int_{-R}^{R} \left(\sqrt{R^2 - x^2}\right)^2 dx - \pi \int_{-r}^{r} \left(\sqrt{r^2 - x^2}\right)^2 dx$$
-            </div>
-            <div class="step-explanation">
-              <strong>Fundamentação:</strong> O primeiro termo representa o sólido maciço envoltório; o segundo termo representa a matéria a ser subtraída da cavidade oca interior.
+            <div class="steps-stack">
+              <div class="math-box-large">
+                $$V = \pi \int_{-R}^{R} \left(\sqrt{R^2 - x^2}\right)^2 dx - \pi \int_{-r}^{r} \left(\sqrt{r^2 - x^2}\right)^2 dx$$
+              </div>
+              <div class="cue-highlight-box">
+                <ul class="cue-list">
+                  <li><strong>1ª integral ($[-R, R]$):</strong> esfera externa maciça gerada por $f(x)=\sqrt{R^2-x^2}$.</li>
+                  <li><strong>2ª integral ($[-r, r]$):</strong> cavidade oca interna gerada por $g(x)=\sqrt{r^2-x^2}$.</li>
+                </ul>
+              </div>
             </div>
           </div>
 
           <div class="math-step-card">
             <div class="step-badge-row">
-              <span class="step-num-badge">PASSO 3.2</span>
-              <span class="step-title-badge">Simplificando os Integrandos</span>
+              <span class="step-num-badge">PASSO 2</span>
+              <span class="step-title-badge">Simplificação &amp; Propriedades das Integrais</span>
             </div>
-            <p>Cancelamos a raiz quadrada com a potência quadrática, pois $(\sqrt{u})^2 = u$ para $u \ge 0$:</p>
-            <div class="math-box-large">
-              $$V = \pi \int_{-R}^{R} (R^2 - x^2) dx - \pi \int_{-r}^{r} (r^2 - x^2) dx$$
-            </div>
-            <div class="step-explanation">
-              <strong>Ponto de Atenção:</strong> Note que os integrandos tornaram-se polinômios simples de segundo grau, permitindo a integração direta pelas regras básicas de primitivas!
+            <div class="steps-stack">
+              <div class="math-box">
+                $$V = \pi \int_{-R}^{R} (R^2 - x^2)\,dx - \pi \int_{-r}^{r} (r^2 - x^2)\,dx$$
+              </div>
+              <div class="math-box-large highlight">
+                $$V = \pi\left[\int_{-R}^{R} R^2\,dx - \int_{-R}^{R} x^2\,dx\right] - \pi\left[\int_{-r}^{r} r^2\,dx - \int_{-r}^{r} x^2\,dx\right]$$
+              </div>
+              <div class="cue-highlight-box">
+                <ul class="cue-list">
+                  <li><strong>Cancelamento:</strong> $(\sqrt{u})^2 = u$ para $u \ge 0$.</li>
+                  <li><strong>Propriedades:</strong> $\int c\,h(x)\,dx = c\int h(x)\,dx$ e $\int (u-v)\,dx = \int u\,dx - \int v\,dx$.</li>
+                </ul>
+              </div>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 06 (Slide 7 de 15): PARTE 2 — PASSO 3.3: DETERMINAÇÃO DA PRIMITIVA
-         ---------------------------------------------------------------------- -->
-    <section class="slide" id="sec-6" data-slide="6">
+    <!-- ======================================================================
+         SLIDE 08 (9 de 19): PARTE 2 — ANTIDERIVADA (PRIMITIVA)
+         ====================================================================== -->
+    <section class="slide" id="sec-8" data-slide="8">
       <div class="slide-container full-width-layout">
-        
         <div class="content-pane-header">
           <div class="section-tag-row">
             <span class="section-tag">PARTE 2</span>
             <span class="section-tag-desc">Cálculo das Primitivas</span>
           </div>
-          <h2 class="slide-heading">Passo 3.3: Calculando a Antiderivada (Primitiva)</h2>
-          <p class="slide-subheading">
-            Aplicação minuciosa das regras fundamentais de integração do Cálculo B:
-          </p>
+          <h2 class="slide-heading">Antiderivada (Primitiva) dos Termos Polinomiais</h2>
+        </div>
+
+        <div class="var-ref-bar">
+          <span class="var-ref-title">Referências:</span>
+          <span class="var-ref-item"><strong>$k$</strong> = constante fixa ($R^2$ ou $r^2$)</span>
+          <span class="var-ref-item"><strong>$R$</strong> = raio externo (maior)</span>
+          <span class="var-ref-item"><strong>$r$</strong> = raio interno (menor)</span>
+          <span class="var-ref-item"><strong>$x$</strong> = variável de integração</span>
+          <span class="var-ref-item"><strong>$n = 2$</strong> = expoente da potência</span>
+          <span class="var-ref-item"><strong>$P_{\text{ext}}, P_{\text{int}}$</strong> = antiderivadas</span>
         </div>
 
         <div class="primitive-breakdown-card">
           <div class="primitive-rule-row">
             <div class="rule-box">
-              <span class="rule-tag">Regra da Constante</span>
-              <p>Lembrando que $R$ e $r$ são <strong>constantes</strong> fixas em relação à variável de integração $x$:</p>
+              <span class="rule-tag">Regra da Constante ($\int k\,dx = kx$)</span>
               <div class="math-box">
-                $$\int R^2 dx = R^2 \int 1 dx = R^2 x$$
+                $$\int R^2\,dx = R^2 \int 1\,dx = R^2 x \quad\text{e}\quad \int r^2\,dx = r^2 x$$
               </div>
             </div>
 
             <div class="rule-box">
-              <span class="rule-tag">Regra da Potência</span>
-              <p>Aplicando a regra da potência $\int x^n dx = \frac{x^{n+1}}{n+1}$ com $n = 2$:</p>
+              <span class="rule-tag">Regra da Potência ($\int x^n\,dx = \frac{x^{n+1}}{n+1},\; n=2$)</span>
               <div class="math-box">
-                $$\int x^2 dx = \frac{x^{2+1}}{2+1} = \frac{x^3}{3}$$
+                $$\int x^2\,dx = \frac{x^{2+1}}{2+1} = \frac{x^3}{3}$$
               </div>
             </div>
           </div>
 
           <div class="primitive-result-box">
-            <span class="res-tag">PRIMITIVA GERAL</span>
+            <span class="res-tag">PRIMITIVAS OBTIDAS</span>
             <div class="math-box-hero">
-              $$\int (R^2 - x^2) dx = R^2 x - \frac{x^3}{3}$$
+              $$P_{\text{ext}}(x) = R^2 x - \frac{x^3}{3} \qquad\text{e}\qquad P_{\text{int}}(x) = r^2 x - \frac{x^3}{3}$$
             </div>
             <p class="res-sub">
-              E de forma idêntica para o raio interno, substituindo o parâmetro $R$ por $r$: $\int (r^2 - x^2) dx = r^2 x - \frac{x^3}{3}$.
+              Como $x$ é a variável de integração, $R^2$ e $r^2$ são constantes em relação a $x$.
             </p>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 07 (Slide 8 de 15): PARTE 2 — PASSO 3.4: TEOREMA FUNDAMENTAL DO CÁLCULO
-         ---------------------------------------------------------------------- -->
-    <section class="slide" id="sec-7" data-slide="7">
+    <!-- ======================================================================
+         SLIDE 09 (10 de 19): PARTE 2 — TEOREMA FUNDAMENTAL DO CÁLCULO
+         ====================================================================== -->
+    <section class="slide" id="sec-9" data-slide="9">
       <div class="slide-container full-width-layout">
-        
         <div class="content-pane-header">
           <div class="section-tag-row">
             <span class="section-tag">PARTE 2</span>
             <span class="section-tag-desc">Avaliação nos Limites</span>
           </div>
-          <h2 class="slide-heading">Passo 3.4: Teorema Fundamental do Cálculo</h2>
-          <p class="slide-subheading">
-            Substituição completa nos limites superior e inferior: $\int_{a}^{b} f(x) dx = P(b) - P(a)$
-          </p>
+          <h2 class="slide-heading">Teorema Fundamental do Cálculo: $\int_{a}^{b} f(x)\,dx = P(b) - P(a)$</h2>
+        </div>
+
+        <div class="var-ref-bar">
+          <span class="var-ref-title">Referências:</span>
+          <span class="var-ref-item"><strong>$[a, b]$</strong> = limites de integração ($[-R,R]$ e $[-r,r]$)</span>
+          <span class="var-ref-item"><strong>$P(x)$</strong> = primitiva</span>
+          <span class="var-ref-item"><strong>$R$</strong> = raio externo (maior)</span>
+          <span class="var-ref-item"><strong>$r$</strong> = raio interno (menor)</span>
+          <span class="var-ref-item"><strong>$V_{\text{ext}}, V_{\text{int}}$</strong> = volumes das esferas maciças</span>
         </div>
 
         <div class="tfc-calculation-grid">
-          
-          <!-- Coluna 1: Esfera Externa -->
           <div class="tfc-card external">
             <div class="tfc-header">
               <span class="tfc-badge ext">ESFERA EXTERNA</span>
-              <h4>Avaliando de $-R$ a $R$</h4>
+              <h4>Limites $[-R,\; R]$: $\pi\left[P_{\text{ext}}(R) - P_{\text{ext}}(-R)\right]$</h4>
             </div>
-            <div class="tfc-step">
-              <span class="step-lbl">1. Montagem:</span>
-              <div class="math-box">
-                $$V_{\text{ext}} = \pi \left[ \left(R^2(R) - \frac{R^3}{3}\right) - \left(R^2(-R) - \frac{(-R)^3}{3}\right) \right]$$
+            <div class="steps-stack">
+              <div class="tfc-step">
+                <span class="step-lbl">1. Substituição nos limites:</span>
+                <div class="math-box">
+                  $$V_{\text{ext}} = \pi \left[ \left(R^2(R) - \frac{R^3}{3}\right) - \left(R^2(-R) - \frac{(-R)^3}{3}\right) \right]$$
+                </div>
               </div>
-            </div>
-            <div class="tfc-step">
-              <span class="step-lbl">2. Potências:</span>
-              <div class="math-box">
-                $$V_{\text{ext}} = \pi \left[ \left(R^3 - \frac{R^3}{3}\right) - \left(-R^3 + \frac{R^3}{3}\right) \right]$$
+              <div class="tfc-step">
+                <span class="step-lbl">2. Potências e sinais:</span>
+                <div class="math-box">
+                  $$V_{\text{ext}} = \pi \left[ \left(R^3 - \frac{R^3}{3}\right) - \left(-R^3 + \frac{R^3}{3}\right) \right]$$
+                </div>
               </div>
-            </div>
-            <div class="tfc-step">
-              <span class="step-lbl">3. Frações:</span>
-              <div class="math-box">
-                $$V_{\text{ext}} = \pi \left[ \frac{2R^3}{3} - \left(-\frac{2R^3}{3}\right) \right] = \pi \left[ \frac{2R^3}{3} + \frac{2R^3}{3} \right]$$
+              <div class="tfc-step">
+                <span class="step-lbl">3. Soma das frações:</span>
+                <div class="math-box">
+                  $$V_{\text{ext}} = \pi \left[ \frac{2R^3}{3} - \left(-\frac{2R^3}{3}\right) \right] = \pi\left[\frac{2R^3}{3} + \frac{2R^3}{3}\right]$$
+                </div>
               </div>
             </div>
             <div class="tfc-result-banner ext">
@@ -795,651 +853,589 @@
             </div>
           </div>
 
-          <!-- Coluna 2: Esfera Interna -->
           <div class="tfc-card internal">
             <div class="tfc-header">
               <span class="tfc-badge int">ESFERA INTERNA</span>
-              <h4>Avaliando de $-r$ a $r$</h4>
+              <h4>Limites $[-r,\; r]$: $\pi\left[P_{\text{int}}(r) - P_{\text{int}}(-r)\right]$</h4>
             </div>
-            <div class="tfc-step">
-              <span class="step-lbl">1. Processo Algébrico Idêntico:</span>
-              <p>O desenvolvimento algébrico é rigorosamente análogo, trocando a constante $R$ por $r$ nos limites $[-r, r]$:</p>
-            </div>
-            <div class="tfc-step">
-              <div class="math-box">
-                $$V_{\text{int}} = \pi \left[ \left(r^3 - \frac{r^3}{3}\right) - \left(-r^3 + \frac{r^3}{3}\right) \right]$$
+            <div class="steps-stack">
+              <div class="tfc-step">
+                <span class="step-lbl">1. Substituição nos limites:</span>
+                <div class="math-box">
+                  $$V_{\text{int}} = \pi \left[ \left(r^2(r) - \frac{r^3}{3}\right) - \left(r^2(-r) - \frac{(-r)^3}{3}\right) \right]$$
+                </div>
               </div>
-            </div>
-            <div class="tfc-step">
-              <div class="math-box">
-                $$V_{\text{int}} = \pi \left[ \frac{2r^3}{3} - \left(-\frac{2r^3}{3}\right) \right]$$
+              <div class="tfc-step">
+                <span class="step-lbl">2. Potências e sinais:</span>
+                <div class="math-box">
+                  $$V_{\text{int}} = \pi \left[ \left(r^3 - \frac{r^3}{3}\right) - \left(-r^3 + \frac{r^3}{3}\right) \right]$$
+                </div>
+              </div>
+              <div class="tfc-step">
+                <span class="step-lbl">3. Soma das frações:</span>
+                <div class="math-box">
+                  $$V_{\text{int}} = \pi \left[ \frac{2r^3}{3} - \left(-\frac{2r^3}{3}\right) \right] = \pi\left[\frac{2r^3}{3} + \frac{2r^3}{3}\right]$$
+                </div>
               </div>
             </div>
             <div class="tfc-result-banner int">
               $$V_{\text{int}} = \frac{4}{3}\pi r^3$$
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 08 (Slide 9 de 15): PARTE 2 — PASSO 3.5: FÓRMULA FINAL DEDUZIDA
-         ---------------------------------------------------------------------- -->
-    <section class="slide" id="sec-8" data-slide="8">
+    <!-- ======================================================================
+         SLIDE 10 (11 de 19): PARTE 2 — FÓRMULA FINAL E DERIVADA
+         ====================================================================== -->
+    <section class="slide" id="sec-10" data-slide="10">
       <div class="slide-container">
-        
         <div class="content-pane">
-          <div class="section-tag-row">
-            <span class="section-tag">PARTE 2</span>
-            <span class="section-tag-desc">Conclusão da Dedução</span>
+          <div class="pane-head">
+            <div class="section-tag-row">
+              <span class="section-tag">PARTE 2</span>
+              <span class="section-tag-desc">Conclusão da Dedução</span>
+            </div>
+            <h2 class="slide-heading">Fórmula Final e Interpretação Geométrica</h2>
           </div>
 
-          <h2 class="slide-heading">Passo 3.5: Fórmula Final Deduzida</h2>
+          <div class="var-ref-bar">
+            <span class="var-ref-title">Referências:</span>
+            <span class="var-ref-item"><strong>$V_{\text{casca}}$</strong> = volume da casca</span>
+            <span class="var-ref-item"><strong>$R$</strong> = raio maior</span>
+            <span class="var-ref-item"><strong>$r$</strong> = raio menor</span>
+            <span class="var-ref-item"><strong>$e = R - r$</strong> = espessura</span>
+            <span class="var-ref-item"><strong>$4\pi R^2$</strong> = área superficial</span>
+            <span class="var-ref-item"><strong>$\frac{dV}{dR}$</strong> = taxa de variação</span>
+          </div>
 
           <div class="card card-accent-blue">
-            <p>Subtraindo o volume da esfera interna da esfera externa:</p>
+            <h4 class="card-title">Subtração de Volumes e Correlação Euclidiana</h4>
             <div class="math-box-hero">
-              $$V_{\text{casca}} = \frac{4}{3}\pi R^3 - \frac{4}{3}\pi r^3$$
+              $$V_{\text{casca}} = V_{\text{ext}} - V_{\text{int}} = \frac{4}{3}\pi R^3 - \frac{4}{3}\pi r^3 = \frac{4}{3}\pi (R^3 - r^3)$$
             </div>
-            <p class="highlight-val-large" style="text-align: center; margin-top: 0.5rem;">
-              Colocando $\frac{4}{3}\pi$ em evidência:
-            </p>
-            <div class="math-box-hero" style="border-color: var(--accent-amber);">
-              $$V_{\text{casca}} = \frac{4}{3}\pi (R^3 - r^3)$$
-            </div>
+            <ul class="cue-list">
+              <li><strong>Modelo didático ($R=5,\; r=3$):</strong> $V = \frac{4}{3}\pi(5^3 - 3^3) = \frac{4}{3}\pi(125 - 27) = \frac{392\pi}{3} \approx 410{,}50$.</li>
+            </ul>
           </div>
 
           <div class="card card-subtle">
-            <h4 class="card-title">Interpretação Infinitesimal e Conexão com a Derivada</h4>
-            <p>Fatorando a diferença de cubos $R^3 - r^3 = (R - r)(R^2 + Rr + r^2) = e(R^2 + Rr + r^2)$:</p>
-            <p>Quando a espessura $e \to 0$ ($r \to R$), temos $(R^2 + Rr + r^2) \to 3R^2$:</p>
+            <h4 class="card-title">Casca Fina ($e = R - r \to 0$) e Derivada</h4>
             <div class="math-box">
-              $$V_{\text{casca}} \approx \frac{4}{3}\pi \cdot e \cdot (3R^2) = 4\pi R^2 \cdot e$$
+              $$R^3 - r^3 = (R - r)(R^2 + Rr + r^2) = e(R^2 + Rr + r^2) \;\xrightarrow{r \to R}\; 3R^2 e$$
             </div>
-            <p class="didactic-highlight">
-              Isso comprova que a taxa de variação do volume em relação ao raio é a área da superfície esférica: <strong>$\frac{dV}{dR} = 4\pi R^2$</strong>!
-            </p>
+            <ul class="cue-list">
+              <li><strong>Substituindo:</strong> $V \approx \frac{4}{3}\pi \cdot (3R^2 e) = 4\pi R^2 \cdot e$ ($\text{Área} \times \text{Espessura}$).</li>
+              <li><strong>Derivada:</strong> $\lim_{e \to 0} \frac{V}{e} = \frac{dV}{dR} = 4\pi R^2$.</li>
+            </ul>
           </div>
         </div>
 
         <div class="visual-pane">
           <div class="viz-header-bar">
-            <span class="viz-title">Visualização 3D: Subtração e Espessura da Casca ($e = R - r$)</span>
+            <span class="viz-title">Casca 3D em Corte ($R=5,\; r=3,\; e=2$)</span>
             <div class="viz-actions">
-              <button class="btn-tool active" id="btn-s2-final-cut" data-toggle="cut" data-off="⚪ Casca Fechada" title="Alternar ângulo de corte da casca (90° / 180°)">
-                <span>🌓 Corte 90°</span>
-              </button>
-              <button class="btn-tool" id="btn-s2-final-xray" data-toggle="xray" title="Modo Translúcido / Raio-X">
-                <span>💎 Raio-X</span>
-              </button>
-              <button class="btn-tool active" id="btn-s2-final-spin" data-toggle="spin" title="Pausar / Retomar Rotação 360°">
-                <span>🔄 360°</span>
-              </button>
+              <button class="btn-tool active" data-toggle="cut" data-off="⚪ Fechada">🌓 Corte 90°</button>
+              <button class="btn-tool" data-toggle="xray">💎 Raio-X</button>
+              <button class="btn-tool active" data-toggle="spin">🔄 360°</button>
             </div>
           </div>
           <div class="canvas-3d-wrapper" id="container-3d-s2-final">
-            <div class="overlay-3d-instructions">
-              <span>🖱️ Arraste para orbitar &bull; Corte técnico evidenciando a espessura maciça $e = 2$ e a cavidade oca</span>
-            </div>
+            <div class="overlay-3d-instructions">🖱️ Arraste para orbitar</div>
           </div>
           <div class="viz-legend-bar">
-            <div class="legend-item"><span class="dot dot-cyan"></span> Casca Externa ($R = 5$)</div>
-            <div class="legend-item"><span class="dot dot-amber"></span> Seção Maciça ($e = 2$)</div>
-            <div class="legend-item"><span class="dot dot-red"></span> Cavidade Oca ($r = 3$)</div>
+            <div class="legend-item"><span class="dot dot-cyan"></span> Externa ($R=5$)</div>
+            <div class="legend-item"><span class="dot dot-amber"></span> Parede ($e=2$)</div>
+            <div class="legend-item"><span class="dot dot-red"></span> Cavidade ($r=3$)</div>
           </div>
           <div class="viz-status-bar">
-            <span>Geometria Final: <strong style="color: var(--accent-cyan);">Volume da Casca = $\frac{4}{3}\pi(R^3 - r^3) = \frac{392\pi}{3}$</strong></span>
+            <span>Para $R=5,\; r=3$: <strong class="c-cyan">V = (392π / 3) ≈ 410,50</strong></span>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 09 (Slide 10 de 15): PARTE 3 — PROBLEMA NUMÉRICO: ENUNCIADO E DADOS
-         ---------------------------------------------------------------------- -->
-    <section class="slide" id="sec-9" data-slide="9">
+    <!-- ======================================================================
+         SLIDE 11 (12 de 19): PARTE 3 — FLUTUADOR (ENUNCIADO)
+         ====================================================================== -->
+    <section class="slide" id="sec-11" data-slide="11">
       <div class="slide-container">
-        
         <div class="content-pane">
-          <div class="section-tag-row">
-            <span class="section-tag">PARTE 3</span>
-            <span class="section-tag-desc">Aplicação Numérica</span>
+          <div class="pane-head">
+            <div class="section-tag-row">
+              <span class="section-tag">PARTE 3</span>
+              <span class="section-tag-desc">Aplicação das Fórmulas</span>
+            </div>
+            <h2 class="slide-heading">Problema Industrial: Flutuador de Aço</h2>
           </div>
 
-          <h2 class="slide-heading">Problema Industrial: Flutuador Mecânico de Aço</h2>
+          <div class="var-ref-bar">
+            <span class="var-ref-title">Referências:</span>
+            <span class="var-ref-item"><strong>$R = 10\text{ cm}$</strong> = raio externo (maior)</span>
+            <span class="var-ref-item"><strong>$e = 2\text{ cm}$</strong> = espessura da parede</span>
+            <span class="var-ref-item"><strong>$r = 8\text{ cm}$</strong> = raio interno (menor)</span>
+            <span class="var-ref-item"><strong>$V_{\text{casca}}$</strong> = volume de aço</span>
+          </div>
 
           <div class="card card-accent-blue">
-            <h4 class="card-title">Enunciado Oficial da Aplicação</h4>
-            <p class="paragraph-strong">
-              Uma indústria metalúrgica fabrica esferas ocas de aço inoxidável para atuarem como <strong>flutuadores mecânicos de nível</strong> em caldeiras e reservatórios sob alta pressão.
-            </p>
-            <p>Cada flutuador possui:</p>
-            <ul class="styled-list">
-              <li><strong>Raio Externo:</strong> $R = 10\text{ cm}$</li>
-              <li><strong>Espessura da parede de aço:</strong> $e = 2\text{ cm}$</li>
-            </ul>
-            <p class="paragraph-sub">
-              <strong>Pergunta:</strong> Qual é o volume de aço necessário para fabricar um flutuador? Expresse em $\text{cm}^3$ e no Sistema Internacional de Unidades ($\text{m}^3$).
+            <h4 class="card-title">Enunciado da Questão</h4>
+            <p class="enunciado-text">
+              Uma indústria metalúrgica fabrica esferas ocas de aço inoxidável para atuarem como <strong>flutuadores mecânicos de nível</strong> em caldeiras sob alta pressão. Cada flutuador possui <strong>raio externo $R = 10\text{ cm}$</strong> e <strong>espessura de parede $e = 2\text{ cm}$</strong>. Qual é o volume de aço necessário para fabricar um flutuador, em $\text{cm}^3$ e no Sistema Internacional <span style="white-space: nowrap;">($\text{m}^3$)?</span>
             </p>
           </div>
 
           <div class="card card-subtle">
-            <h4 class="card-title">Dedução do Raio Interno Útil ($r$)</h4>
-            <p>Sabendo que a espessura é a diferença direta entre os raios ($e = R - r$):</p>
-            <div class="math-box">
-              $$r = R - e = 10\text{ cm} - 2\text{ cm} = 8\text{ cm}$$
-            </div>
-            <p class="didactic-highlight">
-              Parâmetros identificados: $R = 10\text{ cm}$, $r = 8\text{ cm}$ e $e = 2\text{ cm}$.
-            </p>
+            <h4 class="card-title">Dados, Fórmulas Utilizadas e Raio Interno ($r$)</h4>
+            <ul class="cue-list">
+              <li><strong>Dados:</strong> $R = 10\text{ cm}$ e $e = 2\text{ cm}$.</li>
+              <li><strong>Fórmula da espessura:</strong> $e = R - r \implies r = R - e = 10 - 2 = 8\text{ cm}$.</li>
+              <li><strong>Fórmula do volume:</strong> $V_{\text{casca}} = \frac{4}{3}\pi (R^3 - r^3)$.</li>
+            </ul>
           </div>
         </div>
 
         <div class="visual-pane">
           <div class="viz-header-bar">
-            <span class="viz-title">Modelo 3D: Flutuador em Camadas ($R=10\text{ cm}, e=2\text{ cm}$)</span>
+            <span class="viz-title">Flutuador 3D ($R=10\text{ cm},\; e=2\text{ cm}$)</span>
             <div class="viz-actions">
-              <button class="btn-tool active" id="btn-s3-intro-cut" data-toggle="cut" data-off="⚪ Flutuador Íntegro" title="Corte 90° revelando espessura de aço e cavidade oca">
-                <span>🌓 Corte 90°</span>
-              </button>
-              <button class="btn-tool" id="btn-s3-intro-xray" data-toggle="xray" title="Modo Translúcido / Raio-X">
-                <span>💎 Raio-X</span>
-              </button>
-              <button class="btn-tool" id="btn-s3-intro-explode" data-toggle="explode" title="Vista Explodida demonstrando camadas concêntricas">
-                <span>💥 Explodir</span>
-              </button>
-              <button class="btn-tool active" id="btn-s3-intro-spin" data-toggle="spin" title="Pausar / Retomar Rotação 360°">
-                <span>🔄 360°</span>
-              </button>
+              <button class="btn-tool active" data-toggle="cut" data-off="⚪ Íntegro">🌓 Corte 90°</button>
+              <button class="btn-tool" data-toggle="xray">💎 Raio-X</button>
+              <button class="btn-tool" data-toggle="explode">💥 Explodir</button>
+              <button class="btn-tool active" data-toggle="spin">🔄 360°</button>
             </div>
           </div>
           <div class="canvas-3d-wrapper" id="container-3d-s3-intro">
-            <div class="overlay-3d-instructions">
-              <span>🖱️ Arraste para orbitar &bull; Corte técnico evidenciando a espessura de 2 cm e a cavidade oca</span>
-            </div>
+            <div class="overlay-3d-instructions">🖱️ Arraste para orbitar</div>
           </div>
           <div class="viz-legend-bar">
-            <div class="legend-item"><span class="dot dot-steel"></span> Superfície Externa ($R = 10\text{ cm}$)</div>
-            <div class="legend-item"><span class="dot dot-amber"></span> Parede Maciça Cortada ($e = 2\text{ cm}$)</div>
-            <div class="legend-item"><span class="dot dot-cyan"></span> Cavidade Oca Interna ($r = 8\text{ cm}$)</div>
+            <div class="legend-item"><span class="dot dot-steel"></span> Aço Externo ($R=10\text{ cm}$)</div>
+            <div class="legend-item"><span class="dot dot-amber"></span> Parede ($e=2\text{ cm}$)</div>
+            <div class="legend-item"><span class="dot dot-cyan"></span> Cavidade ($r=8\text{ cm}$)</div>
           </div>
           <div class="viz-status-bar">
-            <span id="s3-intro-status">Estado: <strong style="color: var(--accent-amber);">Corte Técnico 90° Ativo &bull; Espessura de 2 cm Visível</strong></span>
+            <span id="s3-intro-status">Estado: <strong class="c-amber">Corte 90° Ativo &bull; Espessura de 2 cm</strong></span>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 10 (Slide 11 de 15): PARTE 3 — PROBLEMA NUMÉRICO: RESOLUÇÃO E SI
-         ---------------------------------------------------------------------- -->
-    <section class="slide" id="sec-10" data-slide="10">
+    <!-- ======================================================================
+         SLIDE 12 (13 de 19): PARTE 3 — RESOLUÇÃO NUMÉRICA, SI E INTERPRETAÇÃO
+         ====================================================================== -->
+    <section class="slide" id="sec-12" data-slide="12">
       <div class="slide-container">
-        
         <div class="content-pane">
-          <div class="section-tag-row">
-            <span class="section-tag">PARTE 3</span>
-            <span class="section-tag-desc">Resolução Passo a Passo</span>
+          <div class="pane-head">
+            <div class="section-tag-row">
+              <span class="section-tag">PARTE 3</span>
+              <span class="section-tag-desc">Desenvolvimento e Unidades SI</span>
+            </div>
+            <h2 class="slide-heading">Resolução Passo a Passo e Interpretação</h2>
           </div>
 
-          <h2 class="slide-heading">Cálculo Numérico e Conversão para o SI</h2>
+          <div class="var-ref-bar">
+            <span class="var-ref-title">Referências:</span>
+            <span class="var-ref-item"><strong>$R = 10\text{ cm}$</strong> = raio maior</span>
+            <span class="var-ref-item"><strong>$r = 8\text{ cm}$</strong> = raio menor</span>
+            <span class="var-ref-item"><strong>$e = 2\text{ cm}$</strong> = espessura</span>
+            <span class="var-ref-item"><strong>$V$</strong> = volume de aço</span>
+            <span class="var-ref-item"><strong>$V_{\text{int}}$</strong> = cavidade oca</span>
+            <span class="var-ref-item"><strong>SI</strong> = Sistema Internacional ($\text{m}^3$)</span>
+          </div>
 
           <div class="card card-accent-blue">
-            <h4 class="card-title">1. Resolução Passo a Passo em $\text{cm}^3$</h4>
-            <div class="math-step-line">
-              <span>Substituição:</span>
-              $$V = \frac{4}{3}\pi (R^3 - r^3) = \frac{4}{3}\pi (10^3 - 8^3)$$
-            </div>
-            <div class="math-step-line">
-              <span>Cubos:</span>
-              $$10^3 = 1000\text{ cm}^3 \quad \text{e} \quad 8^3 = 512\text{ cm}^3$$
-            </div>
-            <div class="math-step-line">
-              <span>Diferença:</span>
-              $$1000 - 512 = 488\text{ cm}^3$$
-            </div>
-            <div class="math-step-line">
-              <span>Multiplicação:</span>
-              $$V = \frac{4 \times 488}{3}\pi = \frac{1952\pi}{3}\text{ cm}^3$$
-            </div>
-            <div class="math-step-line highlight">
-              <span>Decimal ($\pi \approx 3{,}14159$):</span>
-              <strong>$$V \approx 2044{,}13\text{ cm}^3$$</strong>
+            <h4 class="card-title">1. Desenvolvimento Passo a Passo em $\text{cm}^3$</h4>
+            <div class="steps-stack">
+              <div class="math-step-line"><span>Fórmula:</span> $V = \frac{4}{3}\pi (R^3 - r^3)$</div>
+              <div class="math-step-line"><span>Substituição:</span> $V = \frac{4}{3}\pi (10^3 - 8^3)$</div>
+              <div class="math-step-line"><span>Potências:</span> $10^3 = 1.000\text{ cm}^3 \;\text{ e }\; 8^3 = 512\text{ cm}^3$</div>
+              <div class="math-step-line"><span>Subtração:</span> $1.000 - 512 = 488\text{ cm}^3$</div>
+              <div class="math-step-line"><span>Multiplicação:</span> $V = \frac{4 \times 488}{3}\pi = \frac{1952\pi}{3}\text{ cm}^3$</div>
+              <div class="math-step-line highlight"><span>Decimal ($\pi \approx 3{,}14159$):</span> <strong>$V \approx 2.044{,}13\text{ cm}^3$</strong></div>
             </div>
           </div>
 
           <div class="card card-subtle">
-            <h4 class="card-title">2. Conversão Rigorosa para o SI ($\text{m}^3$)</h4>
-            <p>No Sistema Internacional, a unidade padrão de volume é o metro cúbico ($\text{m}^3$):</p>
-            <div class="math-box">
-              $$1\text{ m} = 100\text{ cm} \implies 1\text{ m}^3 = (100\text{ cm})^3 = 1.000.000\text{ cm}^3 = 10^6\text{ cm}^3$$
-            </div>
-            <div class="math-box highlight">
-              $$V = \frac{2044{,}13}{1.000.000}\text{ m}^3 \approx 0{,}002044\text{ m}^3$$
+            <h4 class="card-title">2. Conversão para o SI ($\text{m}^3$) e Interpretação</h4>
+            <div class="steps-stack">
+              <div class="math-step-line"><span>Relação cúbica:</span> $1\text{ m} = 100\text{ cm} \implies 1\text{ m}^3 = (100\text{ cm})^3 = 10^6\text{ cm}^3$</div>
+              <div class="math-step-line highlight"><span>Conversão:</span> <strong>$V = \frac{2.044{,}13}{1.000.000}\text{ m}^3 \approx 0{,}002044\text{ m}^3$</strong></div>
+              <ul class="cue-list">
+                <li><strong>Interpretação ($1\text{ L} = 1.000\text{ cm}^3$):</strong> $\approx 2{,}04\text{ L}$ de aço envolvem a cavidade oca $V_{\text{int}} = \frac{4}{3}\pi(8^3) = \frac{2048\pi}{3}\text{ cm}^3 \approx 2{,}14\text{ L}$.</li>
+              </ul>
             </div>
           </div>
         </div>
 
         <div class="visual-pane">
           <div class="viz-header-bar">
-            <span class="viz-title">Inspeção Interna: Slider de Corte Dinâmico</span>
+            <span class="viz-title">Inspeção da Parede ($e = 2\text{ cm}$)</span>
             <div class="slider-control-group">
-              <label for="slider-s3-cut">Cortar Flutuador:</label>
+              <label for="slider-s3-cut">Corte:</label>
               <input type="range" id="slider-s3-cut" min="0" max="100" value="50" />
               <span id="slider-s3-val">50%</span>
             </div>
           </div>
-
           <div class="canvas-3d-wrapper" id="container-3d-s3-interactive">
-            <div class="overlay-3d-instructions">
-              <span>🖱️ Arraste o slider para cortar e comprovar a espessura de 2 cm</span>
-            </div>
+            <div class="overlay-3d-instructions">🖱️ Arraste o slider para cortar o flutuador</div>
           </div>
-
           <div class="viz-status-bar">
-            <span>Inspeção: Parede sólida de aço com <strong style="color: var(--accent-cyan);">$e = 2\text{ cm}$</strong> e interior oco ($r = 8\text{ cm}$)</span>
+            <span>Parede maciça: <strong class="c-cyan">e = 2 cm</strong> &bull; Cavidade interna: <strong class="c-amber">r = 8 cm</strong></span>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 11 (Slide 12 de 17): PARTE 4 — TANQUE CRIOGÊNICO AEROESPACIAL
-         ---------------------------------------------------------------------- -->
-    <section class="slide" id="sec-11" data-slide="11">
+    <!-- ======================================================================
+         SLIDE 13 (14 de 19): PARTE 4 — TANQUE CRIOGÊNICO LH2
+         ====================================================================== -->
+    <section class="slide" id="sec-13" data-slide="13">
       <div class="slide-container">
-        
         <div class="content-pane">
-          <div class="section-tag-row">
-            <span class="section-tag">PARTE 4</span>
-            <span class="section-tag-desc">Aplicação Inédita</span>
+          <div class="pane-head">
+            <div class="section-tag-row">
+              <span class="section-tag">PARTE 4</span>
+              <span class="section-tag-desc">Aplicação Inédita</span>
+            </div>
+            <h2 class="slide-heading">Tanque Criogênico de Hidrogênio ($LH_2$)</h2>
           </div>
 
-          <h2 class="slide-heading">Armazenamento Criogênico de Hidrogênio ($LH_2$)</h2>
+          <div class="var-ref-bar">
+            <span class="var-ref-title">Referências:</span>
+            <span class="var-ref-item"><strong>$LH_2$</strong> = hidrogênio líquido</span>
+            <span class="var-ref-item"><strong>$R = 2{,}5\text{ m}$</strong> = raio maior</span>
+            <span class="var-ref-item"><strong>$r = 2{,}0\text{ m}$</strong> = raio menor</span>
+            <span class="var-ref-item"><strong>$e = 0{,}5\text{ m}$</strong> = espessura</span>
+            <span class="var-ref-item"><strong>$\rho$</strong> = densidade ($120\text{ kg/m}^3$)</span>
+            <span class="var-ref-item"><strong>$A/V$</strong> = razão área/volume</span>
+          </div>
 
           <div class="card card-accent-blue">
-            <h4 class="card-title">Contexto de Engenharia Aeroespacial</h4>
-            <p class="paragraph-strong">
-              O hidrogênio líquido ($LH_2$) é o combustível espacial mais eficiente, porém necessita ser mantido a <strong>$-253^\circ\text{C}$ (apenas 20 Kelvin)</strong>.
-            </p>
-            <p>
-              Qualquer influxo de calor causa ebulição espontânea e perda crítica de combustível. Para isolamento máximo, projeta-se um <strong>tanque esférico de parede dupla com vácuo e perlita expandida</strong>.
+            <h4 class="card-title">Enunciado da Questão (Problema Inédito)</h4>
+            <p class="enunciado-text">
+              Na engenharia aeroespacial, o hidrogênio líquido ($LH_2$) é mantido a <strong>$-253^\circ\text{C}$ ($20\text{ K}$)</strong>. Pela menor razão área/volume ($A/V = 3/R$), projeta-se um tanque esférico de parede dupla: vaso interno de <strong>raio $r = 2{,}0\text{ m}$</strong> e blindagem externa de <strong>raio $R = 2{,}5\text{ m}$</strong>, com o espaço intermediário preenchido por perlita expandida ($\rho = 120\text{ kg/m}^3$). Calcule, pelo Cálculo Integral, o <strong>volume ($V$)</strong> e a <strong>massa ($M$)</strong> de isolante.
             </p>
           </div>
 
           <div class="card card-subtle">
-            <h4 class="card-title">Dimensões Projetadas pelo Grupo</h4>
-            <ul class="styled-list">
-              <li><strong>Raio Interno (Recipiente de $LH_2$):</strong> $r = 2{,}0\text{ m}$</li>
-              <li><strong>Raio Externo (Blindagem de Aço):</strong> $R = 2{,}5\text{ m}$</li>
-              <li><strong>Espessura do Isolamento:</strong> $e = R - r = 2{,}5 - 2{,}0 = 0{,}5\text{ m} = 50\text{ cm}$</li>
+            <h4 class="card-title">Dados e Fórmulas do Modelo</h4>
+            <ul class="cue-list">
+              <li><strong>Parâmetros:</strong> $r = 2{,}0\text{ m}$, $R = 2{,}5\text{ m}$, $e = R - r = 0{,}5\text{ m}$ e $\rho = 120\text{ kg/m}^3$.</li>
+              <li><strong>Volume (Integral):</strong> $V = \pi\int_{-R}^{R}(R^2-x^2)\,dx - \pi\int_{-r}^{r}(r^2-x^2)\,dx$.</li>
+              <li><strong>Massa do isolante:</strong> $M = V \times \rho$.</li>
             </ul>
-            <p class="didactic-highlight">
-              A camada de isolamento térmico constitui exatamente uma <strong>casca esférica</strong> no $\mathbb{R}^3$!
-            </p>
           </div>
         </div>
 
         <div class="visual-pane">
           <div class="viz-header-bar">
-            <span class="viz-title">Visualização 3D: Tanque Criogênico & Camadas Entrelaçadas</span>
+            <span class="viz-title">Tanque Criogênico 3D (3 Camadas)</span>
             <div class="viz-actions">
-              <button class="btn-tool active" id="btn-s4-intro-cut" data-toggle="cut" data-off="⚪ Tanque Fechado" title="Corte técnico das 3 camadas concêntricas">
-                <span>🌓 Corte 3 Camadas</span>
-              </button>
-              <button class="btn-tool" id="btn-s4-intro-explode" data-toggle="explode" title="Vista Explodida demonstrando montagem e camadas">
-                <span>💥 Vista Explodida</span>
-              </button>
-              <button class="btn-tool" id="btn-s4-intro-xray" data-toggle="xray" title="Modo Translúcido / Raio-X">
-                <span>💎 Raio-X</span>
-              </button>
-              <button class="btn-tool active" id="btn-s4-intro-spin" data-toggle="spin" title="Pausar / Retomar Rotação 360°">
-                <span>🔄 360°</span>
-              </button>
+              <button class="btn-tool active" data-toggle="cut" data-off="⚪ Fechado">🌓 Corte</button>
+              <button class="btn-tool" data-toggle="explode">💥 Explodir</button>
+              <button class="btn-tool" data-toggle="xray">💎 Raio-X</button>
+              <button class="btn-tool active" data-toggle="spin">🔄 360°</button>
             </div>
           </div>
           <div class="canvas-3d-wrapper" id="container-3d-s4-intro">
-            <div class="overlay-3d-instructions">
-              <span>🖱️ Arraste para orbitar &bull; Corte técnico: Capa de Aço, Manto de Perlita e Núcleo LH₂</span>
-            </div>
+            <div class="overlay-3d-instructions">🖱️ Arraste para orbitar</div>
           </div>
           <div class="viz-legend-bar">
-            <div class="legend-item"><span class="dot dot-outer"></span> Capa de Aço ($R = 2{,}5\text{ m}$)</div>
-            <div class="legend-item"><span class="dot dot-perlite"></span> Isolamento de Perlita ($e = 0{,}5\text{ m}$)</div>
-            <div class="legend-item"><span class="dot dot-cyan"></span> Vaso Interno $LH_2$ ($r = 2{,}0\text{ m}$)</div>
+            <div class="legend-item"><span class="dot dot-outer"></span> Aço ($R=2{,}5\text{ m}$)</div>
+            <div class="legend-item"><span class="dot dot-perlite"></span> Perlita ($e=0{,}5\text{ m}$)</div>
+            <div class="legend-item"><span class="dot dot-cyan"></span> $LH_2$ ($r=2{,}0\text{ m}$)</div>
           </div>
           <div class="viz-status-bar">
-            <span id="s4-intro-status">Visualização: <strong style="color: var(--accent-amber);">3 Camadas Concêntricas em Corte Técnico $90^\circ$ &bull; Perlita Entrelaçada</strong></span>
+            <span id="s4-intro-status">Visualização: <strong class="c-amber">Corte Técnico 90° &bull; 3 Camadas</strong></span>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 12 (Slide 13 de 17): PARTE 4 — GEOGEBRA EXCLUSIVO: CURVAS 2D & 180°
-         ---------------------------------------------------------------------- -->
-    <section class="slide" id="sec-12" data-slide="12">
-      <div class="slide-container full-width-layout">
-        
-        <div class="content-pane-header">
-          <div class="section-tag-row">
-            <span class="section-tag">PARTE 4</span>
-            <span class="section-tag-desc">Software Matemático &bull; Modelagem do Problema Proposto (1/2)</span>
-          </div>
-          <h2 class="slide-heading">GeoGebra: Curvas Geradoras 2D e Seção de Revolução $180^\circ$</h2>
-          <p class="slide-subheading">
-            Modelagem da camada de isolamento térmico do tanque criogênico ($R = 2{,}5\text{ m}, r = 2{,}0\text{ m}$):
-          </p>
-        </div>
-
-        <div class="geogebra-slots-grid">
-          
-          <!-- Slot 1: Curvas 2D e Plano de Rotação -->
-          <div class="geogebra-slot-card">
-            <div class="slot-header">
-              <span class="slot-badge" style="background: var(--accent-cyan); color: #06182a;">PRINT GEO-01</span>
-              <h4>Curvas Geradoras 2D e Eixo de Rotação $x$</h4>
-            </div>
-            
-            <div class="slot-body">
-              <img src="geogebra_prop_curvas.png" alt="Print GeoGebra Curvas Geradoras 2D" class="geogebra-print-img" />
-            </div>
-            
-            <div class="slot-footer">
-              <div class="geo-footer-line">
-                <strong>Curva Externa ($R=2{,}5\text{ m}$):</strong> $f(x) = \sqrt{6{,}25 - x^2}, \quad x \in [-2{,}5; 2{,}5]$
-              </div>
-              <div class="geo-footer-line">
-                <strong>Curva Interna ($r=2{,}0\text{ m}$):</strong> $g(x) = \sqrt{4 - x^2}, \quad x \in [-2{,}0; 2{,}0]$
-              </div>
-              <div class="geo-footer-sub">
-                A restrição ao semiplano superior ($y \ge 0$) impede superposição de volume na rotação de $360^\circ$ no eixo $x$.
-              </div>
-            </div>
-          </div>
-
-          <!-- Slot 2: Região Sombreada e Seção 180° -->
-          <div class="geogebra-slot-card">
-            <div class="slot-header">
-              <span class="slot-badge" style="background: var(--accent-amber); color: #06182a;">PRINT GEO-02</span>
-              <h4>Região Sombreada e Corte Transversal $180^\circ$</h4>
-            </div>
-
-            <div class="slot-body">
-              <img src="geogebra_prop_revolucao.png" alt="Print GeoGebra Seção 180 Graus" class="geogebra-print-img" />
-            </div>
-
-            <div class="slot-footer">
-              <div class="geo-footer-line">
-                <strong>Desigualdade da Região:</strong> $a: 4 \le x^2 + y^2 \le 6{,}25 \wedge y \ge 0$
-              </div>
-              <div class="geo-footer-line">
-                <strong>Corte de Revolução ($180^\circ$):</strong> Meia-casca gerada no espaço tridimensional $\mathbb{R}^3$
-              </div>
-              <div class="geo-footer-sub">
-                Permite inspecionar a formação do perfil oco interno antes do fechamento geométrico total da casca.
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ----------------------------------------------------------------------
-         SLIDE 13 (Slide 14 de 17): PARTE 4 — GEOGEBRA EXCLUSIVO: 3D & TRANSLÚCIDO
-         ---------------------------------------------------------------------- -->
-    <section class="slide" id="sec-13" data-slide="13">
-      <div class="slide-container full-width-layout">
-        
-        <div class="content-pane-header">
-          <div class="section-tag-row">
-            <span class="section-tag">PARTE 4</span>
-            <span class="section-tag-desc">Software Matemático &bull; Modelagem do Problema Proposto (2/2)</span>
-          </div>
-          <h2 class="slide-heading">GeoGebra: Superfícies Paramétricas 3D e Casca Translúcida</h2>
-          <p class="slide-subheading">
-            Geração analítica da casca tridimensional e evidenciação da cavidade criogênica de $LH_2$:
-          </p>
-        </div>
-
-        <div class="geogebra-slots-grid">
-          
-          <!-- Slot 3: Álgebra Paramétrica 3D -->
-          <div class="geogebra-slot-card">
-            <div class="slot-header">
-              <span class="slot-badge" style="background: var(--accent-cyan); color: #06182a;">PRINT GEO-03</span>
-              <h4>Álgebra Paramétrica e Casca Sólida Completa</h4>
-            </div>
-            
-            <div class="slot-body">
-              <img src="geogebra_prop_solido.png" alt="Print GeoGebra Casca Sólida Paramétrica" class="geogebra-print-img" />
-            </div>
-            
-            <div class="slot-footer">
-              <div class="geo-footer-line">
-                <strong>Superfície Externa:</strong> $b = \text{Superfície}(\sqrt{6{,}25 - u^2}\cos(v), \sqrt{6{,}25 - u^2}\sin(v), u, u, -2{,}5, 2{,}5, v, 0, 2\pi)$
-              </div>
-              <div class="geo-footer-line">
-                <strong>Superfície Interna:</strong> $c = \text{Superfície}(\sqrt{4 - u^2}\cos(v), \sqrt{4 - u^2}\sin(v), u, u, -2, 2, v, 0, 2\pi)$
-              </div>
-              <div class="geo-footer-sub">
-                Parametrização analítica no GeoGebra 3D: variável axial $u$ e ângulo de revolução $v \in [0, 2\pi]$.
-              </div>
-            </div>
-          </div>
-
-          <!-- Slot 4: Casca Translúcida e Cavidade Oca -->
-          <div class="geogebra-slot-card">
-            <div class="slot-header">
-              <span class="slot-badge" style="background: var(--accent-amber); color: #06182a;">PRINT GEO-04</span>
-              <h4>Casca Translúcida e Cavidade Criogênica Oca</h4>
-            </div>
-
-            <div class="slot-body">
-              <img src="geogebra_prop_translucida.png" alt="Print GeoGebra Casca Translúcida" class="geogebra-print-img" />
-            </div>
-
-            <div class="slot-footer">
-              <div class="geo-footer-line">
-                <strong>Cavidade Interna ($r = 2{,}0\text{ m}$):</strong> Reservatório térmico para $LH_2$ a $-253^\circ\text{C}$
-              </div>
-              <div class="geo-footer-line">
-                <strong>Espessura da Casca ($e = 0{,}5\text{ m}$):</strong> Espaço anelar preenchido com $3{,}83\text{ t}$ de perlita
-              </div>
-              <div class="geo-footer-sub">
-                A transparência no GeoGebra comprova visualmente a diferença métrica entre as superfícies concêntricas no espaço.
-              </div>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- ----------------------------------------------------------------------
-         SLIDE 14 (Slide 15 de 17): PARTE 4 — CÁLCULO INTEGRAL DO ISOLAMENTO
-         ---------------------------------------------------------------------- -->
+    <!-- ======================================================================
+         SLIDE 14 (15 de 19): PARTE 4 — GEOGEBRA (1/2)
+         ====================================================================== -->
     <section class="slide" id="sec-14" data-slide="14">
       <div class="slide-container full-width-layout">
-        
         <div class="content-pane-header">
           <div class="section-tag-row">
             <span class="section-tag">PARTE 4</span>
-            <span class="section-tag-desc">Cálculo de Volume</span>
+            <span class="section-tag-desc">Modelagem no GeoGebra (1/2)</span>
           </div>
-          <h2 class="slide-heading">Cálculo do Volume da Camada Isolante de Perlita</h2>
-          <p class="slide-subheading">
-            Determinação do volume exato de material isolante necessário para envolver o tanque de $LH_2$:
-          </p>
+          <h2 class="slide-heading">Tanque Criogênico: Curvas 2D e Seção $180^\circ$</h2>
+        </div>
+
+        <div class="var-ref-bar">
+          <span class="var-ref-title">Referências:</span>
+          <span class="var-ref-item"><strong>$R = 2{,}5\text{ m}$</strong> = raio externo (maior)</span>
+          <span class="var-ref-item"><strong>$r = 2{,}0\text{ m}$</strong> = raio interno (menor)</span>
+          <span class="var-ref-item"><strong>$e = 0{,}5\text{ m}$</strong> = espessura</span>
+          <span class="var-ref-item"><strong>$f(x), g(x)$</strong> = curvas externa e interna</span>
+          <span class="var-ref-item"><strong>$a$</strong> = região sombreada</span>
+        </div>
+
+        <div class="geogebra-slots-grid">
+          <div class="geogebra-slot-card">
+            <div class="slot-header">
+              <span class="slot-badge">2D</span>
+              <h4>Curvas Geradoras ($R=2{,}5\text{ m},\; r=2{,}0\text{ m}$)</h4>
+            </div>
+            <div class="slot-body">
+              <img src="geogebra_prop_curvas.png" alt="Curvas Geradoras 2D" class="geogebra-print-img" />
+            </div>
+            <div class="slot-footer">
+              <div class="geo-footer-line"><strong>Funções Geradoras:</strong> $f(x) = \sqrt{6{,}25 - x^2}$ em $[-2{,}5;\; 2{,}5]$ e $g(x) = \sqrt{4 - x^2}$ em $[-2{,}0;\; 2{,}0]$</div>
+              <div class="geo-footer-sub"><strong>Semiplano Superior ($y \ge 0$):</strong> região plana que gira em torno do eixo $x$</div>
+            </div>
+          </div>
+
+          <div class="geogebra-slot-card">
+            <div class="slot-header">
+              <span class="slot-badge">180°</span>
+              <h4>Região Anelar e Meia-Revolução</h4>
+            </div>
+            <div class="slot-body">
+              <img src="geogebra_prop_revolucao.png" alt="Seção 180 Graus" class="geogebra-print-img" />
+            </div>
+            <div class="slot-footer">
+              <div class="geo-footer-line"><strong>Inequação da Região:</strong> $a:\; 4 \le x^2 + y^2 \le 6{,}25 \;\wedge\; y \ge 0$</div>
+              <div class="geo-footer-sub"><strong>Seção $180^\circ$:</strong> exibe a cavidade oca ($r=2{,}0\text{ m}$) e a espessura ($e=0{,}5\text{ m}$)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SLIDE 15 (16 de 19): PARTE 4 — GEOGEBRA (2/2)
+         ====================================================================== -->
+    <section class="slide" id="sec-15" data-slide="15">
+      <div class="slide-container full-width-layout">
+        <div class="content-pane-header">
+          <div class="section-tag-row">
+            <span class="section-tag">PARTE 4</span>
+            <span class="section-tag-desc">Modelagem no GeoGebra (2/2)</span>
+          </div>
+          <h2 class="slide-heading">Tanque Criogênico: Parametrização 3D e Transparência</h2>
+        </div>
+
+        <div class="var-ref-bar">
+          <span class="var-ref-title">Referências:</span>
+          <span class="var-ref-item"><strong>$u \in [-R, R]$</strong> = variável axial</span>
+          <span class="var-ref-item"><strong>$v \in [0, 2\pi]$</strong> = ângulo de rotação</span>
+          <span class="var-ref-item"><strong>$b, c$</strong> = superfícies externa ($R=2{,}5\text{ m}$) e interna ($r=2{,}0\text{ m}$)</span>
+          <span class="var-ref-item"><strong>$e = 0{,}5\text{ m}$</strong> = espessura</span>
+        </div>
+
+        <div class="geogebra-slots-grid">
+          <div class="geogebra-slot-card">
+            <div class="slot-header">
+              <span class="slot-badge">3D</span>
+              <h4>Superfícies Paramétricas ($u \in [-R,R],\; v \in [0, 2\pi]$)</h4>
+            </div>
+            <div class="slot-body">
+              <img src="geogebra_prop_solido.png" alt="Casca Sólida Paramétrica" class="geogebra-print-img" />
+            </div>
+            <div class="slot-footer">
+              <div class="geo-footer-line"><strong>Superfície Externa:</strong> $b = \left(\sqrt{6{,}25-u^2}\cos v,\; \sqrt{6{,}25-u^2}\sin v,\; u\right)$ &bull; <strong>Interna:</strong> $c = \left(\sqrt{4-u^2}\cos v,\; \sqrt{4-u^2}\sin v,\; u\right)$</div>
+              <div class="geo-footer-sub">Por simetria esférica, a coordenada axial $u$ gira em torno do eixo $z$ para exibição vertical.</div>
+            </div>
+          </div>
+
+          <div class="geogebra-slot-card">
+            <div class="slot-header">
+              <span class="slot-badge">OCO</span>
+              <h4>Cavidade Criogênica ($r=2{,}0\text{ m}$) e Parede ($0{,}5\text{ m}$)</h4>
+            </div>
+            <div class="slot-body">
+              <img src="geogebra_prop_translucida.png" alt="Casca Translúcida" class="geogebra-print-img" />
+            </div>
+            <div class="slot-footer">
+              <div class="geo-footer-line"><strong>Núcleo Interno ($r = 2{,}0\text{ m}$):</strong> reservatório do combustível $LH_2$ a $-253^\circ\text{C}$</div>
+              <div class="geo-footer-sub"><strong>Casca Isolante ($e = 0{,}5\text{ m}$):</strong> espaço preenchido com perlita expandida</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         SLIDE 16 (17 de 19): PARTE 4 — INTEGRAL DO ISOLAMENTO E MASSA
+         ====================================================================== -->
+    <section class="slide" id="sec-16" data-slide="16">
+      <div class="slide-container full-width-layout">
+        <div class="content-pane-header">
+          <div class="section-tag-row">
+            <span class="section-tag">PARTE 4</span>
+            <span class="section-tag-desc">Resolução pelo Cálculo Integral</span>
+          </div>
+          <h2 class="slide-heading">Volume da Casca de Perlita via Integral Definida</h2>
+        </div>
+
+        <div class="var-ref-bar">
+          <span class="var-ref-title">Referências:</span>
+          <span class="var-ref-item"><strong>$R = 2{,}5\text{ m}$</strong> = raio maior</span>
+          <span class="var-ref-item"><strong>$r = 2{,}0\text{ m}$</strong> = raio menor</span>
+          <span class="var-ref-item"><strong>$x$</strong> = eixo axial</span>
+          <span class="var-ref-item"><strong>$V$</strong> = volume de perlita</span>
+          <span class="var-ref-item"><strong>$\rho = 120\text{ kg/m}^3$</strong> = densidade</span>
+          <span class="var-ref-item"><strong>$M$</strong> = massa do isolante</span>
         </div>
 
         <div class="cryo-calc-grid">
-          
           <div class="cryo-calc-card">
             <div class="calc-card-header">
               <span class="badge-num">1</span>
-              <h4>Aplicação da Fórmula Deduzida</h4>
+              <h4>Desenvolvimento pelo Cálculo Integral ($R=2{,}5\text{ m},\; r=2{,}0\text{ m}$)</h4>
             </div>
-            <div class="math-box-large">
-              $$V_{\text{isolamento}} = \frac{4}{3}\pi (R^3 - r^3) = \frac{4}{3}\pi (2{,}5^3 - 2{,}0^3)$$
-            </div>
-            <div class="calc-step-line">
-              <span>Cálculo de $2{,}5^3$:</span>
-              <strong>$2{,}5 \times 2{,}5 \times 2{,}5 = 15{,}625\text{ m}^3$</strong>
-            </div>
-            <div class="calc-step-line">
-              <span>Cálculo de $2{,}0^3$:</span>
-              <strong>$2{,}0 \times 2{,}0 \times 2{,}0 = 8{,}000\text{ m}^3$</strong>
-            </div>
-            <div class="calc-step-line">
-              <span>Diferença dos Cubos:</span>
-              <strong>$15{,}625 - 8{,}000 = 7{,}625\text{ m}^3$</strong>
+            <div class="steps-stack">
+              <div class="math-box">
+                $$V = \pi \int_{-2{,}5}^{2{,}5} \left(\sqrt{6{,}25 - x^2}\right)^2 dx - \pi \int_{-2{,}0}^{2{,}0} \left(\sqrt{4 - x^2}\right)^2 dx$$
+              </div>
+              <div class="math-box">
+                $$V = \pi \int_{-2{,}5}^{2{,}5} (6{,}25 - x^2)\,dx - \pi \int_{-2{,}0}^{2{,}0} (4 - x^2)\,dx = \pi\left[6{,}25x - \frac{x^3}{3}\right]_{-2{,}5}^{2{,}5} - \pi\left[4x - \frac{x^3}{3}\right]_{-2{,}0}^{2{,}0}$$
+              </div>
+              <div class="calc-step-line"><span>TFC externa:</span> <strong>$\pi\left[(15{,}625-\frac{15{,}625}{3})-(-15{,}625+\frac{15{,}625}{3})\right] = \frac{4}{3}\pi(2{,}5^3)$</strong></div>
+              <div class="calc-step-line"><span>TFC interna:</span> <strong>$\pi\left[(8-\frac{8}{3})-(-8+\frac{8}{3})\right] = \frac{4}{3}\pi(2{,}0^3)$</strong></div>
             </div>
           </div>
 
           <div class="cryo-calc-card">
             <div class="calc-card-header">
               <span class="badge-num">2</span>
-              <h4>Resultado Analítico e Massa Estimada</h4>
+              <h4>Desenvolvimento Numérico do Volume e da Massa</h4>
             </div>
-            <div class="math-box-large highlight">
-              $$V = \frac{4 \times 7{,}625}{3}\pi = \frac{30{,}5\pi}{3}\text{ m}^3 \approx 10{,}1667\pi\text{ m}^3$$
-              $$V \approx 31{,}94\text{ m}^3$$
-            </div>
-            <div class="mass-estimate-box">
-              <span class="mass-tag">Estimativa de Massa Física:</span>
-              <p>Considerando a densidade típica da perlita expandida ($\rho \approx 120\text{ kg/m}^3$):</p>
-              <div class="math-box">
-                $$M = V \times \rho \approx 31{,}94 \times 120 \approx 3.832\text{ kg} \approx 3{,}83\text{ toneladas}$$
+            <div class="steps-stack">
+              <div class="math-step-line"><span>Diferença:</span> $V = \frac{4}{3}\pi(2{,}5^3 - 2{,}0^3)$</div>
+              <div class="math-step-line"><span>Cubos:</span> $2{,}5^3 = 15{,}625\text{ m}^3 \;\text{ e }\; 2{,}0^3 = 8{,}000\text{ m}^3$</div>
+              <div class="math-step-line"><span>Subtração:</span> $15{,}625 - 8{,}000 = 7{,}625\text{ m}^3$</div>
+              <div class="math-step-line highlight"><span>Volume final:</span> <strong>$V = \frac{4 \times 7{,}625}{3}\pi = \frac{30{,}5\pi}{3}\text{ m}^3 \approx 31{,}94\text{ m}^3$</strong></div>
+              <div class="mass-estimate-box">
+                <span class="mass-tag">Massa ($M = V \times \rho$, com $\rho = 120\text{ kg/m}^3$)</span>
+                <div class="math-box">
+                  $$M = 31{,}94\text{ m}^3 \times 120\text{ kg/m}^3 \approx 3.832{,}8\text{ kg} \approx 3{,}83\text{ t}$$
+                </div>
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 15 (Slide 16 de 17): PARTE 4 — DISCUSSÃO CRÍTICA E LIMITAÇÕES FÍSICAS
-         ---------------------------------------------------------------------- -->
-    <section class="slide" id="sec-15" data-slide="15">
+    <!-- ======================================================================
+         SLIDE 17 (18 de 19): PARTE 4 — DISCUSSÃO CRÍTICA
+         ====================================================================== -->
+    <section class="slide" id="sec-17" data-slide="17">
       <div class="slide-container">
-        
         <div class="content-pane">
-          <div class="section-tag-row">
-            <span class="section-tag">PARTE 4</span>
-            <span class="section-tag-desc">Análise Crítica Docente</span>
+          <div class="pane-head">
+            <div class="section-tag-row">
+              <span class="section-tag">PARTE 4</span>
+              <span class="section-tag-desc">Discussão Crítica</span>
+            </div>
+            <h2 class="slide-heading">Viabilidade Prática e Limitações do Modelo</h2>
           </div>
 
-          <h2 class="slide-heading">Viabilidade Prática e Limitações do Modelo Puro</h2>
+          <div class="var-ref-bar">
+            <span class="var-ref-title">Referências:</span>
+            <span class="var-ref-item"><strong>$V \approx 31{,}94\text{ m}^3$</strong> = volume teórico ideal</span>
+            <span class="var-ref-item"><strong>$M \approx 3{,}83\text{ t}$</strong> = carga da perlita</span>
+            <span class="var-ref-item"><strong>$r = 2{,}0\text{ m}$</strong> = vaso interno $LH_2$</span>
+            <span class="var-ref-item"><strong>$e = 0{,}5\text{ m}$</strong> = camada perfurada</span>
+          </div>
 
           <div class="card card-accent-blue">
-            <h4 class="card-title">1. Viabilidade Físico-Prática</h4>
-            <p>
-              O volume calculado de $31{,}94\text{ m}^3$ representa <strong>cerca de 3,8 toneladas</strong> de material particulado que exigem suporte estrutural robusto na base de lançamento.
-            </p>
-            <p class="paragraph-sub">
-              Além disso, a variação térmica extrema ($-253^\circ\text{C}$ a $+30^\circ\text{C}$) causa contração diferencial entre as paredes de aço e o isolamento.
-            </p>
+            <h4 class="card-title">1. Viabilidade Físico-Estrutural</h4>
+            <ul class="cue-list">
+              <li><strong>Carga estrutural:</strong> $\approx 3{,}83\text{ t}$ de perlita exigem apoios reforçados.</li>
+              <li><strong>Choque térmico:</strong> variação de $+30^\circ\text{C}$ para $-253^\circ\text{C}$ gera contração diferencial.</li>
+            </ul>
           </div>
 
           <div class="card card-subtle">
-            <h4 class="card-title">2. Limitações do Modelo Matemático Contínuo</h4>
-            <p>
-              O Cálculo Integral de Riemann assume um sólido <strong>fechado, simplesmente conexo e perfeitamente contínuo</strong>.
-            </p>
-            <p class="paragraph-sub">
-              No mundo real, o tanque requer tubulações de abastecimento, linhas de alívio e sensores que perfuram a casca esférica, quebrando a simetria perfeita e superestimando ligeiramente o volume contínuo de isolamento.
-            </p>
+            <h4 class="card-title">2. Limitações do Modelo Contínuo</h4>
+            <ul class="cue-list">
+              <li>A integral assume casca <strong>contínua e sem aberturas</strong>.</li>
+              <li>Tubos de carga, válvulas e sensores <strong>perfuram a parede</strong>, reduzindo levemente o volume real.</li>
+            </ul>
           </div>
         </div>
 
         <div class="visual-pane">
           <div class="viz-header-bar">
-            <span class="viz-title">Alternar Camadas do Tanque</span>
+            <span class="viz-title">Inspeção de Camadas</span>
             <div class="toggle-group">
               <button class="btn-toggle active" data-action="layer" data-layer="outer">1. Capa Externa</button>
-              <button class="btn-toggle" data-action="layer" data-layer="perlite">2. Perlita ($31{,}94\text{ m}^3$)</button>
-              <button class="btn-toggle" data-action="layer" data-layer="limits">3. Limitação do Modelo</button>
+              <button class="btn-toggle" data-action="layer" data-layer="perlite">2. Perlita (31,94 m³)</button>
+              <button class="btn-toggle" data-action="layer" data-layer="limits">3. Limitações</button>
             </div>
           </div>
-
           <div class="canvas-3d-wrapper" id="container-3d-s4-interactive">
-            <div class="overlay-3d-instructions">
-              <span>🖱️ Arraste para orbitar &bull; Use os botões acima para ver as camadas</span>
-            </div>
+            <div class="overlay-3d-instructions">🖱️ Arraste para orbitar &bull; Alterne os botões acima</div>
           </div>
-
           <div class="viz-legend-bar">
-            <div class="legend-item"><span class="dot dot-outer"></span> Capa Externa de Aço</div>
-            <div class="legend-item"><span class="dot dot-perlite"></span> Isolamento de Perlita ($31{,}94\text{ m}^3$)</div>
-            <div class="legend-item"><span class="dot dot-cyan"></span> Recipiente de $LH_2$ ($2{,}0\text{ m}$)</div>
-            <div class="legend-item" id="s4-pipe-legend" style="display: none;"><span class="dot dot-red"></span> Tubulações Reais (Furos)</div>
+            <div class="legend-item"><span class="dot dot-outer"></span> Capa Externa</div>
+            <div class="legend-item"><span class="dot dot-perlite"></span> Perlita ($31{,}94\text{ m}^3$)</div>
+            <div class="legend-item"><span class="dot dot-cyan"></span> Vaso $LH_2$ ($2{,}0\text{ m}$)</div>
+            <div class="legend-item" id="s4-pipe-legend" hidden><span class="dot dot-red"></span> Tubulações (Furos)</div>
           </div>
-
-          <div class="viz-status-bar" id="s4-status-desc">
-            <span>Camada Ativa: <strong id="s4-state-text" style="color: var(--accent-cyan);">Capa Externa Totalmente Opaca</strong></span>
+          <div class="viz-status-bar">
+            <span>Estado: <strong id="s4-state-text" class="c-cyan">1. Capa Externa Totalmente Opaca</strong></span>
           </div>
         </div>
-
       </div>
     </section>
 
-    <!-- ----------------------------------------------------------------------
-         SLIDE 16 (Slide 17 de 17): CONCLUSÃO E CONSIDERAÇÕES FINAIS
-         ---------------------------------------------------------------------- -->
-    <section class="slide" id="sec-16" data-slide="16">
+    <!-- ======================================================================
+         SLIDE 18 (19 de 19): CONCLUSÃO
+         ====================================================================== -->
+    <section class="slide" id="sec-18" data-slide="18">
       <div class="cover-container conclusion-layout">
-        
         <div class="cover-content-card">
           <div class="cover-badge-row">
-            <span class="cover-badge-seminar">Conclusão do Trabalho</span>
-            <span class="cover-badge-course">Síntese e Agradecimentos</span>
+            <span class="cover-badge-seminar">Conclusão</span>
+            <span class="cover-badge-course">UFPel &bull; IFM &bull; CLMD / UAB</span>
           </div>
 
           <h2 class="cover-main-title">Considerações Finais</h2>
           <p class="cover-main-subtitle">
-            A integração entre a Geometria Espacial no $\mathbb{R}^3$, o Método dos Discos no Cálculo Diferencial e as Aplicações Práticas de Engenharia
+            Da intuição geométrica no $\mathbb{R}^3$ ao rigor da Integral Definida e à engenharia real.
           </p>
+
+          <div class="var-ref-bar">
+            <span class="var-ref-title">Síntese das Variáveis:</span>
+            <span class="var-ref-item"><strong>$R$</strong> = raio externo (maior)</span>
+            <span class="var-ref-item"><strong>$r$</strong> = raio interno (menor)</span>
+            <span class="var-ref-item"><strong>$e = R - r$</strong> = espessura</span>
+            <span class="var-ref-item"><strong>$V_{\text{casca}}$</strong> = volume sólido</span>
+            <span class="var-ref-item"><strong>$\rho$</strong> = densidade</span>
+            <span class="var-ref-item"><strong>$M = V \cdot \rho$</strong> = massa</span>
+          </div>
 
           <div class="conclusion-points-grid">
             <div class="conclusion-point-card">
               <span class="c-icon">🎓</span>
-              <h4>Rigor no Cálculo B</h4>
-              <p>Dedução completa pelo Método dos Discos, demonstrando a antiderivada e aplicação do Teorema Fundamental do Cálculo passo a passo.</p>
+              <h4>Rigor Analítico</h4>
+              <p>Soma de Riemann $\to$ Integral Definida $\to$ Teorema Fundamental do Cálculo.</p>
             </div>
 
             <div class="conclusion-point-card">
               <span class="c-icon">⚙️</span>
-              <h4>Aplicação Industrial</h4>
-              <p>Validação da fórmula $V = \frac{4}{3}\pi (R^3 - r^3)$ em escala mecânica para flutuadores de aço e escala criogênica aeroespacial ($LH_2$).</p>
+              <h4>Fórmula Validada</h4>
+              <p>$V = \frac{4}{3}\pi(R^3-r^3)$ aplicada em flutuador industrial e tanque criogênico.</p>
             </div>
 
             <div class="conclusion-point-card">
               <span class="c-icon">🧠</span>
-              <h4>Espírito Crítico Docente</h4>
-              <p>Compreensão das limitações do modelo contínuo frente a restrições físicas de engenharia real.</p>
+              <h4>Olhar Crítico</h4>
+              <p>Interpretação física de unidades SI e limites do modelo contínuo ideal.</p>
             </div>
           </div>
 
           <div class="conclusion-meta-footer">
-            <div class="team-signature">
-              <span>Equipe: Ariane Teixeira Pereira &bull; Daniel Cemin Militão &bull; Davi Vargas Limeira</span>
-            </div>
-            <div class="prof-homage">
-              <span>Orientador: Prof. Pedro Antonio Ourique &bull; UFPel / IFM / DEMAT / CLMD</span>
-            </div>
+            <span>Ariane Teixeira Pereira &bull; Daniel Cemin Militão &bull; Davi Vargas Limeira</span>
+            <span>Orientador: Prof. Pedro Antonio Ourique</span>
           </div>
 
           <div class="conclusion-action-row">
@@ -1447,26 +1443,21 @@
               <span>Voltar à Capa</span>
               <span class="arrow">↺</span>
             </button>
-            <span class="cover-nav-hint">Obrigado pela atenção! Espaço aberto para a banca examinadora.</span>
+            <span class="cover-nav-hint">Obrigado pela atenção! Espaço aberto para arguição da banca.</span>
           </div>
         </div>
-
       </div>
     </section>
 
   </main>
 
   <!-- ========================================================================
-       BARRA INFERIOR DE NAVEGAÇÃO E PROGRESSO
+       BARRA INFERIOR DE NAVEGAÇÃO
        ======================================================================== -->
   <footer class="app-footer">
     <div class="footer-nav">
-      <button id="btn-prev" class="btn-nav" title="Slide Anterior (Seta Esquerda)">
-        &larr; Anterior
-      </button>
-      <button id="btn-next" class="btn-nav primary" title="Próximo Slide (Seta Direita ou Espaço)">
-        Próximo &rarr;
-      </button>
+      <button id="btn-prev" class="btn-nav" title="Slide Anterior (←)">&larr; Anterior</button>
+      <button id="btn-next" class="btn-nav primary" title="Próximo Slide (→ ou Espaço)">Próximo &rarr;</button>
     </div>
 
     <div class="footer-center">
@@ -1474,18 +1465,17 @@
         <div class="progress-track">
           <div id="progress-fill" class="progress-fill"></div>
         </div>
-        <span id="progress-label" class="progress-label">Slide 1 de 17 (Capa Oficial)</span>
+        <span id="progress-label" class="progress-label">Slide 1 de 19 (Capa Oficial)</span>
       </div>
     </div>
 
     <div class="footer-shortcuts">
       <span class="shortcut-item"><kbd>&larr;</kbd><kbd>&rarr;</kbd> Navegar</span>
       <span class="shortcut-item"><kbd>F</kbd> Tela Cheia</span>
-      <span class="shortcut-item"><kbd>0</kbd>-<kbd>16</kbd> Slides</span>
+      <span class="shortcut-item"><kbd>Home</kbd>/<kbd>End</kbd> Início/Fim</span>
     </div>
   </footer>
 
-  <!-- Scripts da Aplicação -->
   <script src="app.js"></script>
 </body>
 </html>

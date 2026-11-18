@@ -1,26 +1,28 @@
 /* ==========================================================================
    Casca de Esfera — Seminário de Cálculo B (UFPel)
-   Motor da apresentação: navegação, KaTeX e cenas 3D interativas (Three.js r128)
+   Motor da apresentação: navegação, KaTeX, Canvas 2D e cenas 3D (Three.js r128)
    ========================================================================== */
 'use strict';
 
 const SLIDE_TITLES = [
   'Capa Oficial',
-  'PARTE 1: Definição Formal no R³ (R=5, r=3)',
-  'PARTE 1: Propriedades Geométricas (5 Desenhos)',
-  'PARTE 1: Modelagem GeoGebra (Fundamentação R=5, r=3)',
-  'PARTE 2: Método dos Discos vs. Cascas Cilíndricas',
-  'PARTE 2: Passos 3.1 & 3.2: Montagem e Simplificação',
-  'PARTE 2: Passo 3.3: Primitiva da Integral',
-  'PARTE 2: Passo 3.4: Teorema Fundamental do Cálculo',
-  'PARTE 2: Passo 3.5: Fórmula Final Deduzida',
-  'PARTE 3: Problema Industrial (Flutuador de Alta Pressão)',
-  'PARTE 3: Resolução Numérica e Unidades SI',
-  'PARTE 4: Tanque Criogênico Aeroespacial (LH₂)',
-  'PARTE 4: GeoGebra Proposto — Curvas 2D e Seção 180°',
-  'PARTE 4: GeoGebra Proposto — 3D Paramétrico e Translúcido',
-  'PARTE 4: Cálculo do Volume de Isolamento de Perlita',
-  'PARTE 4: Discussão Crítica e Limitações do Modelo',
+  'PARTE 1: Definição Formal no R³ e Pitágoras',
+  'PARTE 1: Círculo Perfeito e Região Geradora',
+  'PARTE 1: Elementos Constituintes',
+  'PARTE 1: GeoGebra (R=5, r=3)',
+  'PARTE 2: Soma de Riemann à Integral',
+  'PARTE 2: Discos vs. Cascas Cilíndricas',
+  'PARTE 2: Montagem e Propriedades',
+  'PARTE 2: Antiderivada (Primitiva)',
+  'PARTE 2: Teorema Fundamental do Cálculo',
+  'PARTE 2: Fórmula Final e Derivada',
+  'PARTE 3: Flutuador de Aço (Enunciado)',
+  'PARTE 3: Resolução, SI e Interpretação',
+  'PARTE 4: Tanque Criogênico (LH₂)',
+  'PARTE 4: GeoGebra — Curvas 2D e 180°',
+  'PARTE 4: GeoGebra — 3D Paramétrico',
+  'PARTE 4: Integral do Isolamento e Massa',
+  'PARTE 4: Discussão Crítica e Limitações',
   'Conclusão e Considerações Finais'
 ];
 
@@ -72,7 +74,6 @@ const KEYS = {
    INTERAÇÕES (delegação de eventos: data-target, data-toggle, data-action)
    ========================================================================== */
 
-/** Marca o botão como ativo e, se houver data-off, alterna o rótulo. */
 function setActive(btn, on) {
   btn.classList.toggle('active', on);
   if (btn.dataset.off) {
@@ -81,7 +82,6 @@ function setActive(btn, on) {
   }
 }
 
-/** Alterna um estado (cut, xray, explode, spin, anim) da cena do slide do botão. */
 function toggleStage(btn) {
   const st = stages[[...slides].indexOf(btn.closest('.slide'))];
   if (!st) return;
@@ -140,19 +140,29 @@ document.addEventListener('click', e => {
 const std = opts => new THREE.MeshStandardMaterial(opts);
 const ball = (r, material, seg = 48) =>
   new THREE.Mesh(new THREE.SphereGeometry(r, seg, Math.round(seg * 0.75)), material);
-const fmt = n => n.toFixed(1).replace('.', ',');
+const fmt = (n, dec = 1) => n.toFixed(dec).replace('.', ',');
 
 function sizeOf(el) {
   const { width, height } = el.getBoundingClientRect();
   return [width > 20 ? width : 500, height > 20 ? height : 320];
 }
 
-/** Cria cena, câmera, renderizador, OrbitControls e luzes; renderiza só quando o slide está ativo. */
+function setupCanvas(canvas) {
+  const [width, height] = sizeOf(canvas);
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = Math.round(width * dpr);
+  canvas.height = Math.round(height * dpr);
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, width, height);
+  return { ctx, width, height };
+}
+
 function createStage(slide, containerId, { cam = [0, 3, 9], ambient = 0.6, light = 1.1, autoRotate = 0.8, clipping = false } = {}) {
   const el = $(containerId);
   const [w, h] = sizeOf(el);
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x041220);
+  scene.background = new THREE.Color(0x061423);
 
   const camera = new THREE.PerspectiveCamera(45, w / h, 0.1, 100);
   camera.position.set(...cam);
@@ -190,71 +200,298 @@ function resizeStage(st) {
 }
 
 const SCENES = {
-  1: buildRevolution,
-  4: buildDisks,
-  8: buildShellCut,
-  9: buildFloat,
-  10: buildFloatSlider,
-  11: buildTank,
-  15: buildTankLayers
+  2: buildRevolution,
+  6: buildDisks,
+  10: buildShellCut,
+  11: buildFloat,
+  12: buildFloatSlider,
+  13: buildTank,
+  17: buildTankLayers
 };
 
 function activateScene(i) {
-  if (i === 1) drawRegion2D();
+  if (i === 1) drawPythagoras3D();
+  if (i === 2) drawRegion2D();
+  if (i === 5) drawRiemann2D();
   if (!SCENES[i] || typeof THREE === 'undefined') return;
   if (stages[i]) resizeStage(stages[i]);
   else stages[i] = SCENES[i](i);
 }
 
 /* ==========================================================================
-   SLIDE 1 — REGIÃO GERADORA 2D E REVOLUÇÃO 360°
+   SLIDE 1 — PITÁGORAS NO ESPAÇO 3D (DISTÂNCIA d = √(x² + y² + z²))
+   ========================================================================== */
+
+function drawPythagoras3D() {
+  const canvas = $('canvas-pythagoras-3d');
+  if (!canvas) return;
+  const { ctx, width, height } = setupCanvas(canvas);
+  const cx = width * 0.48;
+  const cy = height * 0.46;
+  const rad = Math.min(width * 0.36, height * 0.34);
+  const R = 5, r = 3;
+  const rPx = rad * (r / R);
+
+  const line = (x1, y1, x2, y2, dash = []) => {
+    ctx.save();
+    ctx.setLineDash(dash);
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+    ctx.restore();
+  };
+  const dot = (x, y, size, color) => {
+    ctx.fillStyle = color;
+    ctx.beginPath(); ctx.arc(x, y, size, 0, Math.PI * 2); ctx.fill();
+  };
+
+  // Esfera externa (R=5) e interna (r=3)
+  ctx.fillStyle = 'rgba(56, 189, 248, 0.08)';
+  ctx.strokeStyle = 'rgba(56, 189, 248, 0.75)';
+  ctx.lineWidth = 2;
+  ctx.beginPath(); ctx.arc(cx, cy, rad, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+
+  ctx.fillStyle = 'rgba(6, 20, 35, 0.75)';
+  ctx.strokeStyle = 'rgba(248, 113, 113, 0.78)';
+  ctx.lineWidth = 1.8;
+  ctx.setLineDash([5, 4]);
+  ctx.beginPath(); ctx.arc(cx, cy, rPx, 0, Math.PI * 2); ctx.fill(); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Equador em perspectiva
+  ctx.strokeStyle = 'rgba(56, 189, 248, 0.25)';
+  ctx.lineWidth = 1.2;
+  ctx.beginPath(); ctx.ellipse(cx, cy, rad, rad * 0.3, 0, 0, Math.PI * 2); ctx.stroke();
+
+  // Eixos 3D isométricos (x, y, z)
+  const proj = (x, y, z) => [
+    cx + (y - x * 0.52) * (rad / R),
+    cy + (x * 0.34 - z) * (rad / R)
+  ];
+  const [xEndX, xEndY] = proj(5.6, 0, 0);
+  const [yEndX, yEndY] = proj(0, 5.8, 0);
+  const [zEndX, zEndY] = proj(0, 0, 5.5);
+
+  ctx.strokeStyle = 'rgba(148, 163, 184, 0.55)'; ctx.lineWidth = 1.3;
+  line(cx, cy, xEndX, xEndY);
+  line(cx, cy, yEndX, yEndY);
+  line(cx, cy, zEndX, zEndY);
+
+  ctx.font = 'bold 12px Inter, sans-serif';
+  ctx.fillStyle = '#94a3b8';
+  ctx.fillText('x', xEndX - 10, xEndY + 12);
+  ctx.fillText('y', yEndX + 6, yEndY + 4);
+  ctx.fillText('z', zEndX - 4, zEndY - 8);
+
+  // Ponto P(x, y, z) dentro da casca (d ≈ 4, entre r=3 e R=5)
+  const px = 2.4, py = 2.2, pz = 2.35;
+  const [ax, ay] = proj(px, 0, 0);
+  const [bx, by] = proj(px, py, 0);
+  const [px2d, py2d] = proj(px, py, pz);
+
+  // Triângulo 1 (base xy): x e y -> diagonal p
+  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.2;
+  line(cx, cy, ax, ay);
+  ctx.strokeStyle = '#34d399'; ctx.lineWidth = 2.2;
+  line(ax, ay, bx, by);
+  ctx.strokeStyle = 'rgba(203, 213, 225, 0.75)'; ctx.lineWidth = 1.8;
+  line(cx, cy, bx, by, [4, 3]);
+
+  // Triângulo 2 (vertical p e z -> hipotenusa d)
+  ctx.strokeStyle = '#c084fc'; ctx.lineWidth = 2.2;
+  line(bx, by, px2d, py2d);
+  ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 3;
+  line(cx, cy, px2d, py2d);
+
+  // Rótulos dos catetos e da distância d
+  dot(cx, cy, 4, '#ffffff');
+  dot(bx, by, 3, '#cbd5e1');
+  dot(px2d, py2d, 5, '#f59e0b');
+
+  const pillText = (text, x, y, color, align = 'left') => {
+    ctx.save();
+    ctx.font = 'bold 11.5px Inter, sans-serif';
+    ctx.textAlign = align;
+    const w = ctx.measureText(text).width + 8;
+    const rx = align === 'right' ? x - w + 4 : align === 'center' ? x - w / 2 : x - 4;
+    ctx.fillStyle = 'rgba(6, 20, 35, 0.86)';
+    ctx.fillRect(rx, y - 11, w, 15);
+    ctx.fillStyle = color;
+    ctx.fillText(text, x, y);
+    ctx.restore();
+  };
+
+  ctx.font = 'bold 12px Inter, sans-serif';
+  ctx.fillStyle = '#38bdf8'; ctx.fillText('x', (cx + ax) / 2 - 18, (cy + ay) / 2 - 4);
+  ctx.fillStyle = '#34d399'; ctx.fillText('y', (ax + bx) / 2, (ay + by) / 2 + 15);
+  pillText('p = √(x²+y²)', bx + 8, by + 14, '#cbd5e1', 'left');
+  ctx.fillStyle = '#c084fc'; ctx.fillText('z', bx + 7, (by + py2d) / 2);
+  pillText('d = √(x²+y²+z²)', (cx + px2d) / 2 - 8, (cy + py2d) / 2 - 12, '#fbbf24', 'right');
+  ctx.fillStyle = '#ffffff'; ctx.fillText('P(x, y, z)', px2d + 8, py2d - 4);
+  ctx.fillStyle = '#94a3b8'; ctx.fillText('C(0,0,0)', cx - 56, cy + 4);
+
+  // Rótulos de R e r nas bordas
+  ctx.fillStyle = '#38bdf8'; ctx.fillText('R = 5 (borda)', cx - rad + 4, cy - rad + 16);
+  ctx.save();
+  ctx.textAlign = 'center';
+  ctx.fillStyle = '#f87171'; ctx.fillText('r = 3 (oco)', cx, cy + rPx - 12);
+  ctx.restore();
+
+  // Régua inferior mostrando r ≤ d ≤ R
+  const barW = Math.min(width - 60, 420);
+  const bx0 = (width - barW) / 2;
+  const barY = height - 26;
+  const rStop = bx0 + barW * (r / R);
+  const dStop = bx0 + barW * (4 / R);
+
+  ctx.strokeStyle = 'rgba(248, 113, 113, 0.55)'; ctx.lineWidth = 4;
+  line(bx0, barY, rStop, barY);
+  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 6;
+  line(rStop, barY, bx0 + barW, barY);
+
+  dot(bx0, barY, 3.5, '#94a3b8');
+  dot(rStop, barY, 4.5, '#f87171');
+  dot(dStop, barY, 5, '#f59e0b');
+  dot(bx0 + barW, barY, 4.5, '#38bdf8');
+
+  ctx.save();
+  ctx.textAlign = 'center';
+  ctx.font = '600 11px Inter, sans-serif';
+  ctx.fillStyle = '#94a3b8'; ctx.fillText('0', bx0, barY + 15);
+  ctx.fillStyle = '#f87171'; ctx.fillText('r = 3', rStop, barY + 15);
+  ctx.fillStyle = '#fbbf24'; ctx.fillText('d (na casca)', dStop, barY - 10);
+  ctx.fillStyle = '#38bdf8'; ctx.fillText('R = 5', bx0 + barW, barY + 15);
+  ctx.restore();
+}
+
+/* ==========================================================================
+   SLIDE 2 — CÍRCULO DE PITÁGORAS, REGIÃO GERADORA 2D E REVOLUÇÃO 360°
    ========================================================================== */
 
 function drawRegion2D() {
   const canvas = $('canvas-2d-s1');
-  const ctx = canvas.getContext('2d');
-  const [width, height] = sizeOf(canvas.parentElement);
-  const dpr = window.devicePixelRatio || 1;
-  canvas.width = width * dpr;
-  canvas.height = height * dpr;
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  ctx.clearRect(0, 0, width, height);
-
-  const ox = width / 2, oy = height - 26;
-  const s = Math.min(width / 13, (height - 35) / 5.5);
+  if (!canvas) return;
+  const { ctx, width, height } = setupCanvas(canvas);
+  const ox = width / 2, oy = height - 48;
+  const s = Math.min(width / 14.0, (height - 68) / 5.4);
   const R = 5, r = 3;
-  const line = (x1, y1, x2, y2) => { ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); };
+  const line = (x1, y1, x2, y2, dash = []) => {
+    ctx.save(); ctx.setLineDash(dash);
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+    ctx.restore();
+  };
   const arc = rad => { ctx.beginPath(); ctx.arc(ox, oy, rad * s, Math.PI, 0); ctx.stroke(); };
+  const dot = (x, y, rad, color) => {
+    ctx.fillStyle = color;
+    ctx.beginPath(); ctx.arc(x, y, rad, 0, Math.PI * 2); ctx.fill();
+  };
 
-  // Grade e eixos
+  // Grade suave
   ctx.strokeStyle = 'rgba(255,255,255,0.05)';
   ctx.lineWidth = 1;
-  for (let x = -6; x <= 6; x++) line(ox + x * s, 0, ox + x * s, height);
-  for (let y = 0; y <= 6; y++) line(0, oy - y * s, width, oy - y * s);
-  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 1.6; line(15, oy, width - 15, oy);
-  ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1.2; line(ox, oy, ox, 15);
+  for (let x = -6; x <= 6; x++) line(ox + x * s, 10, ox + x * s, oy + 6);
+  for (let y = 0; y <= 6; y++) line(15, oy - y * s, width - 15, oy - y * s);
 
-  // Região sombreada (semi-anel)
+  // Eixos x e y
+  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 1.6; line(15, oy, width - 15, oy);
+  ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1.2; line(ox, oy + 6, ox, 14);
+
+  // Região geradora ℛ sombreada
   ctx.beginPath();
   ctx.arc(ox, oy, R * s, Math.PI, 0);
   ctx.lineTo(ox + r * s, oy);
   ctx.arc(ox, oy, r * s, 0, Math.PI, true);
   ctx.closePath();
   const grad = ctx.createLinearGradient(0, oy - R * s, 0, oy);
-  grad.addColorStop(0, 'rgba(56,189,248,0.5)');
-  grad.addColorStop(1, 'rgba(2,132,199,0.2)');
+  grad.addColorStop(0, 'rgba(56,189,248,0.48)');
+  grad.addColorStop(1, 'rgba(2,132,199,0.16)');
   ctx.fillStyle = grad;
   ctx.fill();
 
-  // Fronteiras e rótulos
-  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.4; arc(R);
-  ctx.strokeStyle = '#f87171'; ctx.lineWidth = 2.0; arc(r);
-  ctx.font = 'bold 11px Inter, sans-serif';
+  // Contornos das curvas f(x) e g(x)
+  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.6; arc(R);
+  ctx.strokeStyle = '#f87171'; ctx.lineWidth = 2.2; arc(r);
+
+  // Triângulo Retângulo de Pitágoras no 1º quadrante (x² + y² = R²)
+  const aR = 38 * Math.PI / 180;
+  const rx = ox + R * s * Math.cos(aR), ry = oy - R * s * Math.sin(aR);
+  // Cateto x (horizontal na base)
+  ctx.strokeStyle = '#e2e8f0'; ctx.lineWidth = 2.2;
+  line(ox, oy, rx, oy);
+  // Cateto y (vertical até a borda externa)
+  ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 2.2;
+  line(rx, oy, rx, ry, [4, 3]);
+  // Símbolo 90° no canto reto (rx, oy)
+  ctx.strokeStyle = '#f59e0b'; ctx.lineWidth = 1.4;
+  ctx.strokeRect(rx - 8, oy - 8, 8, 8);
+  // Hipotenusa R = 5
+  ctx.strokeStyle = '#7dd3fc'; ctx.lineWidth = 2.6;
+  line(ox, oy, rx, ry);
+  dot(rx, ry, 4.5, '#38bdf8');
+
+  ctx.font = 'bold 11.5px Inter, sans-serif';
+  ctx.fillStyle = '#e2e8f0'; ctx.fillText('x', (ox + rx) / 2 - 4, oy - 5);
+  ctx.fillStyle = '#fbbf24'; ctx.fillText('y', rx + 6, (oy + ry) / 2 + 4);
+  ctx.fillStyle = '#7dd3fc';
+  ctx.fillText('R = 5', ox + 3.9 * s * Math.cos(aR) - 34, oy - 3.9 * s * Math.sin(aR) - 8);
+
+  // Vetor radial do Raio Interno r (no 2º quadrante a 140°)
+  const ar = 140 * Math.PI / 180;
+  const irx = ox + r * s * Math.cos(ar), iry = oy - r * s * Math.sin(ar);
+  ctx.strokeStyle = '#fca5a5'; ctx.lineWidth = 2.2;
+  line(ox, oy, irx, iry);
+  dot(irx, iry, 4, '#f87171');
+  ctx.fillStyle = '#fca5a5';
+  ctx.fillText('r = 3', ox + 1.55 * s * Math.cos(ar) - 24, oy - 1.55 * s * Math.sin(ar) + 14);
+  dot(ox, oy, 3.5, '#ffffff');
+
+  // Rótulo centralizado da Região Geradora ℛ dentro da faixa sombreada
+  ctx.save();
+  ctx.textAlign = 'center';
+  ctx.font = 'bold 12px Inter, sans-serif';
   ctx.fillStyle = '#ffffff';
-  ctx.fillText('R = 5', ox + 22, oy - R * s + 15);
-  ctx.fillText('r = 3', ox + 10, oy - r * s + 14);
+  ctx.fillText('Região Geradora ℛ', ox - 2.35 * s, oy - 3.3 * s);
+  ctx.restore();
+
+  // Marcadores de pontos no eixo x: -R, -r, 0, r, R
+  ctx.save();
+  ctx.textAlign = 'center';
+  ctx.font = '600 11px Inter, sans-serif';
+  [
+    [-R, '-R (-5)', '#38bdf8'],
+    [-r, '-r (-3)', '#f87171'],
+    [0, '0', '#cbd5e1'],
+    [r, 'r (3)', '#f87171'],
+    [R, 'R (5)', '#38bdf8']
+  ].forEach(([val, lbl, col]) => {
+    const px = ox + val * s;
+    dot(px, oy, 3, col);
+    ctx.fillStyle = col;
+    ctx.fillText(lbl, px, oy + 14);
+  });
+
+  // Barras visuais dos intervalos [-r, r] e [-R, R] abaixo do eixo x
+  const drawInterval = (rad, yBar, color, label) => {
+    const x1 = ox - rad * s, x2 = ox + rad * s;
+    ctx.strokeStyle = color; ctx.lineWidth = 1.6;
+    line(x1, yBar, x2, yBar);
+    line(x1, yBar - 3, x1, yBar + 3);
+    line(x2, yBar - 3, x2, yBar + 3);
+    ctx.fillStyle = '#061423';
+    ctx.fillRect(ox - 24, yBar - 7, 48, 13);
+    ctx.fillStyle = color;
+    ctx.font = 'bold 10.5px Fira Code, monospace';
+    ctx.fillText(label, ox, yBar + 3.5);
+  };
+  drawInterval(r, oy + 26, '#f87171', '[-r, r]');
+  drawInterval(R, oy + 40, '#38bdf8', '[-R, R]');
+  ctx.restore();
+
+  ctx.save();
+  ctx.textAlign = 'right';
+  ctx.font = 'bold 11px Inter, sans-serif';
   ctx.fillStyle = '#38bdf8';
-  ctx.fillText('Eixo x (Rotação)', width - 100, oy - 8);
+  ctx.fillText('Eixo x', width - 12, oy - 19);
+  ctx.fillText('(Rotação)', width - 12, oy - 7);
+  ctx.restore();
 }
 
 const revolution = { rotating: false, angle: 0 };
@@ -293,7 +530,7 @@ function buildRevolution(slide) {
     st.setAngle(revolution.angle);
     if (revolution.angle >= Math.PI * 2) {
       revolution.rotating = false;
-      s1Status('Rotação Concluída (360&deg;): <strong class="c-green">Casca Esférica Gerada com Sucesso!</strong>');
+      s1Status('Rotação Concluída (360&deg;): <strong class="c-green">Casca Esférica Gerada!</strong>');
     } else {
       s1Status(`Ângulo de Rotação: <strong class="c-cyan">${Math.round((revolution.angle / (Math.PI * 2)) * 360)}&deg;</strong>`);
     }
@@ -303,8 +540,94 @@ function buildRevolution(slide) {
 
 function resetRevolution() {
   Object.assign(revolution, { rotating: false, angle: 0 });
-  stages[1]?.setAngle(0.01);
+  stages[2]?.setAngle(0.01);
   s1Status(S1_IDLE);
+}
+
+/* ==========================================================================
+   SLIDE 4 — SOMA DE RIEMANN INTERATIVA (NOVO)
+   ========================================================================== */
+
+function drawRiemann2D() {
+  const canvas = $('canvas-riemann');
+  const slider = $('slider-riemann-n');
+  if (!canvas || !slider) return;
+
+  const n = +slider.value;
+  $('riemann-n-val').textContent = n;
+
+  const { ctx, width, height } = setupCanvas(canvas);
+  const R = 5;
+  const s = Math.min((width - 60) / 11, (height - 74) / 5.4);
+  const ox = width / 2;
+  const oy = (height + 4.8 * s) / 2;
+  const topY = Math.max(24, oy - 5.3 * s);
+
+  const line = (x1, y1, x2, y2) => { ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); };
+
+  // Grade suave limitada à região útil do gráfico
+  ctx.strokeStyle = 'rgba(255,255,255,0.05)';
+  ctx.lineWidth = 1;
+  for (let x = -5; x <= 5; x++) line(ox + x * s, topY, ox + x * s, oy + 10);
+  for (let y = 0; y <= 5; y++) line(ox - 5.4 * s, oy - y * s, ox + 5.4 * s, oy - y * s);
+
+  // Retângulos / Discos de Riemann (ponto médio)
+  const dx = (2 * R) / n;
+  const sampleIdx = Math.floor(n * 0.65);
+  let sumVol = 0;
+
+  for (let i = 0; i < n; i++) {
+    const x0 = -R + i * dx;
+    const xMid = x0 + dx / 2;
+    const yMid = Math.sqrt(Math.max(0, R * R - xMid * xMid));
+    sumVol += Math.PI * (R * R - xMid * xMid) * dx;
+
+    const px = ox + x0 * s;
+    const pw = dx * s;
+    const ph = yMid * s;
+    const isSample = i === sampleIdx;
+
+    ctx.fillStyle = isSample ? 'rgba(245, 158, 11, 0.42)' : 'rgba(56, 189, 248, 0.24)';
+    ctx.strokeStyle = isSample ? '#f59e0b' : 'rgba(56, 189, 248, 0.78)';
+    ctx.lineWidth = isSample ? 2 : 1;
+    ctx.fillRect(px, oy - ph, pw, ph);
+    ctx.strokeRect(px, oy - ph, pw, ph);
+
+    if (isSample) {
+      ctx.fillStyle = '#f59e0b';
+      ctx.beginPath();
+      ctx.arc(ox + xMid * s, oy - ph, 3.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // Eixos e curva exata y = sqrt(R² - x²)
+  ctx.strokeStyle = '#94a3b8'; ctx.lineWidth = 1.4;
+  line(Math.max(20, ox - 5.6 * s), oy, Math.min(width - 20, ox + 5.6 * s), oy);
+  line(ox, oy + 8, ox, topY);
+
+  ctx.strokeStyle = '#38bdf8'; ctx.lineWidth = 2.6;
+  ctx.beginPath();
+  ctx.arc(ox, oy, R * s, Math.PI, 0);
+  ctx.stroke();
+
+  // Rótulos didáticos limpos
+  ctx.font = '600 12px Inter, sans-serif';
+  ctx.fillStyle = '#cbd5e1';
+  ctx.fillText('-R', ox - R * s - 8, oy + 18);
+  ctx.fillText('0', ox - 3, oy + 18);
+  ctx.fillText('R', ox + R * s - 4, oy + 18);
+
+  const sx = ox + (-R + (sampleIdx + 0.5) * dx) * s;
+  const sy = oy - Math.sqrt(Math.max(0, R * R - Math.pow(-R + (sampleIdx + 0.5) * dx, 2))) * s;
+  ctx.fillStyle = '#fbbf24';
+  ctx.fillText('y(xᵢ*)', sx + 6, Math.max(topY + 10, sy - 6));
+  ctx.fillText(`Δx = ${fmt(dx, 2)}`, Math.min(width - 90, sx - 12), oy + 18);
+
+  const exact = (4 / 3) * Math.PI * Math.pow(R, 3);
+  $('riemann-status').innerHTML =
+    `n = <strong class="c-cyan">${n}</strong> | Δx = <strong class="c-cyan">${fmt(dx, 2)}</strong> | ` +
+    `Soma Vₙ ≈ <strong class="c-amber">${fmt(sumVol, 2)}</strong> | Integral = <strong class="c-green">${fmt(exact, 2)}</strong>`;
 }
 
 /* ==========================================================================
@@ -326,7 +649,7 @@ function buildDisks(slide) {
 
   const slab = h => new THREE.CylinderGeometry(1, 1, h, 48).rotateZ(Math.PI / 2);
   const disk = new THREE.Mesh(slab(0.05), std({ color: 0xf59e0b, emissive: 0xd97706, emissiveIntensity: 0.45, transparent: true, opacity: 0.88, roughness: 0.2 }));
-  const hole = new THREE.Mesh(slab(0.06), new THREE.MeshBasicMaterial({ color: 0x041220 }));
+  const hole = new THREE.Mesh(slab(0.06), new THREE.MeshBasicMaterial({ color: 0x061423 }));
 
   const circle = new THREE.BufferGeometry().setFromPoints(
     Array.from({ length: 65 }, (_, k) => new THREE.Vector3(0, Math.cos(k * Math.PI / 32), Math.sin(k * Math.PI / 32))));
@@ -355,7 +678,7 @@ function buildDisks(slide) {
     [disk, rimOuter].forEach(m => { m.position.x = x; m.scale.set(1, ro, ro); });
     [hole, rimInner].forEach(m => { m.visible = hasHole; m.position.x = x; m.scale.set(1, ri || 1, ri || 1); });
 
-    const X = (x / R) * 5; // escala didática R = 5, r = 3
+    const X = (x / R) * 5;
     posText.textContent = `x = ${fmt(X)}`;
     areaText.textContent = Math.abs(X) < 3
       ? `π(R² − r²) = 16π ≈ ${fmt(16 * Math.PI)}`
@@ -366,8 +689,6 @@ function buildDisks(slide) {
 
 /* ==========================================================================
    MODELO GENÉRICO EM CAMADAS COM CORTE 90° (slides 9, 10 e 12)
-   - cut: remove o quadrante x>0, z>0 e exibe as faces de corte em âmbar
-   - xray: camadas translúcidas · explode: expansão radial suave · spin: giro 360°
    ========================================================================== */
 
 function buildCutaway(slide, containerId, cfg) {
@@ -442,12 +763,12 @@ function buildFloat(slide) {
     ],
     ring: [2.0, 2.5],
     glow: [0x38bdf8, 1.4, 5],
-    onFrame: group => { t += 0.02; group.position.y = Math.sin(t * 1.8) * 0.08; }, // flutuação hidrodinâmica
+    onFrame: group => { t += 0.02; group.position.y = Math.sin(t * 1.8) * 0.08; },
     status: {
       id: 's3-intro-status',
-      cut: 'Estado: <strong class="c-amber">Corte Técnico 90° Ativo &bull; Espessura de 2 cm Visível</strong>',
-      xray: 'Estado: <strong class="c-cyan">Modo Raio-X Translúcido &bull; Cavidade Interna Flutuante</strong>',
-      closed: 'Estado: <strong class="c-white">Esfera Metálica Fechada (R = 10 cm)</strong>'
+      cut: 'Estado: <strong class="c-amber">Corte 90° Ativo &bull; Espessura de 2 cm</strong>',
+      xray: 'Estado: <strong class="c-cyan">Modo Raio-X &bull; Cavidade Oca Visível</strong>',
+      closed: 'Estado: <strong class="c-white">Flutuador Fechado (R = 10 cm)</strong>'
     }
   });
 }
@@ -466,7 +787,6 @@ function buildTank(slide) {
       const base = new THREE.Mesh(new THREE.CylinderGeometry(2.2, 2.5, 0.6, 32), std({ color: 0x334155, roughness: 0.8 }));
       base.position.y = -2.8;
       scene.add(base);
-      // Tubulações criogênicas atravessando as camadas
       const pipe = std({ color: 0xe2e8f0, metalness: 0.95, roughness: 0.15 });
       const top = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 1.4, 16), pipe);
       top.position.set(0, 2.5, 0);
@@ -477,9 +797,9 @@ function buildTank(slide) {
     },
     status: {
       id: 's4-intro-status',
-      cut: 'Visualização: <strong class="c-amber">3 Camadas Concêntricas em Corte Técnico 90° &bull; Perlita Entrelaçada</strong>',
-      xray: 'Visualização: <strong class="c-cyan">Raio-X Translúcido &bull; Esferas Concêntricas Sobrepostas</strong>',
-      closed: 'Visualização: <strong class="c-white">Tanque Blindado Fechado (R = 2,5 m)</strong>'
+      cut: 'Visualização: <strong class="c-amber">Corte Técnico 90° &bull; 3 Camadas</strong>',
+      xray: 'Visualização: <strong class="c-cyan">Raio-X &bull; Camadas Concêntricas</strong>',
+      closed: 'Visualização: <strong class="c-white">Tanque Fechado (R = 2,5 m)</strong>'
     }
   });
 }
@@ -492,7 +812,7 @@ let floatSlicePlane = null;
 const sliceZ = percent => 2.8 - (percent / 100) * 5.6;
 
 function buildFloatSlider(slide) {
-  const st = createStage(slide, 'container-3d-s3-interactive', { cam: [0, 3, 8.5], ambient: 0.45, light: 1.2, clipping: true });
+  const st = createStage(slide, 'container-3d-s3-interactive', { cam: [4.2, 2.8, 9.2], ambient: 0.65, light: 1.25, clipping: true });
   floatSlicePlane = new THREE.Plane(new THREE.Vector3(0, 0, -1), sliceZ(+$('slider-s3-cut').value));
   const clip = [floatSlicePlane];
   st.scene.add(
@@ -508,8 +828,8 @@ function buildFloatSlider(slide) {
 
 const TANK_MODES = {
   outer: { opacity: 1, show: [], text: '1. Capa Externa Totalmente Opaca' },
-  perlite: { opacity: 0.25, show: ['perlite', 'inner'], text: '2. Camada Isolante de Perlita Expandida (Volume = 31,94 m³)' },
-  limits: { opacity: 0.2, show: ['perlite', 'inner', 'pipes'], text: '3. Limitação do Modelo: Tubulações reais quebrando a simetria e continuidade' }
+  perlite: { opacity: 0.25, show: ['perlite', 'inner'], text: '2. Perlita Expandida (Volume = 31,94 m³)' },
+  limits: { opacity: 0.2, show: ['perlite', 'inner', 'pipes'], text: '3. Limitações: Tubulações perfurando a casca' }
 };
 let tankMode = 'outer';
 
@@ -518,7 +838,7 @@ function setTankLayer(btn) {
   document.querySelectorAll('[data-layer]').forEach(b => b.classList.toggle('active', b === btn));
   $('s4-state-text').textContent = TANK_MODES[tankMode].text;
   $('s4-pipe-legend').hidden = tankMode !== 'limits';
-  stages[15]?.applyLayer();
+  stages[17]?.applyLayer();
 }
 
 function buildTankLayers(slide) {
@@ -572,17 +892,24 @@ function renderMath(attempt = 1) {
 document.addEventListener('DOMContentLoaded', () => {
   $('btn-prev').addEventListener('click', () => goToSlide(current - 1));
   $('btn-next').addEventListener('click', () => goToSlide(current + 1));
-  $('slider-s3-cut').addEventListener('input', e => {
+
+  $('slider-s3-cut')?.addEventListener('input', e => {
     $('slider-s3-val').textContent = `${e.target.value}%`;
     if (floatSlicePlane) floatSlicePlane.constant = sliceZ(+e.target.value);
   });
+
+  $('slider-riemann-n')?.addEventListener('input', drawRiemann2D);
+
   window.addEventListener('keydown', e => {
     if (e.target.matches('input, textarea') || !KEYS[e.key]) return;
     e.preventDefault();
     KEYS[e.key]();
   });
+
   window.addEventListener('resize', () => {
-    if (current === 1) drawRegion2D();
+    if (current === 1) drawPythagoras3D();
+    if (current === 2) drawRegion2D();
+    if (current === 5) drawRiemann2D();
     resizeStage(stages[current]);
   });
 

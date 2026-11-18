@@ -1,123 +1,120 @@
 # Guia Didático Passo a Passo: Casca de Esfera
-**Seminário Investigativo de Cálculo B — Licenciatura em Matemática (UFPel)**  
+**Seminário Investigativo de Cálculo B — Licenciatura em Matemática (UFPel / IFM / CLMD / UAB)**  
 **Tema:** Casca de Esfera (região delimitada por duas esferas concêntricas)  
 **Professor Formador:** Pedro Antonio Ourique  
 **Material de Estudo Exclusivo para os Integrantes do Grupo**
 
 ---
 
-Este guia foi elaborado para que **você e seus colegas compreendam profundamente cada detalhe matemático e geométrico do trabalho**. Se você entender estes 6 passos, você conseguirá explicar o seminário com total naturalidade, sem precisar decorar nada.
+Este guia explica **toda a lógica matemática e geométrica do seminário do zero**, exatamente alinhado aos **19 slides da apresentação** e às **exigências de avaliação da banca**.
 
 ---
 
-## 🧭 1. O que é o Sólido no Mundo Real e no $\mathbb{R}^3$?
+## 🧭 1. O que é o Sólido no Mundo Real e no $\mathbb{R}^3$? (Slide 2)
 
-Imagine uma bola de futebol oca ou a casca de uma laranja:
-* Ela tem um **raio interno** ($r$), que é onde fica o ar ou o vazio;
-* Ela tem um **raio externo** ($R$), que é a superfície externa;
-* A **espessura da parede sólida** é $e = R - r$.
+Imagine uma bola oca (ou a casca de uma laranja):
+* Ela tem um **raio interno** ($r$), onde fica a cavidade vazia;
+* Ela tem um **raio externo** ($R$), onde termina a superfície externa;
+* A **espessura da parede sólida** é $e = R - r$ (no exemplo didático inicial: $R = 5, r = 3 \implies e = 2$).
 
-### Definição Matemática Rigorosa:
-A distância de qualquer ponto $(x,y,z)$ até o centro $(0,0,0)$ é dada por $\sqrt{x^2 + y^2 + z^2}$.  
-Como o sólido é a região entre a esfera interna de raio $r$ e a externa de raio $R$:
-$$r \le \sqrt{x^2 + y^2 + z^2} \le R \iff r^2 \le x^2 + y^2 + z^2 \le R^2$$
-
----
-
-## 🔄 2. Como a Casca Nasce por Rotação no $\mathbb{R}^2$?
-
-No Cálculo B, volumes são calculados como **sólidos de revolução**.
-1. Pegamos uma folha plana no plano cartesiano $xy$.
-2. Desenhamos duas semicircunferências no semiplano superior ($y \ge 0$):
-   * Curva de fora: $y = \sqrt{R^2 - x^2}$, com $x \in [-R, R]$;
-   * Curva de dentro: $y = \sqrt{r^2 - x^2}$, com $x \in [-r, r]$.
-3. A região entre essas duas curvas é uma **semi-coroa circular** (uma meia-lua oca).
-4. **O Giro:** Giramos essa região $360^\circ$ em torno do **eixo $x$**. O rastro que ela deixa no espaço tridimensional gera perfeitamente a nossa casca de esfera!
-
-> **Pergunta da Banca:** *"Por que usamos apenas $y \ge 0$ e não o anel inteiro?"*  
-> **Sua Resposta:** *"Porque se girássemos o anel inteiro, a metade de cima e a metade de baixo varreriam o mesmo espaço tridimensional, contando o volume duas vezes."*
+### De onde vem $x^2 + y^2 + z^2$? (Pitágoras em 3D):
+1. No plano da base $xy$, a diagonal vale $p^2 = x^2 + y^2$.
+2. Subindo verticalmente na coordenada $z$, aplicamos Pitágoras de novo:
+   $$d^2 = p^2 + z^2 = x^2 + y^2 + z^2 \implies d = \sqrt{x^2 + y^2 + z^2}$$
+3. Como qualquer ponto da parede sólida tem distância $d$ entre $r$ e $R$ ($r \le d \le R$), **elevamos todos os membros ao quadrado para eliminar a raiz**:
+   $$\mathcal{S} = \left\{(x,y,z) \in \mathbb{R}^3 \;\middle|\; r^2 \le x^2 + y^2 + z^2 \le R^2\right\} \quad (0 < r < R)$$
 
 ---
 
-## 🔪 3. O Fatiamento: Por que a Área Central é Constante? (O Pulo do Gato!)
+## 🔄 2. Por que Aparece a Raiz Quadrada e Como Nasce a Rotação? (Slide 3)
 
-Imagine colocar a casca de esfera sobre uma tábua e fatiá-la perpendicularmente ao eixo $x$ (como fatiar um queijo):
+No Cálculo B, volumes são gerados como **sólidos de revolução**:
+1. **Do círculo perfeito por Pitágoras no $\mathbb{R}^2$:** todo ponto da circunferência de raio $R$ forma um triângulo retângulo de catetos $x, y$ e hipotenusa $R$, logo $x^2 + y^2 = R^2$.
+2. **Isolando $y$:** obtemos $y^2 = R^2 - x^2 \implies y = \pm\sqrt{R^2 - x^2}$ (a raiz aparece exatamente ao desfazer o quadrado!).
+3. **Escolha do sinal positivo ($y \ge 0$) e intervalos:** tomamos apenas o semicírculo superior para não duplicar o volume no giro de $360^\circ$:
+   * Curva externa: $f(x) = \sqrt{R^2 - x^2}$, definida no intervalo $[-R, R]$ (no exemplo: $[-5, 5]$);
+   * Curva interna: $g(x) = \sqrt{r^2 - x^2}$, definida no intervalo $[-r, r]$ (no exemplo: $[-3, 3]$).
+4. A região plana entre essas duas curvas é a **região geradora $\mathcal{R}$** (semi-coroa circular):
+   $$\mathcal{R} = \left\{ (x,y) \in \mathbb{R}^2 \;\middle|\; r^2 \le x^2 + y^2 \le R^2,\; y \ge 0 \right\}$$
+5. **O Giro:** giramos $\mathcal{R}$ em $360^\circ$ em torno do **eixo $x$** (eixo de revolução).
 
-### Regime 1: Quando a faca corta no meio (intervalo $[-r, r]$)
-A faca corta a cavidade oca! A fatia que sai na sua mão é uma **arruela (coroa circular)**:
-* Raio de fora da arruela: $R(x) = \sqrt{R^2 - x^2}$;
-* Raio do buraco de dentro: $r(x) = \sqrt{r^2 - x^2}$.
-
-A área da arruela é a área do círculo de fora menos a do buraco:
-$$A(x) = \pi [R(x)]^2 - \pi [r(x)]^2 = \pi(R^2 - x^2) - \pi(r^2 - x^2)$$
-$$A(x) = \pi R^2 - \pi x^2 - \pi r^2 + \pi x^2 = \mathbf{\pi(R^2 - r^2)}$$
-
-**Veja que espetacular:** o termo $-x^2$ cancelou com $+x^2$!  
-Isso significa que **todas as arruelas no meio do sólido têm exatamente a mesma área**, não importa a posição $x$ onde você cortou!
-
-### Regime 2: Quando a faca corta nas pontas (calotas, onde $r < |x| \le R$)
-A faca passa por fora da cavidade interna. A fatia é um **disco maciço cheio**, sem buraco:
-* Raio do disco: $R(x) = \sqrt{R^2 - x^2}$;
-* Área do disco: $A(x) = \pi [R(x)]^2 = \mathbf{\pi(R^2 - x^2)}$.
+> **Pergunta da Banca:** *"Por que restringimos a $y \ge 0$ e não giramos o anel inteiro?"*  
+> **Sua Resposta:** *"Porque, numa rotação completa de $360^\circ$, a metade de cima já varre todo o espaço tridimensional. Se girássemos o anel inteiro, a metade inferior varreria o mesmo volume que a superior já ocupou, contando o volume duas vezes."*
 
 ---
 
-## 📈 4. Das Fatias para a Integral (Somas de Riemann)
+## 📈 3. Da Soma de Riemann à Integral Definida (Slide 6)
 
-* Cada fatia tem uma espessura fininha chamada $\Delta x$.
-* O volume de uma fatia é: $\Delta V \approx A(x) \cdot \Delta x$.
-* Se somarmos as $n$ fatias, temos a **Soma de Riemann**: $V_n \approx \sum_{i=1}^n A(x_i^*) \Delta x$.
-* Quando a espessura fica infinitamente fina ($\Delta x \to 0$, ou seja, $n \to \infty$), essa soma converge exatamente para a **Integral Definida**:
-$$V = \int_{-R}^{R} A(x)\,dx$$
+Antes de escrever a integral pronta, justificamos de onde ela vem:
+1. Dividimos o intervalo $[-R, R]$ do eixo $x$ em $n$ fatias bem finas de largura $\Delta x = \frac{2R}{n}$.
+2. Cada fatia funciona como um disco fino de raio $y(x_i^*)$ e volume aproximado:
+   $$\Delta V_i \approx \pi \left[y(x_i^*)\right]^2 \Delta x$$
+3. Somando as $n$ fatias, temos a **Soma de Riemann**:
+   $$V_n = \sum_{i=1}^{n} \pi \left[y(x_i^*)\right]^2 \Delta x$$
+4. Fazendo as fatias ficarem infinitamente finas ($\Delta x \to 0$, $n \to \infty$), a soma converge para a **Integral Definida**:
+   $$V = \lim_{n \to \infty} \sum_{i=1}^{n} \pi \left[y(x_i^*)\right]^2 \Delta x = \int_{-R}^{R} \pi \left[y(x)\right]^2 dx$$
 
----
-
-## ✍️ 5. A Dedução Algébrica Completa (Passo a Passo sem Medo)
-
-Como o lado esquerdo é idêntico ao lado direito (função par $A(-x) = A(x)$), podemos calcular apenas de $0$ a $R$ e dobrar ($2 \times$):
-$$V = 2 \left[ \underbrace{\int_0^r \pi(R^2 - r^2)\,dx}_{I_1 \text{ (Arruelas)}} + \underbrace{\int_r^R \pi(R^2 - x^2)\,dx}_{I_2 \text{ (Discos)}} \right]$$
-
-### Calculando a Parcela $I_1$ (de $0$ a $r$):
-Como $\pi(R^2 - r^2)$ é uma constante em relação a $x$, sua integral é simplesmente a constante vezes $x$:
-$$I_1 = \pi(R^2 - r^2) [x]_0^r = \pi(R^2 - r^2)(r - 0) = \mathbf{\pi(R^2 r - r^3)}$$
-
-### Calculando a Parcela $I_2$ (de $r$ a $R$):
-Aqui usamos a regra da potência ($\int x^2 dx = \frac{x^3}{3}$):
-$$I_2 = \pi \left[ R^2 x - \frac{x^3}{3} \right]_r^R = \pi \left[ \left(R^3 - \frac{R^3}{3}\right) - \left(R^2 r - \frac{r^3}{3}\right) \right] = \mathbf{\pi \left( \frac{2}{3}R^3 - R^2 r + \frac{1}{3}r^3 \right)}$$
-
-### Somando as Duas Parcelas ($I_1 + I_2$):
-Junte tudo dentro do colchete:
-$$I_1 + I_2 = \pi \left[ (\mathbf{R^2 r} - r^3) + \left( \frac{2}{3}R^3 - \mathbf{R^2 r} + \frac{1}{3}r^3 \right) \right]$$
-Veja o milagre algébrico acontecendo:
-* O termo $+R^2 r$ corta com $-R^2 r$!
-* E $-r^3 + \frac{1}{3}r^3 = -\frac{2}{3}r^3$!
-Sobrou apenas:
-$$I_1 + I_2 = \pi \left( \frac{2}{3}R^3 - \frac{2}{3}r^3 \right) = \frac{2}{3}\pi (R^3 - r^3)$$
-
-### Finalizando o Volume:
-Lembre que tínhamos o fator 2 da simetria:
-$$V = 2 \cdot (I_1 + I_2) = 2 \cdot \frac{2}{3}\pi (R^3 - r^3) = \mathbf{\frac{4}{3}\pi (R^3 - r^3)}$$
-Fórmula deduzida com $100\%$ de perfeição analítica!
+*(No Slide 6 da apresentação, você pode arrastar o slider de $n = 4$ até $40$ para mostrar visualmente $V_n$ se aproximando do volume exato $523{,}60$!)*
 
 ---
 
-## 🔬 6. Por que a Derivada do Volume é a Área Superficial?
+## 🔪 4. Por que Discos/Arruelas e NÃO Cascas Cilíndricas? (Slide 7)
 
-Se a casca for muito fininha (como uma bexiga ou casca de ovo), a espessura é $e = dR$.  
-O volume da parede é simplesmente a área da superfície ($4\pi R^2$) vezes a espessura ($dR$):
-$$dV \approx 4\pi R^2 \cdot dR \implies \mathbf{\frac{dV}{dR} = 4\pi R^2}$$
-Isso prova que a taxa de crescimento do volume de uma esfera é a sua área externa!
+* **Vantagem dos Discos no eixo $x$:** como o raio é $y = \sqrt{R^2 - x^2}$, a fórmula eleva ao quadrado ($\pi y^2$), **cancelando a raiz na hora**: $\pi(R^2 - x^2)$.
+* **Por que não Cascas Cilíndricas?** Girando no eixo $x$, teríamos de integrar em $dy$ com $2\pi y \sqrt{R^2 - y^2}$ (a raiz não some) e dividir em $[0, r]$ e $[r, R]$.
+* **Detalhe da animação 3D do Slide 7:**
+  * No miolo ($|x| < r$), a fatia é uma **arruela** com área:
+    $$A(x) = \pi(R^2 - x^2) - \pi(r^2 - x^2) = \mathbf{\pi(R^2 - r^2)}$$
+    O $-x^2$ cancela com $+x^2$: **todas as arruelas do miolo têm exatamente a mesma área!**
+  * Nas pontas ($r \le |x| \le R$), a fatia é um disco maciço de área $\pi(R^2 - x^2)$.
 
 ---
 
-## 🚀 7. Os Dois Problemas Práticos
+## ✍️ 5. A Dedução Algébrica Completa (Slides 8 a 11)
 
-### Problema de Livro (Parte III):
-* Vaso esférico de titânio com diâmetro $2{,}40\text{ m}$ ($R = 1{,}20\text{ m}$) e parede de $60\text{ mm}$ ($r = 1{,}14\text{ m}$).
-* Volume da casca: $1{,}0323\text{ m}^3$ | Massa: $4{,}65\text{ toneladas}$.
-* Se usássemos a fórmula simplificada de casca fina ($4\pi R^2 e$), o volume calculado seria $1{,}0857\text{ m}^3$ (+5,17% de erro). Isso erraria em mais de $240\text{ kg}$ de titânio, justificando porque engenheiros utilizam o Cálculo exato!
+A forma mais limpa de integrar é subtrair o volume da esfera interna do volume da externa:
+$$V = \pi \int_{-R}^{R} \left(\sqrt{R^2 - x^2}\right)^2 dx - \pi \int_{-r}^{r} \left(\sqrt{r^2 - x^2}\right)^2 dx$$
 
-### Problema Inédito de Criogenia (Parte IV):
-* Tanque esférico para Hidrogênio Verde Líquido a $-253^\circ\text{C}$ ($20\text{ K}$).
-* Por que a esfera? Porque ela tem a menor área externa para um determinado volume ($\frac{A}{V} = \frac{3}{R}$), minimizando a entrada de calor do ambiente.
-* A casca oca é preenchida com isolamento a vácuo com perlita expandida ($167{,}75\text{ m}^3$), garantindo que o hidrogênio não evapore durante a viagem naval.
+1. **Simplificação e Propriedades Operatórias:** cancelamos $(\sqrt{u})^2 = u$ e aplicamos a propriedade da **constante multiplicativa** ($\pi$) e da **linearidade** (integral da diferença):
+   $$V_{\text{ext}} = \pi \left[ \int_{-R}^{R} R^2\,dx - \int_{-R}^{R} x^2\,dx \right]$$
+2. **Antiderivada (Primitiva):** como $R$ é constante em relação a $x$, $\int R^2\,dx = R^2 x$ e, pela regra da potência, $\int x^2\,dx = \frac{x^3}{3}$. Assim:
+   $$P(x) = R^2 x - \frac{x^3}{3}$$
+3. **Teorema Fundamental do Cálculo ($P(R) - P(-R)$):**
+   * $P(R) = R^3 - \frac{R^3}{3} = \frac{2R^3}{3}$
+   * $P(-R) = -R^3 + \frac{R^3}{3} = -\frac{2R^3}{3}$
+   * Subtraindo: $\frac{2R^3}{3} - \left(-\frac{2R^3}{3}\right) = \frac{4R^3}{3} \implies V_{\text{ext}} = \frac{4}{3}\pi R^3$.
+4. **Analogamente para $r$ em $[-r, r]$:** $V_{\text{int}} = \frac{4}{3}\pi r^3$.
+5. **Fórmula Final:**
+   $$V_{\text{casca}} = \frac{4}{3}\pi R^3 - \frac{4}{3}\pi r^3 = \mathbf{\frac{4}{3}\pi (R^3 - r^3)}$$
+
+---
+
+## 🔬 6. Por que a Derivada do Volume é a Área Superficial? (Slide 11)
+
+Fatoramos a diferença de cubos com $e = R - r$:
+$$R^3 - r^3 = (R - r)(R^2 + Rr + r^2) = e(R^2 + Rr + r^2)$$
+Quando a casca é muito fina ($e \to 0$, logo $r \to R$), temos $R^2 + Rr + r^2 \to 3R^2$:
+$$V_{\text{casca}} \approx \frac{4}{3}\pi \cdot e \cdot 3R^2 = 4\pi R^2 \cdot e \implies \mathbf{\frac{dV}{dR} = 4\pi R^2}$$
+Isso mostra que o volume de uma casca finíssima é a **área da esfera ($4\pi R^2$) vezes a espessura ($e$)**.
+
+---
+
+## 🚀 7. Os Dois Problemas Práticos (Slides 12 a 18)
+
+### Parte III — Problema Industrial: Flutuador de Aço (Slides 12 e 13)
+* **Dados:** $R = 10\text{ cm}$ e espessura $e = 2\text{ cm}$.
+* **Raio interno:** pela definição de espessura ($e = R - r$), temos $r = 10 - 2 = 8\text{ cm}$.
+* **Volume:**
+  $$V = \frac{4}{3}\pi (10^3 - 8^3) = \frac{4}{3}\pi (1000 - 512) = \frac{1952\pi}{3}\text{ cm}^3 \approx 2044{,}13\text{ cm}^3$$
+* **Conversão ao SI:** como $1\text{ m} = 100\text{ cm}$, então $1\text{ m}^3 = 100^3 = 1.000.000\text{ cm}^3$:
+  $$V \approx \frac{2044{,}13}{1.000.000}\text{ m}^3 = 0{,}002044\text{ m}^3$$
+* **Interpretação geométrica:** são cerca de **$2{,}04\text{ L}$ de aço** formando a parede de $2\text{ cm}$ ao redor de uma cavidade vazia de raio $8\text{ cm}$ ($\approx 2{,}14\text{ L}$).
+
+### Parte IV — Problema Inédito: Tanque Criogênico de $LH_2$ (Slides 14 a 18)
+* **Contexto:** armazenamento de Hidrogênio Líquido a $-253^\circ\text{C}$ ($20\text{ K}$).
+* **Por que esfera?** Pelo Teorema Isoperimétrico, a esfera tem a **menor área externa por volume** ($A/V = 3/R$), minimizando a entrada de calor.
+* **Dimensões:** vaso interno $r = 2{,}0\text{ m}$, blindagem externa $R = 2{,}5\text{ m}$, espessura de perlita expandida $e = 0{,}5\text{ m}$.
+* **Resolução pelo Cálculo Integral:**
+  $$V = \pi\int_{-2{,}5}^{2{,}5} (6{,}25 - x^2)\,dx - \pi\int_{-2{,}0}^{2{,}0} (4 - x^2)\,dx = \frac{4}{3}\pi (2{,}5^3 - 2{,}0^3) = \frac{30{,}5\pi}{3} \approx 31{,}94\text{ m}^3$$
+* **Massa estimada:** com densidade da perlita $\rho = 120\text{ kg/m}^3$, temos $M = V \times \rho = 31{,}94 \times 120 \approx 3.832{,}8\text{ kg}$ ($\approx 3{,}83\text{ toneladas}$).
+* **Discussão crítica:** na prática, tubulações de abastecimento, sensores e válvulas perfuram a parede (reduzindo ligeiramente o volume contínuo ideal), e a variação térmica ($+30^\circ\text{C}$ a $-253^\circ\text{C}$) exige projeto estrutural contra contração diferencial.
