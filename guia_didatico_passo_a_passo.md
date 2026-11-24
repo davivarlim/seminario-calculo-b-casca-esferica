@@ -6,27 +6,30 @@
 
 ---
 
-Este guia explica **toda a lógica matemática e geométrica do seminário do zero**, exatamente alinhado aos **21 slides da apresentação** e às **exigências de avaliação da banca**.
+Este guia explica **toda a lógica matemática e geométrica do seminário do zero**, exatamente alinhado aos **23 slides da apresentação (1 tópico por slide)** e às **exigências de avaliação da banca**.
 
 ---
 
-## 🌐 0. Ponto de Partida: O que é uma Esfera, Semicírculo e Seu Volume? (Slide 2)
+## 🌓 0. Semicírculo, Giro Gerador e Origem de $V = \frac{4}{3}\pi R^3$ (Slides 2 e 3)
 
-Antes de pensar em duas esferas concêntricas, entendemos **uma esfera só**:
-* **Centro $C(0,0,0)$ e Raio $R$:** o centro fica bem no meio; todo ponto da superfície externa está exatamente à mesma distância $R$ dele.
-* **Semicírculo gerador:** metade superior de um círculo plano de raio $R$ sobre o eixo $x$ ($[-R, R]$). Girando $360^\circ$, ele forma a esfera.
-* **Volume da esfera (exemplo $R = 3\text{ cm}$):**
-  $$V = \frac{4}{3}\pi R^3 = \frac{4}{3}\pi \cdot 3^3 = \frac{4}{3}\pi \cdot 27 = 36\pi \approx 113{,}10\text{ cm}^3$$
-  Sabendo calcular uma esfera, a **casca esférica** será apenas $V_{\text{maior}}(R) - V_{\text{menor}}(r)$.
+### Slide 2 — O que é um Semicírculo e seu Giro Gerador ($360^\circ$)
+* **Tópico 1 (Partes do Semicírculo):** É a metade de um círculo ($y = \sqrt{R^2 - x^2} \ge 0$), formada pelo **centro $C(0,0)$**, **diâmetro $2R$** (de $-R$ até $+R$ no eixo $x$), **raio $R$** e pelo arco superior.
+* **Tópico 2 (Semicírculo Gerador):** Ao girar esse semicírculo $360^\circ$ em torno do eixo $x$, cada ponto do arco traça um círculo ao redor do eixo, formando uma **esfera completa**.
+
+### Slide 3 — De Onde Vem $V = \frac{4}{3}\pi R^3$? (Sem $\rho$)
+Antes de pensar em duas esferas concêntricas, respondemos de onde vem o fator $\frac{4}{3}$ no volume de **uma esfera**:
+* **Fatiamento e giro:** cortamos a esfera em discos finos ($\Delta x \to 0$) e giramos para alinhar o eixo $x$ na horizontal (de $-R$ até $R$).
+* **Pitágoras na fatia:** entre o raio fixo da esfera $R$, a posição $x$ e a altura vertical **$y$** (raio do disco) vale $x^2 + y^2 = R^2 \implies y^2 = R^2 - x^2$.
+* **De onde vem $\frac{4}{3}$:** somando as fatias de $-R$ a $R$, temos $\pi\left[R^2x - \frac{x^3}{3}\right]_{-R}^{R} = \pi\left[\frac{2R^3}{3} - \left(-\frac{2R^3}{3}\right)\right]$; logo $\frac{2}{3} + \frac{2}{3} = \mathbf{\frac{4}{3}}$, chegando em $V = \frac{4}{3}\pi R^3$.
 
 ---
 
-## 🧭 1. O que é o Sólido no Mundo Real e no $\mathbb{R}^3$? (Slide 3)
+## 🧭 1. Da Esfera Cheia à Casca no $\mathbb{R}^3$ (Slides 4 e 5)
 
 Imagine uma bola oca (ou a casca de uma laranja):
 * Ela tem um **raio interno** ($r$), onde fica a cavidade vazia;
 * Ela tem um **raio externo** ($R$), onde termina a superfície externa;
-* A **espessura da parede sólida** é $e = R - r$ (no exemplo didático inicial: $R = 5, r = 3 \implies e = 2$).
+* A **espessura da parede sólida** é $e = R - r$ (no exemplo didático inicial: $R = 5, r = 3 \implies e = 2$), e seu volume é $V_{\text{casca}} = V_{\text{maior}}(R) - V_{\text{menor}}(r)$.
 
 ### De onde vêm $d_{xy}$, $d$ e $x^2 + y^2 + z^2$? (Dois Triângulos de Pitágoras):
 1. **No chão (plano $xy$):** andando $x$ para frente e $y$ para o lado, a diagonal horizontal vale $d_{xy}^2 = x^2 + y^2$ (distância no plano da base).
@@ -37,7 +40,7 @@ Imagine uma bola oca (ou a casca de uma laranja):
 
 ---
 
-## 🔄 2. Por Que Isolar $y$ (e Não $x$ ou $z$)? + Região Geradora (Slides 4 e 5)
+## 🔄 2. Por Que Isolar $y$ (e Não $x$ ou $z$)? + Região Geradora (Slides 6 e 7)
 
 No Cálculo B, volumes são gerados como **sólidos de revolução**:
 1. **Por que sem $z$ no 2D?** Na folha plana inicial não há profundidade ($z=0$); a 3ª dimensão $z$ surge ao girar.
@@ -53,7 +56,7 @@ No Cálculo B, volumes são gerados como **sólidos de revolução**:
 
 ---
 
-## 📈 3. Da Soma de Riemann à Integral Definida (Slide 8)
+## 📈 3. Da Soma de Riemann à Integral Definida (Slide 10)
 
 Antes de escrever a integral pronta, justificamos de onde ela vem:
 1. Dividimos o intervalo $[-R, R]$ do eixo $x$ em $n$ fatias bem finas de largura $\Delta x = \frac{2R}{n}$.
@@ -64,15 +67,15 @@ Antes de escrever a integral pronta, justificamos de onde ela vem:
 4. Fazendo as fatias ficarem infinitamente finas ($\Delta x \to 0$, $n \to \infty$), a soma converge para a **Integral Definida**:
    $$V = \lim_{n \to \infty} \sum_{i=1}^{n} \pi \left[y(x_i^*)\right]^2 \Delta x = \int_{-R}^{R} \pi \left[y(x)\right]^2 dx$$
 
-*(No Slide 8 da apresentação, você pode arrastar o slider de $n = 4$ até $40$ para mostrar visualmente $V_n$ se aproximando do volume exato $523{,}60$!)*
+*(No Slide 10 da apresentação, você pode arrastar o slider de $n = 4$ até $40$ para mostrar visualmente $V_n$ se aproximando do volume exato $523{,}60$!)*
 
 ---
 
-## 🔪 4. Por que Discos/Arruelas e NÃO Cascas Cilíndricas? (Slide 9)
+## 🔪 4. Por que Discos/Arruelas e NÃO Cascas Cilíndricas? (Slide 11)
 
 * **Vantagem dos Discos no eixo $x$:** como o raio é $y = \sqrt{R^2 - x^2}$, a fórmula eleva ao quadrado ($\pi y^2$), **cancelando a raiz na hora**: $\pi(R^2 - x^2)$.
 * **Por que não Cascas Cilíndricas?** Girando no eixo $x$, teríamos de integrar em $dy$ com $2\pi y \sqrt{R^2 - y^2}$ (a raiz não some) e dividir em $[0, r]$ e $[r, R]$.
-* **Detalhe da animação 3D do Slide 9:**
+* **Detalhe da animação 3D do Slide 11:**
   * No miolo ($|x| < r$), a fatia é uma **arruela** com área:
     $$A(x) = \pi(R^2 - x^2) - \pi(r^2 - x^2) = \mathbf{\pi(R^2 - r^2)}$$
     O $-x^2$ cancela com $+x^2$: **todas as arruelas do miolo têm exatamente a mesma área!**
@@ -80,7 +83,7 @@ Antes de escrever a integral pronta, justificamos de onde ela vem:
 
 ---
 
-## ✍️ 5. A Dedução Algébrica Completa (Slides 10 a 13)
+## ✍️ 5. A Dedução Algébrica Completa (Slides 12 a 15)
 
 A forma mais limpa de integrar é subtrair o volume da esfera interna do volume da externa:
 $$V = \pi \int_{-R}^{R} \left(\sqrt{R^2 - x^2}\right)^2 dx - \pi \int_{-r}^{r} \left(\sqrt{r^2 - x^2}\right)^2 dx$$
@@ -99,7 +102,7 @@ $$V = \pi \int_{-R}^{R} \left(\sqrt{R^2 - x^2}\right)^2 dx - \pi \int_{-r}^{r} \
 
 ---
 
-## 🔬 6. Por que a Derivada do Volume é a Área Superficial? (Slide 13)
+## 🔬 6. Por que a Derivada do Volume é a Área Superficial? (Slide 15)
 
 Fatoramos a diferença de cubos com $e = R - r$:
 $$R^3 - r^3 = (R - r)(R^2 + Rr + r^2) = e(R^2 + Rr + r^2)$$
@@ -109,22 +112,21 @@ Isso mostra que o volume de uma casca finíssima é a **área da esfera ($4\pi R
 
 ---
 
-## 🚀 7. Os Dois Problemas Práticos (Slides 14 a 20)
+## 🚀 7. Os Dois Problemas Práticos (Slides 16 a 22)
 
-### Parte III — Problema Industrial: Flutuador de Aço (Slides 14 e 15)
-* **Dados:** $R = 10\text{ cm}$ e espessura $e = 2\text{ cm}$.
-* **Raio interno:** pela definição de espessura ($e = R - r$), temos $r = 10 - 2 = 8\text{ cm}$.
-* **Volume:**
-  $$V = \frac{4}{3}\pi (10^3 - 8^3) = \frac{4}{3}\pi (1000 - 512) = \frac{1952\pi}{3}\text{ cm}^3 \approx 2044{,}13\text{ cm}^3$$
-* **Conversão ao SI:** como $1\text{ m} = 100\text{ cm}$, então $1\text{ m}^3 = 100^3 = 1.000.000\text{ cm}^3$:
-  $$V \approx \frac{2044{,}13}{1.000.000}\text{ m}^3 = 0{,}002044\text{ m}^3$$
-* **Interpretação geométrica:** são cerca de **$2{,}04\text{ L}$ de aço** formando a parede de $2\text{ cm}$ ao redor de uma cavidade vazia de raio $8\text{ cm}$ ($\approx 2{,}14\text{ L}$).
+### Parte III — Problema Referenciado: Bola de Chocolate Oca (Slides 16 e 17)
+* **Fonte Oficial:** **ENEM PPL 2023 — Prova de Matemática, Questão 159 (Caderno Azul / INEP)**.
+* **Dados:** diâmetro $d = 20\text{ cm} \implies R = 10\text{ cm}$; espessura uniforme $e = 1\text{ cm} \implies r = 10 - 1 = 9\text{ cm}$; correspondência $1\text{ g} \leftrightarrow 0{,}75\text{ cm}^3$.
+* **Volume de chocolate:**
+  $$V = \frac{4}{3}\pi (10^3 - 9^3) = \frac{4}{3}\pi (1000 - 729) = \frac{1084\pi}{3}\text{ cm}^3 \approx 1.135{,}16\text{ cm}^3$$
+* **Conversão ao SI:** $V \approx \frac{1135{,}16}{1.000.000} \approx 0{,}001135\text{ m}^3$ ($\approx 1{,}14\text{ L}$).
+* **Massa da bola (resposta do ENEM):**
+  $$M = \frac{V}{0{,}75} = \frac{4}{3} \cdot \frac{1084\pi}{3} = \mathbf{\frac{4336\pi}{9}\text{ g}} \approx 1.513{,}55\text{ g} \quad (\text{Gabarito C})$$
 
-### Parte IV — Problema Inédito: Tanque Criogênico de $LH_2$ (Slides 16 a 20)
-* **Contexto:** armazenamento de Hidrogênio Líquido a $-253^\circ\text{C}$ ($20\text{ K}$).
-* **Por que esfera?** Pelo Teorema Isoperimétrico, a esfera tem a **menor área externa por volume** ($A/V = 3/R$), minimizando a entrada de calor.
-* **Dimensões:** vaso interno $r = 2{,}0\text{ m}$, blindagem externa $R = 2{,}5\text{ m}$, espessura de perlita expandida $e = 0{,}5\text{ m}$.
+### Parte IV — Problema Autoral: Reservatório Esférico de Água em Concreto (Slides 18 a 22)
+* **Contexto simples do cotidiano:** armazenar água para irrigação reduzindo o material externo, porque a esfera tem a **menor área de parede por volume de água** ($A/V = 3/R$).
+* **Dimensões:** câmara interna de água $r = 2{,}0\text{ m}$, espessura de concreto $e = 0{,}5\text{ m}$, raio externo $R = 2{,}5\text{ m}$.
 * **Resolução pelo Cálculo Integral:**
-  $$V = \pi\int_{-2{,}5}^{2{,}5} (6{,}25 - x^2)\,dx - \pi\int_{-2{,}0}^{2{,}0} (4 - x^2)\,dx = \frac{4}{3}\pi (2{,}5^3 - 2{,}0^3) = \frac{30{,}5\pi}{3} \approx 31{,}94\text{ m}^3$$
-* **Massa estimada:** com densidade da perlita $\rho = 120\text{ kg/m}^3$, temos $M = V \times \rho = 31{,}94 \times 120 \approx 3.832{,}8\text{ kg}$ ($\approx 3{,}83\text{ toneladas}$).
-* **Discussão crítica:** na prática, tubulações de abastecimento, sensores e válvulas perfuram a parede (reduzindo ligeiramente o volume contínuo ideal), e a variação térmica ($+30^\circ\text{C}$ a $-253^\circ\text{C}$) exige projeto estrutural contra contração diferencial.
+  $$V_{\text{concreto}} = \pi\int_{-2{,}5}^{2{,}5} (6{,}25 - x^2)\,dx - \pi\int_{-2{,}0}^{2{,}0} (4 - x^2)\,dx = \frac{4}{3}\pi (2{,}5^3 - 2{,}0^3) = \frac{30{,}5\pi}{3} \approx 31{,}94\text{ m}^3$$
+* **Massa e capacidade:** com concreto armado $\rho = 2.400\text{ kg/m}^3$, temos $M = 31{,}94 \times 2.400 \approx 76.654{,}9\text{ kg}$ ($\approx 76{,}7\text{ toneladas}$); e a capacidade interna é $V_{\text{água}} = \frac{4}{3}\pi(2{,}0)^3 \approx 33{,}51\text{ m}^3 = 33.510\text{ L}$.
+* **Discussão crítica:** na prática, o peso elevado exige sapata/base reforçada, e os canos de entrada/saída mais a tampa de visita perfuram a parede contínua prevista na integral.

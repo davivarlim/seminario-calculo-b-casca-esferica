@@ -7,84 +7,88 @@
 
 ---
 
-## ⏱️ Roteiro de Fala Objetivo — 21 Slides (15 a 20 Minutos)
+## ⏱️ Roteiro de Fala Objetivo — 23 Slides (15 a 20 Minutos)
 
-> **Dica para a apresentação presencial:** os slides agora são limpos e visuais de propósito — **não leia a tela**. Use os 2 ou 3 tópicos de cada slide apenas como guia visual para falar com naturalidade, como em uma aula. A barra `REFERÊNCIAS:` no topo explica cada letra antes mesmo de começar a fórmula.
+> **Dica para a apresentação presencial:** cada slide traz um tópico claro e visual — **não leia a tela**. Use os blocos curtos como apoio para falar com naturalidade, como em uma aula. A barra `REFERÊNCIAS:` no topo explica cada letra antes mesmo de começar a fórmula.
 
 ### SLIDE 01: Capa Oficial
-* **Fala:** *"Boa noite ao professor Pedro Antonio Ourique, tutores e colegas. Somos Ariane Teixeira Pereira, Daniel Cemin Militão e Davi Vargas Limeira, da Licenciatura em Matemática a Distância (UFPel / IFM / CLMD / UAB). Nosso seminário trata da **Casca de Esfera** — região delimitada por duas esferas concêntricas — cobrindo base geométrica, fundamentação formal, dedução integral, problema numérico e aplicação contextualizada."*  
+* **Fala:** *"Boa noite ao professor Pedro Antonio Ourique, tutores e colegas. Somos Ariane Teixeira Pereira, Daniel Cemin Militão e Davi Vargas Limeira, da Licenciatura em Matemática a Distância (UFPel / IFM / CLMD / UAB). Nosso seminário trata da **Casca de Esfera** — partindo da base geométrica mais simples até a dedução pela integral e duas aplicações práticas."*  
 *(Clique em `Iniciar Apresentação →`)*
 
-### SLIDE 02 (PARTE 1): O que é uma Esfera, Semicírculo e Seu Volume?
-* **Fala:** *"Antes de entrarmos em duas esferas concêntricas, vamos alinhar a base: o que é uma esfera? Imagine uma bola perfeitamente redonda; o ponto bem no meio é o centro $C(0,0,0)$, e toda a superfície fica exatamente à mesma distância $R$ dele. Podemos gerar uma esfera girando um semicírculo plano ($y \ge 0$) em $360^\circ$ no eixo $x$. E quanto cabe dentro dela? O volume vale $V = \frac{4}{3}\pi R^3$. Com um exemplo simples de $R = 3\text{ cm}$, calculamos $V = \frac{4}{3}\pi \cdot 27 = 36\pi \approx 113{,}10\text{ cm}^3$. Sabendo calcular uma esfera, a casca esférica será apenas tirar uma esfera menor da maior."*  
-*(Mova o slider `Raio R:` no painel direito se quiser testar outros valores ao vivo)*
+### SLIDE 02 (PARTE 1): O que é um Semicírculo e seu Giro Gerador ($360^\circ$)
+* **Fala:** *"Começamos pelo bloco mais simples: no Tópico 1 à esquerda vemos as partes de um **semicírculo** — centro $C(0,0)$, diâmetro $2R$ sobre o eixo $x$, raio $R$ e o arco superior $y = \sqrt{R^2-x^2} \ge 0$. No Tópico 2, ao clicarmos em `Girar Semicírculo`, esse arco gira $360^\circ$ em torno do eixo $x$ e gera a **esfera completa**."*  
+*(Clique em `🔄 Girar Semicírculo`)*
 
-### SLIDE 03 (PARTE 1): Definição no $\mathbb{R}^3$ e Origem de $d_{xy}$ e $d$
-* **Fala:** *"Agora colocamos uma esfera menor de raio $r=3$ dentro da maior de raio $R=5$, criando a casca sólida $\mathcal{S}$. Mas de onde vêm as letras $d_{xy}$ e $d$ da fórmula? Fazemos Pitágoras em duas etapas: primeiro no chão (plano $xy$), andando $x$ e $y$ formamos a diagonal $d_{xy}^2 = x^2 + y^2$. Depois subimos na vertical até a altura $z$: a distância direta 3D até o centro vale $d^2 = d_{xy}^2 + z^2 = x^2 + y^2 + z^2$. Elevando $r \le d \le R$ ao quadrado, eliminamos a raiz e obtemos $r^2 \le x^2 + y^2 + z^2 \le R^2$."*  
-*(Use os botões `1. Chão dₓᵧ`, `2. Subida z` e `3. Casca` para mostrar cada triângulo separadamente)*
+### SLIDE 03 (PARTE 1): De Onde Vem o Volume da Esfera ($V = \frac{4}{3}\pi R^3$)?
+* **Fala:** *"Agora explicamos de onde surgiu o $4/3$ na fórmula da esfera: cortamos a esfera em discos finos ($\Delta x \to 0$) e giramos o eixo $x$ para a horizontal. Em cada fatia, o raio da esfera é $R$ e o raio do disco é a altura $y$, logo por Pitágoras $x^2 + y^2 = R^2 \implies y^2 = R^2 - x^2$. Integrando $\pi(R^2-x^2)$ de $-R$ até $R$, avaliamos nos extremos e somamos $\frac{2}{3} - \left(-\frac{2}{3}\right) = \frac{4}{3}$, obtendo $V = \frac{4}{3}\pi R^3$."*  
+*(Use os botões `1` a `7` para destacar cada etapa)*
 
-### SLIDE 04 (PARTE 1): Por Que Isolar $y$ (e Não $x$ ou $z$)?
-* **Fala:** *"Para passar para o Cálculo, desenhamos primeiro uma folha plana 2D — por isso não usamos $z$, já que a profundidade surge depois na rotação. E por que isolamos $y$ em $x^2 + y^2 = R^2$ e não $x$? Porque escolhemos girar em torno do eixo $x$: a altura até esse eixo é justamente a coordenada $y$, que vira o raio de cada disco! Só isolaríamos $x$ se girássemos no eixo vertical $y$. Ao isolar $y = \pm\sqrt{R^2 - x^2}$, ficamos apenas com o sinal $+$ ($y \ge 0$) para não contar o mesmo volume duas vezes no giro de $360^\circ$."*  
-*(Alterne entre `1. Eixo x ⇒ y`, `2. Eixo y ⇒ x` e `3. Sem z e y ≥ 0`)*
+### SLIDE 04 (PARTE 1): Da Esfera Cheia à Casca Esférica ($R$ e $r$)
+* **Fala:** *"Sabendo calcular uma esfera cheia de raio $R$, basta retirar de dentro uma esfera menor (miolo oco de raio $r$). O que sobra ao redor é a **Casca Esférica** de espessura $e = R - r$ e volume $V(R) - V(r)$."*
 
-### SLIDE 05 (PARTE 1): Região Geradora $\mathcal{R}$ e Revolução $360^\circ$
-* **Fala:** *"Juntando os arcos $f(x)=\sqrt{R^2-x^2}$ em $[-5, 5]$ e $g(x)=\sqrt{r^2-x^2}$ em $[-3, 3]$, destacamos a faixa hachurada $\mathcal{R}$ no plano 2D e fazemos a rotação completa de $360^\circ$ em torno do eixo $x$ para construir a casca sólida com cavidade oca."*  
-*(Aponte para os intervalos $[-r, r]$ e $[-R, R]$ e clique em `Gerar Rotação`)*
+### SLIDE 05 (PARTE 1): Definição no $\mathbb{R}^3$ e Origem de $d_{xy}$ e $d$
+* **Fala:** *"Formalizando no espaço $\mathbb{R}^3$, aplicamos Pitágoras duas vezes: no chão temos $d_{xy}^2 = x^2 + y^2$, e subindo $z$ na vertical obtemos a distância 3D $d^2 = x^2 + y^2 + z^2$. Para pertencer à parede sólida, $r \le d \le R$, ou sem raiz: $r^2 \le x^2 + y^2 + z^2 \le R^2$."*  
+*(Use os botões `1. Chão dₓᵧ`, `2. Subida z` e `3. Casca`)*
 
-### SLIDE 06 (PARTE 1): Elementos Constituintes e Simetrias ($R=5, r=3$)
-* **Fala:** *"Usando os parâmetros didáticos $R=5\text{ cm}$ e $r=3\text{ cm}$, isolamos os 5 elementos: (1) o centro comum $C(0,0,0)$; (2) o raio externo $R$; (3) o raio interno da cavidade $r$; (4) a espessura $e = R - r = 2\text{ cm}$; e (5) a simetria esférica plena $O(3)$ — qualquer rotação ou plano que passe pelo centro preserva a forma do sólido."*  
-*(Clique nos botões dos cards para destacar cada elemento se desejar)*
+### SLIDE 06 (PARTE 1): Por Que Isolar $y$ (e Não $x$ ou $z$)?
+* **Fala:** *"Como giramos em torno do eixo horizontal $x$, a distância até esse eixo é a coordenada $y$ — que se torna o raio de cada disco! Além disso, escolhemos só o sinal positivo $y \ge 0$ para que o giro de $360^\circ$ não conte o volume duas vezes."*
 
-### SLIDE 07 (PARTE 1): Modelagem no GeoGebra ($R=5, r=3$)
-* **Fala:** *"No GeoGebra, construímos à esquerda as funções limitantes $f(x)=\sqrt{25-x^2}$ em $[-5,5]$ e $g(x)=\sqrt{9-x^2}$ em $[-3,3]$, delimitando a região $9 \le x^2+y^2 \le 25$ com $y \ge 0$. À direita, vemos a revolução completa de $360^\circ$ no eixo $x$ gerando a casca em 3D."*
+### SLIDE 07 (PARTE 1): Região Geradora $\mathcal{R}$ e Revolução $360^\circ$
+* **Fala:** *"Com os arcos $f(x)=\sqrt{R^2-x^2}$ em $[-5,5]$ e $g(x)=\sqrt{r^2-x^2}$ em $[-3,3]$, giramos apenas a semi-coroa hachurada $\mathcal{R}$ em $360^\circ$ para construir a casca sólida em 3D."*  
+*(Clique em `🔄 Gerar Rotação`)*
 
-### SLIDE 08 (PARTE 2): Da Soma de Riemann à Integral Definida
-* **Fala:** *"Agora entramos na dedução do volume. Fatiando o sólido perpendicularmente ao eixo $x$ em $n$ discos finos de largura $\Delta x = 2R/n$, cada fatia tem volume aproximado $\pi[y(x_i^*)]^2 \Delta x$. Somando todas as fatias temos a Soma de Riemann. Ao fazer $\Delta x \to 0$ e $n \to \infty$, essa soma converge exatamente para a integral definida $\int_{-R}^{R} \pi[y(x)]^2 dx$."*  
-*(Arraste o slider de $n = 8$ para $n = 30$ ou $40$ para mostrar a convergência numérica para $523{,}60$!)*
+### SLIDE 08 (PARTE 1): Elementos Constituintes e Simetrias ($R=5, r=3$)
+* **Fala:** *"Com $R=5$ e $r=3$, vemos os 5 elementos: centro $C(0,0,0)$, raio externo $R$, raio interno $r$, espessura $e=R-r=2$ e simetria esférica $O(3)$."*
 
-### SLIDE 09 (PARTE 2): Método dos Discos (Arruelas) vs. Cascas Cilíndricas
-* **Fala:** *"Escolhemos o Método dos Discos (com subtração de cavidade) porque $y = \sqrt{R^2 - x^2}$ e, ao elevar ao quadrado na fórmula $\pi y^2$, a raiz quadrada é eliminada na hora. Pelas Cascas Cilíndricas no eixo $x$, integraríamos em $dy$ com $2\pi y\sqrt{R^2-y^2}$, mantendo a raiz e exigindo dividir a integral em dois intervalos no eixo $y$. Na animação 3D, notem que no miolo ($|x| < r$) as seções são arruelas de área constante $\pi(R^2 - r^2)$, pois o $-x^2$ cancela."*  
-*(Mostre o `Corte 90°` no visualizador 3D)*
+### SLIDE 09 (PARTE 1): Modelagem no GeoGebra ($R=5, r=3$)
+* **Fala:** *"Aqui estão os registros do GeoGebra mostrando as curvas 2D $f(x)$ e $g(x)$ e a casca gerada pela revolução em 3D."*
 
-### SLIDE 10 (PARTE 2): Montagem da Integral e Propriedades Operatórias
-* **Fala:** *"Montamos o volume da casca como a diferença entre o volume da esfera externa em $[-R, R]$ e o da cavidade interna em $[-r, r]$. Ao cancelar $(\sqrt{u})^2 = u$, aplicamos duas propriedades operatórias: retiramos a constante $\pi$ da integral e usamos a linearidade para separar a integral da diferença."*
+### SLIDE 10 (PARTE 2): Da Soma de Riemann à Integral Definida
+* **Fala:** *"Iniciamos a dedução rigorosa: dividimos $[-R, R]$ em $n$ discos de largura $\Delta x = 2R/n$ e somamos $\pi[y(x_i^*)]^2\Delta x$. No limite $\Delta x \to 0$, chegamos à integral definida."*  
+*(Arraste o slider de $n = 8$ até $40$)*
 
-### SLIDE 11 (PARTE 2): Antiderivada (Primitiva)
-* **Fala:** *"Como $x$ é a variável de integração, $R^2$ e $r^2$ são constantes: $\int R^2 dx = R^2 x$. Pela regra da potência, $\int x^2 dx = \frac{x^3}{3}$. Logo, a primitiva é $P(x) = R^2 x - \frac{x^3}{3}$ (e analogamente com $r$ para a esfera interna)."*
+### SLIDE 11 (PARTE 2): Método dos Discos (Arruelas) vs. Cascas Cilíndricas
+* **Fala:** *"Preferimos Discos ao longo de $x$ porque elevar $y = \sqrt{R^2 - x^2}$ ao quadrado cancela a raiz imediatamente. Na fatia central ($|x|<r$), a área da arruela é constante: $\pi(R^2 - r^2)$."*
 
-### SLIDE 12 (PARTE 2): Teorema Fundamental do Cálculo
-* **Fala:** *"Aplicando o Teorema Fundamental do Cálculo $P(b) - P(a)$ nos limites $[-R, R]$, obtemos $\frac{2R^3}{3} - \left(-\frac{2R^3}{3}\right) = \frac{4R^3}{3}$, dando $V_{\text{ext}} = \frac{4}{3}\pi R^3$. Pelo mesmo processo em $[-r, r]$, chegamos a $V_{\text{int}} = \frac{4}{3}\pi r^3$."*
+### SLIDE 12 (PARTE 2): Montagem da Integral e Propriedades Operatórias
+* **Fala:** *"Subtraímos as duas integrais, cancelamos $(\sqrt{u})^2 = u$, retiramos $\pi$ e separamos pela linearidade."*
 
-### SLIDE 13 (PARTE 2): Fórmula Final e Interpretação Geométrica
-* **Fala:** *"Subtraindo os volumes, deduzimos $V_{\text{casca}} = \frac{4}{3}\pi(R^3 - r^3)$, que corresponde diretamente à diferença entre duas esferas da Geometria Euclidiana. Fatorando $R^3 - r^3 = e(R^2 + Rr + r^2)$, quando a espessura $e \to 0$ temos $V \approx 4\pi R^2 \cdot e$: o volume de uma casca fina é área superficial vezes espessura, confirmando que $\frac{dV}{dR} = 4\pi R^2$."*
+### SLIDE 13 (PARTE 2): Antiderivada (Primitiva)
+* **Fala:** *"Integramos termo a termo: a constante $R^2$ vira $R^2x$ e $x^2$ vira $x^3/3$, resultando na primitiva $P(x) = R^2x - \frac{x^3}{3}$."*
 
-### SLIDE 14 (PARTE 3): Flutuador Industrial de Aço (Enunciado)
-* **Fala:** *"Na Parte 3, aplicamos a fórmula a um flutuador mecânico de aço inoxidável para controle de nível em caldeira, com raio externo $R = 10\text{ cm}$ e espessura $e = 2\text{ cm}$. Pela relação $e = R - r$, determinamos o raio da cavidade oca interna: $r = 8\text{ cm}$."*  
-*(Use `Explodir` ou `Raio-X` no modelo 3D)*
+### SLIDE 14 (PARTE 2): Teorema Fundamental do Cálculo
+* **Fala:** *"Avaliando $P(R) - P(-R)$ obtemos $\frac{4R^3}{3}$ para a esfera externa e, analogamente, $\frac{4r^3}{3}$ para a cavidade interna."*
 
-### SLIDE 15 (PARTE 3): Resolução Numérica, Unidades SI e Interpretação
-* **Fala:** *"Calculamos $10^3 - 8^3 = 1000 - 512 = 488\text{ cm}^3$, obtendo $V = \frac{1952\pi}{3}\text{ cm}^3 \approx 2044{,}13\text{ cm}^3$. Como $1\text{ m}^3 = (100\text{ cm})^3 = 10^6\text{ cm}^3$, no Sistema Internacional temos $V \approx 0{,}002044\text{ m}^3$. Geometricamente, são cerca de $2{,}04\text{ L}$ de aço maciço formando uma parede de $2\text{ cm}$ ao redor de uma cavidade oca de $\approx 2{,}14\text{ L}$."*  
-*(Mova o slider de corte no modelo 3D)*
+### SLIDE 15 (PARTE 2): Fórmula Final e Interpretação Geométrica
+* **Fala:** *"Concluímos $V_{\text{casca}} = \frac{4}{3}\pi(R^3 - r^3)$ e mostramos que, quando $e \to 0$, $V \approx 4\pi R^2 e$, confirmando $\frac{dV}{dR} = 4\pi R^2$."*
 
-### SLIDE 16 (PARTE 4): Tanque Criogênico de Hidrogênio Líquido ($LH_2$)
-* **Fala:** *"Para a aplicação inédita, projetamos um tanque criogênico para armazenar hidrogênio líquido a $-253^\circ\text{C}$. Escolhemos a esfera porque ela oferece a menor área externa para um mesmo volume ($A/V = 3/R$), reduzindo a entrada de calor. O vaso interno tem $r = 2{,}0\text{ m}$ e a blindagem externa tem $R = 2{,}5\text{ m}$, formando uma casca isolante de perlita expandida com $e = 0{,}5\text{ m}$."*  
-*(Mostre a vista explodida das 3 camadas em 3D)*
+### SLIDE 16 (PARTE 3): Problema Referenciado — Bola de Chocolate (ENEM PPL 2023)
+* **Fala:** *"No Problema 1, escolhemos uma questão oficial do **ENEM PPL 2023 (Questão 159 — Caderno Azul / INEP)**: uma bola oca de chocolate com diâmetro externo $20\text{ cm}$ ($R = 10\text{ cm}$) e espessura $e = 1\text{ cm}$ ($r = 9\text{ cm}$), em que $1\text{ g}$ equivale a $0{,}75\text{ cm}^3$."*  
+*(Alterne `Corte 90°` / `Raio-X` no modelo 3D)*
 
-### SLIDE 17 (PARTE 4): GeoGebra (1/2) — Curvas 2D e Seção $180^\circ$
-* **Fala:** *"Aqui temos a modelagem do tanque no GeoGebra: as curvas geradoras $f(x)=\sqrt{6{,}25-x^2}$ e $g(x)=\sqrt{4-x^2}$ no semiplano $y \ge 0$, e à direita a meia-revolução de $180^\circ$ exibindo a espessura isolante."*
+### SLIDE 17 (PARTE 3): Resolução Passo a Passo, Massa e SI
+* **Fala:** *"Substituindo na fórmula deduzida, $10^3 - 9^3 = 1000 - 729 = 271$, logo o volume de chocolate vale $V = \frac{1084\pi}{3}\text{ cm}^3 \approx 1.135{,}16\text{ cm}^3$ ($\approx 0{,}001135\text{ m}^3$ no SI). Dividindo por $0{,}75\text{ cm}^3/\text{g}$, obtemos $\frac{4336\pi}{9}\text{ g} \approx 1.513{,}55\text{ g}$, que é exatamente a alternativa C do gabarito oficial do INEP!"*  
+*(Deslize o plano de corte no 3D)*
 
-### SLIDE 18 (PARTE 4): GeoGebra (2/2) — 3D Paramétrico e Casca Translúcida
-* **Fala:** *"No segundo conjunto do GeoGebra, implementamos as superfícies paramétricas completas no 3D (usando $u$ na coordenada vertical $z$ por simetria esférica para visualizar o tanque em pé) e a versão translúcida destacando a cavidade interna do $LH_2$."*
+### SLIDE 18 (PARTE 4): Reservatório Esférico de Água em Concreto
+* **Fala:** *"Para o problema autoral mais simples e intuitivo, projetamos um **reservatório esférico de água em concreto armado**. A esfera é ideal porque tem a menor área externa para guardar o mesmo volume de água. O interior para a água tem $r = 2{,}0\text{ m}$ e a parede tem espessura $e = 0{,}5\text{ m}$ ($R = 2{,}5\text{ m}$)."*  
+*(Mostre o corte 3D concreto + água)*
 
-### SLIDE 19 (PARTE 4): Volume do Isolamento via Integral Definida
-* **Fala:** *"Aplicando o Cálculo Integral diretamente ao tanque: montamos $\pi\int_{-2{,}5}^{2{,}5}(6{,}25-x^2)\,dx - \pi\int_{-2{,}0}^{2{,}0}(4-x^2)\,dx$, avaliamos pelo TFC e obtemos $\frac{4}{3}\pi(15{,}625 - 8) = \frac{30{,}5\pi}{3} \approx 31{,}94\text{ m}^3$ de perlita. Pela fórmula $M = V \times \rho$ com $\rho = 120\text{ kg/m}^3$, chegamos a $\approx 3.832{,}8\text{ kg}$ ($\approx 3{,}83\text{ toneladas}$)."*
+### SLIDE 19 (PARTE 4): GeoGebra (1/2) — Curvas 2D e Seção $180^\circ$
+* **Fala:** *"Modelamos no GeoGebra as funções $f(x)=\sqrt{6{,}25-x^2}$ e $g(x)=\sqrt{4-x^2}$ no semiplano $y \ge 0$, além da meia-revolução de $180^\circ$ mostrando a espessura da parede de concreto."*
 
-### SLIDE 20 (PARTE 4): Discussão Crítica e Limitações do Modelo
-* **Fala:** *"Por fim, analisamos criticamente o resultado: as $3{,}83\text{ toneladas}$ de perlita e a variação térmica até $-253^\circ\text{C}$ exigem suportes estruturais reforçados. Além disso, a integral assume uma casca fechada ideal — na prática, tubulações de abastecimento, alívio e sensores perfuram as paredes, quebram a simetria perfeita e reduzem ligeiramente o volume real de isolante."*  
-*(Clique em `2. Perlita` e depois em `3. Limitações` no visualizador 3D)*
+### SLIDE 20 (PARTE 4): GeoGebra (2/2) — 3D Paramétrico e Casca Translúcida
+* **Fala:** *"Vemos aqui a superfície paramétrica completa no GeoGebra 3D e a casca translúcida destacando a câmara interna de armazenamento de água."*
 
-### SLIDE 21: Conclusão e Considerações Finais
-* **Fala:** *"Concluímos integrando rigor analítico, visualizações geométricas em GeoGebra e 3D e análise crítica de engenharia. Agradecemos e ficamos à disposição da banca para arguição."*
+### SLIDE 21 (PARTE 4): Integral do Concreto, Massa e Capacidade
+* **Fala:** *"Montando e resolvendo a integral definida passo a passo de $[-2{,}5; 2{,}5]$ e $[-2{,}0; 2{,}0]$, obtemos $V_{\text{concreto}} = \frac{30{,}5\pi}{3} \approx 31{,}94\text{ m}^3$. Multiplicando pela densidade do concreto armado ($\rho = 2.400\text{ kg/m}^3$), a parede pesa $\approx 76{,}7\text{ toneladas}$ e guarda $33.510\text{ litros}$ de água."*
+
+### SLIDE 22 (PARTE 4): Discussão Crítica e Limitações do Modelo
+* **Fala:** *"Na análise crítica, destacamos dois pontos reais: primeiro, $76{,}7\text{ toneladas}$ exigem sapata estrutural reforçada; segundo, os canos de entrada e saída mais a tampa de visita perfuram a parede, quebrando ligeiramente a simetria perfeita da integral."*  
+*(Clique em `2. Parede e Água` e `3. Limitações (Canos)`)*
+
+### SLIDE 23: Conclusão e Considerações Finais
+* **Fala:** *"Concluímos conectando intuição geométrica simples, dedução rigorosa pela integral, modelagem em GeoGebra e dois problemas completos com revisão passo a passo. Obrigado a todos!"*
 
 ---
 
@@ -102,8 +106,8 @@
 4. **Por que o volume da casca fina tende a $4\pi R^2 e$?**  
    Fatorando $R^3 - r^3 = (R - r)(R^2 + Rr + r^2) = e(R^2 + Rr + r^2)$, quando $e \to 0$ temos $r \to R$, então $V \approx \frac{4}{3}\pi \cdot e \cdot 3R^2 = 4\pi R^2 e$. Isso comprova que $\frac{dV}{dR} = 4\pi R^2$.
 
-5. **Por que no GeoGebra 3D (Slide 18) a variável $u$ ficou no eixo $z$ em vez do eixo $x$?**  
-   Pela simetria esférica $O(3)$ centrada na origem, girar em torno de $x$, $y$ ou $z$ gera exatamente a mesma casca esférica; usamos o eixo $z$ na parametrização para deixar o tanque alinhado verticalmente na janela 3D.
+5. **Por que no GeoGebra 3D (Slide 20) a variável $u$ ficou no eixo $z$ em vez do eixo $x$?**  
+   Pela simetria esférica $O(3)$ centrada na origem, girar em torno de $x$, $y$ ou $z$ gera exatamente a mesma casca esférica; usamos o eixo $z$ na parametrização para deixar o reservatório alinhado verticalmente na janela 3D.
 
-6. **Por que escolher esfera no tanque criogênico e qual a limitação do cálculo?**  
-   A esfera minimiza a área superficial para um dado volume ($A/V = 3/R$), reduzindo a entrada de calor. Porém, a integral supõe casca contínua e perfeita, enquanto o tanque real possui perfurações de dutos e válvulas que subtraem parte do volume teórico.
+6. **Por que escolher esfera para o reservatório de água e qual a limitação do cálculo?**  
+   A esfera tem a menor razão área/volume ($A/V = 3/R$), gastando menos concreto para guardar o mesmo volume de água e distribuindo melhor a pressão interna. Porém, a integral supõe casca fechada e contínua, enquanto o reservatório real possui canos e tampa de visita que perfuram a parede.
