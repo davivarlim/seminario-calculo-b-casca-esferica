@@ -6,127 +6,85 @@
 
 ---
 
-Este guia explica **toda a lógica matemática e geométrica do seminário do zero**, exatamente alinhado aos **23 slides da apresentação (1 tópico por slide)** e às **exigências de avaliação da banca**.
+Este guia segue a **sequência progressiva recomendada** (5 Partes / 6 Etapas): primeiro entendemos **uma esfera** do zero ($\text{Círculo} \to \text{Rotação} \to \text{Integral da Esfera} = \frac{4}{3}\pi R^3$) e só depois juntamos **duas esferas concêntricas** para construir a **Casca Esférica** e deduzir $V_{\text{casca}} = \frac{4}{3}\pi(R^3 - r^3)$.
 
 ---
 
-## 🌓 0. Semicírculo, Giro Gerador e Origem de $V = \frac{4}{3}\pi R^3$ (Slides 2 e 3)
+## 🌓 Etapa 1 & 2 — Círculo e Rotação Formando a Esfera (PARTE 1 — Slides 1 e 2)
 
-### Slide 2 — O que é um Semicírculo e seu Giro Gerador ($360^\circ$)
-* **Tópico 1 (Partes do Semicírculo):** É a metade de um círculo ($y = \sqrt{R^2 - x^2} \ge 0$), formada pelo **centro $C(0,0)$**, **diâmetro $2R$** (de $-R$ até $+R$ no eixo $x$), **raio $R$** e pelo arco superior.
-* **Tópico 2 (Semicírculo Gerador):** Ao girar esse semicírculo $360^\circ$ em torno do eixo $x$, cada ponto do arco traça um círculo ao redor do eixo, formando uma **esfera completa**.
+### Slide 1 — Círculo, Semicírculo e Propriedades ($\mathbb{R}^2$)
+1. Todo ponto $(x,y)$ do círculo centrado na origem de raio $R$ forma com os eixos um **triângulo retângulo** de catetos $x, y$ e hipotenusa $R$, obedecendo Pitágoras:
+   $$x^2 + y^2 = R^2$$
+2. **Por que isolar $y \ge 0$?** A circunferência completa **não é uma função** (cada $x$ possui duas imagens: $\pm\sqrt{R^2-x^2}$). Mantendo apenas o arco superior ($y \ge 0$), surge a função:
+   $$f(x) = \sqrt{R^2 - x^2}, \quad x \in [-R, R]$$
+   Além disso, girar apenas essa metade superior em $360^\circ$ já varre toda a esfera sem duplicar o volume.
 
-### Slide 3 — De Onde Vem $V = \frac{4}{3}\pi R^3$? (Sem $\rho$)
-Antes de pensar em duas esferas concêntricas, respondemos de onde vem o fator $\frac{4}{3}$ no volume de **uma esfera**:
-* **Fatiamento e giro:** cortamos a esfera em discos finos ($\Delta x \to 0$) e giramos para alinhar o eixo $x$ na horizontal (de $-R$ até $R$).
-* **Pitágoras na fatia:** entre o raio fixo da esfera $R$, a posição $x$ e a altura vertical **$y$** (raio do disco) vale $x^2 + y^2 = R^2 \implies y^2 = R^2 - x^2$.
-* **De onde vem $\frac{4}{3}$:** somando as fatias de $-R$ a $R$, temos $\pi\left[R^2x - \frac{x^3}{3}\right]_{-R}^{R} = \pi\left[\frac{2R^3}{3} - \left(-\frac{2R^3}{3}\right)\right]$; logo $\frac{2}{3} + \frac{2}{3} = \mathbf{\frac{4}{3}}$, chegando em $V = \frac{4}{3}\pi R^3$.
-
----
-
-## 🧭 1. Da Esfera Cheia à Casca no $\mathbb{R}^3$ (Slides 4 e 5)
-
-Imagine uma bola oca (ou a casca de uma laranja):
-* Ela tem um **raio interno** ($r$), onde fica a cavidade vazia;
-* Ela tem um **raio externo** ($R$), onde termina a superfície externa;
-* A **espessura da parede sólida** é $e = R - r$ (no exemplo didático inicial: $R = 5, r = 3 \implies e = 2$), e seu volume é $V_{\text{casca}} = V_{\text{maior}}(R) - V_{\text{menor}}(r)$.
-
-### De onde vêm $d_{xy}$, $d$ e $x^2 + y^2 + z^2$? (Dois Triângulos de Pitágoras):
-1. **No chão (plano $xy$):** andando $x$ para frente e $y$ para o lado, a diagonal horizontal vale $d_{xy}^2 = x^2 + y^2$ (distância no plano da base).
-2. **Subindo na altura $z$ ($d$ em 3D):** da ponta de $d_{xy}$, subimos $z$ em $90^\circ$ e aplicamos Pitágoras de novo:
-   $$d^2 = d_{xy}^2 + z^2 = x^2 + y^2 + z^2 \implies d = \sqrt{x^2 + y^2 + z^2}$$
-3. Como qualquer ponto da parede sólida tem distância $d$ entre $r$ e $R$ ($r \le d \le R$), **elevamos todos os membros ao quadrado para eliminar a raiz**:
-   $$\mathcal{S} = \left\{(x,y,z) \in \mathbb{R}^3 \;\middle|\; r^2 \le x^2 + y^2 + z^2 \le R^2\right\} \quad (0 < r < R)$$
+### Slide 2 — Rotação $360^\circ$ do Semicírculo: Surge a Esfera ($\mathbb{R}^2 \to \mathbb{R}^3$)
+* Giramos $f(x) = \sqrt{R^2-x^2}$ em $360^\circ$ ao redor do eixo $x$, gerando a **esfera sólida completa no $\mathbb{R}^3$**.
+* **Ideia da "moeda" (cilindro fino):** cada fatia vertical bem fina funciona como uma moeda de raio $f(x)$ e espessura/altura $\Delta x$, logo seu volume aproximado é:
+  $$\Delta V \approx \pi\left[f(x)\right]^2 \Delta x$$
+* **Pergunta que puxa a Parte 2:** *como somar infinitas moedas de $-R$ até $R$ sem depender de fórmula pronta?*
 
 ---
 
-## 🔄 2. Por Que Isolar $y$ (e Não $x$ ou $z$)? + Região Geradora (Slides 6 e 7)
+## 📈 Etapa 3 — Dedução do Volume de Uma Esfera (PARTE 2 — Slides 3 e 4)
 
-No Cálculo B, volumes são gerados como **sólidos de revolução**:
-1. **Por que sem $z$ no 2D?** Na folha plana inicial não há profundidade ($z=0$); a 3ª dimensão $z$ surge ao girar.
-2. **Por que isolar $y$ (e não $x$)?** Escolhemos girar em torno do **eixo $x$**. A distância vertical até esse eixo é justamente **$y$**, que se torna o **raio** de cada fatia circular! (Só isolaríamos $x$ se o giro fosse no eixo vertical $y$.)
-3. **De Pitágoras no $\mathbb{R}^2$ até $y \ge 0$:** todo ponto da circunferência satisfaz $x^2 + y^2 = R^2 \implies y = \pm\sqrt{R^2 - x^2}$. Ficamos só com $y \ge 0$ para não duplicar o volume ao girar $360^\circ$:
-   * Curva externa: $f(x) = \sqrt{R^2 - x^2}$, definida no intervalo $[-R, R]$ (no exemplo: $[-5, 5]$);
-   * Curva interna: $g(x) = \sqrt{r^2 - x^2}$, definida no intervalo $[-r, r]$ (no exemplo: $[-3, 3]$).
-4. A região plana entre essas duas curvas é a **região geradora $\mathcal{R}$** (semi-coroa circular):
-   $$\mathcal{R} = \left\{ (x,y) \in \mathbb{R}^2 \;\middle|\; r^2 \le x^2 + y^2 \le R^2,\; y \ge 0 \right\}$$
+### Slide 3 — Substituir $f(x)$, Cancelar a Raiz e Somar os Discos
+1. **Cancelamento imediato da raiz:** substituindo $f(x)=\sqrt{R^2-x^2}$ na fórmula da moeda $\Delta V \approx \pi[f(x)]^2\Delta x$:
+   $$\Delta V \approx \pi\left(\sqrt{R^2-x^2}\right)^2\Delta x = \pi\left(R^2 - x^2\right)\Delta x$$
+2. **Soma de Riemann $\to$ Integral Definida:** somamos as $n$ fatias ($\Delta x = \frac{2R}{n}$), tomamos o limite $\Delta x \to 0$ e colocamos a constante $\pi$ fora da integral:
+   $$V_{\text{esfera}} = \lim_{n \to \infty} \sum_{i=1}^{n} \pi \left(R^2 - (x_i^*)^2\right) \Delta x = \pi \int_{-R}^{R} \left(R^2 - x^2\right) dx$$
+3. **Por que Método dos Discos (e NÃO Cascas)?** Elevar $f(x)$ ao quadrado elimina a raiz $\sqrt{R^2-x^2}$ antes mesmo de integrar; Cascas no eixo $x$ manteriam a raiz quadrada.
 
-> **Pergunta da Banca:** *"Por que restringimos a $y \ge 0$ e não giramos o anel inteiro?"*  
-> **Sua Resposta:** *"Porque, numa rotação completa de $360^\circ$, a metade de cima já varre todo o espaço tridimensional. Se girássemos o anel inteiro, a metade inferior varreria o mesmo volume que a superior já ocupou, contando o volume duas vezes."*
-
----
-
-## 📈 3. Da Soma de Riemann à Integral Definida (Slide 10)
-
-Antes de escrever a integral pronta, justificamos de onde ela vem:
-1. Dividimos o intervalo $[-R, R]$ do eixo $x$ em $n$ fatias bem finas de largura $\Delta x = \frac{2R}{n}$.
-2. Cada fatia funciona como um disco fino de raio $y(x_i^*)$ e volume aproximado:
-   $$\Delta V_i \approx \pi \left[y(x_i^*)\right]^2 \Delta x$$
-3. Somando as $n$ fatias, temos a **Soma de Riemann**:
-   $$V_n = \sum_{i=1}^{n} \pi \left[y(x_i^*)\right]^2 \Delta x$$
-4. Fazendo as fatias ficarem infinitamente finas ($\Delta x \to 0$, $n \to \infty$), a soma converge para a **Integral Definida**:
-   $$V = \lim_{n \to \infty} \sum_{i=1}^{n} \pi \left[y(x_i^*)\right]^2 \Delta x = \int_{-R}^{R} \pi \left[y(x)\right]^2 dx$$
-
-*(No Slide 10 da apresentação, você pode arrastar o slider de $n = 4$ até $40$ para mostrar visualmente $V_n$ se aproximando do volume exato $523{,}60$!)*
-
----
-
-## 🔪 4. Por que Discos/Arruelas e NÃO Cascas Cilíndricas? (Slide 11)
-
-* **Vantagem dos Discos no eixo $x$:** como o raio é $y = \sqrt{R^2 - x^2}$, a fórmula eleva ao quadrado ($\pi y^2$), **cancelando a raiz na hora**: $\pi(R^2 - x^2)$.
-* **Por que não Cascas Cilíndricas?** Girando no eixo $x$, teríamos de integrar em $dy$ com $2\pi y \sqrt{R^2 - y^2}$ (a raiz não some) e dividir em $[0, r]$ e $[r, R]$.
-* **Detalhe da animação 3D do Slide 11:**
-  * No miolo ($|x| < r$), a fatia é uma **arruela** com área:
-    $$A(x) = \pi(R^2 - x^2) - \pi(r^2 - x^2) = \mathbf{\pi(R^2 - r^2)}$$
-    O $-x^2$ cancela com $+x^2$: **todas as arruelas do miolo têm exatamente a mesma área!**
-  * Nas pontas ($r \le |x| \le R$), a fatia é um disco maciço de área $\pi(R^2 - x^2)$.
-
----
-
-## ✍️ 5. A Dedução Algébrica Completa (Slides 12 a 15)
-
-A forma mais limpa de integrar é subtrair o volume da esfera interna do volume da externa:
-$$V = \pi \int_{-R}^{R} \left(\sqrt{R^2 - x^2}\right)^2 dx - \pi \int_{-r}^{r} \left(\sqrt{r^2 - x^2}\right)^2 dx$$
-
-1. **Simplificação e Propriedades Operatórias:** cancelamos $(\sqrt{u})^2 = u$ e aplicamos a propriedade da **constante multiplicativa** ($\pi$) e da **linearidade** (integral da diferença):
-   $$V_{\text{ext}} = \pi \left[ \int_{-R}^{R} R^2\,dx - \int_{-R}^{R} x^2\,dx \right]$$
-2. **Antiderivada (Primitiva):** como $R$ é constante em relação a $x$, $\int R^2\,dx = R^2 x$ e, pela regra da potência, $\int x^2\,dx = \frac{x^3}{3}$. Assim:
+### Slide 4 — Integral Definida, Primitiva e Denominador Comum ($V_{\text{esfera}} = \frac{4}{3}\pi R^3$)
+1. **Linearidade (partindo do Slide 3):**
+   $$V_{\text{esfera}} = \pi \int_{-R}^{R} (R^2 - x^2)\,dx = \pi\left[\int_{-R}^{R} R^2\,dx - \int_{-R}^{R} x^2\,dx\right]$$
+2. **Primitiva:** pela regra da constante ($\int R^2\,dx = R^2 x$) e da potência ($\int x^2\,dx = \frac{x^3}{3}$):
    $$P(x) = R^2 x - \frac{x^3}{3}$$
-3. **Teorema Fundamental do Cálculo ($P(R) - P(-R)$):**
-   * $P(R) = R^3 - \frac{R^3}{3} = \frac{2R^3}{3}$
-   * $P(-R) = -R^3 + \frac{R^3}{3} = -\frac{2R^3}{3}$
-   * Subtraindo: $\frac{2R^3}{3} - \left(-\frac{2R^3}{3}\right) = \frac{4R^3}{3} \implies V_{\text{ext}} = \frac{4}{3}\pi R^3$.
-4. **Analogamente para $r$ em $[-r, r]$:** $V_{\text{int}} = \frac{4}{3}\pi r^3$.
-5. **Fórmula Final:**
-   $$V_{\text{casca}} = \frac{4}{3}\pi R^3 - \frac{4}{3}\pi r^3 = \mathbf{\frac{4}{3}\pi (R^3 - r^3)}$$
+3. **Teorema Fundamental do Cálculo e denominador comum $3$ ($R^3 = \frac{3R^3}{3}$):**
+   $$V_{\text{esfera}} = \pi\left[\left(\frac{3R^3}{3} - \frac{R^3}{3}\right) - \left(\frac{-3R^3}{3} + \frac{R^3}{3}\right)\right] = \pi\left[\frac{2R^3}{3} - \left(-\frac{2R^3}{3}\right)\right] = \mathbf{\frac{4}{3}\pi R^3}$$
 
 ---
 
-## 🔬 6. Por que a Derivada do Volume é a Área Superficial? (Slide 15)
+## 🌐 Etapa 4 — Construção da Casca Esférica: Duas Esferas Concêntricas (PARTE 2 — Slides 5, 6 e 7)
 
-Fatoramos a diferença de cubos com $e = R - r$:
-$$R^3 - r^3 = (R - r)(R^2 + Rr + r^2) = e(R^2 + Rr + r^2)$$
-Quando a casca é muito fina ($e \to 0$, logo $r \to R$), temos $R^2 + Rr + r^2 \to 3R^2$:
-$$V_{\text{casca}} \approx \frac{4}{3}\pi \cdot e \cdot 3R^2 = 4\pi R^2 \cdot e \implies \mathbf{\frac{dV}{dR} = 4\pi R^2}$$
-Isso mostra que o volume de uma casca finíssima é a **área da esfera ($4\pi R^2$) vezes a espessura ($e$)**.
+### Slide 5 — Definição no $\mathbb{R}^3$ e Ligação $V_{\text{ext}} - V_{\text{int}}$
+* Agora relacionamos **duas esferas concêntricas** centradas em $C(0,0,0)$: a **externa** ($R$) e o **miolo vazio** ($r$), formando uma parede de **espessura $e = R - r$** (ex.: $R=5,\; r=3 \implies e=2$).
+* Definição formal no $\mathbb{R}^3$:
+  $$\mathcal{S} = \left\{(x,y,z) \in \mathbb{R}^3 \;\middle|\; r^2 \le x^2 + y^2 + z^2 \le R^2\right\}$$
+* Ponte para a Etapa 5: $V_{\text{casca}} = V_{\text{esfera}}(R) - V_{\text{esfera}}(r)$.
+
+### Slide 6 — Região Geradora $\mathcal{R}$ e Revolução $360^\circ$ ($R=5,\; r=3$)
+* Unimos $f(x)=\sqrt{R^2-x^2}$ ($[-5,5]$) e $g(x)=\sqrt{r^2-x^2}$ ($[-3,3]$) na faixa $\mathcal{R} = \{(x,y)\in\mathbb{R}^2 \mid r^2 \le x^2+y^2 \le R^2,\; y \ge 0\}$ e giramos $360^\circ$ no eixo $x$ formando a casca oca em 3D.
+
+### Slide 7 — Modelagem no GeoGebra ($R=5,\; r=3$)
+* No painel azul acima das imagens: declaramos $f(x)=\sqrt{R^2-x^2} \xrightarrow{R=5} \sqrt{25-x^2}$ e $g(x)=\sqrt{r^2-x^2} \xrightarrow{r=3} \sqrt{9-x^2}$ e validamos o sólido de revolução no GeoGebra 2D e 3D.
 
 ---
 
-## 🚀 7. Os Dois Problemas Práticos (Slides 16 a 22)
+## 🔬 Etapa 5 — Fórmula Final da Casca Esférica (PARTE 2 — Slide 8)
 
-### Parte III — Problema Referenciado: Bola de Chocolate Oca (Slides 16 e 17)
-* **Fonte Oficial:** **ENEM PPL 2023 — Prova de Matemática, Questão 159 (Caderno Azul / INEP)**.
-* **Dados:** diâmetro $d = 20\text{ cm} \implies R = 10\text{ cm}$; espessura uniforme $e = 1\text{ cm} \implies r = 10 - 1 = 9\text{ cm}$; correspondência $1\text{ g} \leftrightarrow 0{,}75\text{ cm}^3$.
-* **Volume de chocolate:**
-  $$V = \frac{4}{3}\pi (10^3 - 9^3) = \frac{4}{3}\pi (1000 - 729) = \frac{1084\pi}{3}\text{ cm}^3 \approx 1.135{,}16\text{ cm}^3$$
-* **Conversão ao SI:** $V \approx \frac{1135{,}16}{1.000.000} \approx 0{,}001135\text{ m}^3$ ($\approx 1{,}14\text{ L}$).
-* **Massa da bola (resposta do ENEM):**
-  $$M = \frac{V}{0{,}75} = \frac{4}{3} \cdot \frac{1084\pi}{3} = \mathbf{\frac{4336\pi}{9}\text{ g}} \approx 1.513{,}55\text{ g} \quad (\text{Gabarito C})$$
+* Pelo resultado da Etapa 3 aplicado aos raios $R$ e $r$ (Método dos Discos duas vezes — sem precisar quebrar em 3 intervalos como ocorreria com Arruelas):
+  $$V_{\text{ext}} = \pi\int_{-R}^{R}(R^2-x^2)\,dx = \frac{4}{3}\pi R^3, \qquad V_{\text{int}} = \pi\int_{-r}^{r}(r^2-x^2)\,dx = \frac{4}{3}\pi r^3$$
+* Subtraindo os volumes, chegamos à **fórmula deduzida em destaque**:
+  $$V_{\text{casca}} = \frac{4}{3}\pi R^3 - \frac{4}{3}\pi r^3 = \mathbf{\frac{4}{3}\pi(R^3 - r^3)}$$
+  *(Com $R=5,\; r=3 \implies V = \frac{4}{3}\pi(125 - 27) = \frac{392\pi}{3} \approx 410{,}50$, pronto para aplicar nos dois problemas!)*
 
-### Parte IV — Problema Autoral: Reservatório Esférico de Água em Concreto (Slides 18 a 22)
-* **Contexto simples do cotidiano:** armazenar água para irrigação reduzindo o material externo, porque a esfera tem a **menor área de parede por volume de água** ($A/V = 3/R$).
-* **Dimensões:** câmara interna de água $r = 2{,}0\text{ m}$, espessura de concreto $e = 0{,}5\text{ m}$, raio externo $R = 2{,}5\text{ m}$.
-* **Resolução pelo Cálculo Integral:**
-  $$V_{\text{concreto}} = \pi\int_{-2{,}5}^{2{,}5} (6{,}25 - x^2)\,dx - \pi\int_{-2{,}0}^{2{,}0} (4 - x^2)\,dx = \frac{4}{3}\pi (2{,}5^3 - 2{,}0^3) = \frac{30{,}5\pi}{3} \approx 31{,}94\text{ m}^3$$
-* **Massa e capacidade:** com concreto armado $\rho = 2.400\text{ kg/m}^3$, temos $M = 31{,}94 \times 2.400 \approx 76.654{,}9\text{ kg}$ ($\approx 76{,}7\text{ toneladas}$); e a capacidade interna é $V_{\text{água}} = \frac{4}{3}\pi(2{,}0)^3 \approx 33{,}51\text{ m}^3 = 33.510\text{ L}$.
-* **Discussão crítica:** na prática, o peso elevado exige sapata/base reforçada, e os canos de entrada/saída mais a tampa de visita perfuram a parede contínua prevista na integral.
+---
+
+## 🚀 Etapa 6 — Aplicações Práticas e Conclusão (PARTES 3, 4 e 5 — Slides 9 a 15)
+
+### Parte 3 — Aplicação Matemática: Bola de Chocolate Oca / ENEM PPL 2023 (Slides 9 e 10)
+* **Fonte:** INEP — **ENEM PPL 2023**, Questão 159 (Caderno Azul): $d = 20\text{ cm} \implies R = 10\text{ cm}$, $e = 1\text{ cm} \implies r = 9\text{ cm}$, $1\text{ g} \leftrightarrow 0{,}75\text{ cm}^3$.
+* **Volume:** $V = \frac{4}{3}\pi(10^3-9^3) = \frac{1.084\pi}{3}\text{ cm}^3 \approx 1.135{,}16\text{ cm}^3 \approx 0{,}001135\text{ m}^3$.
+* **Massa (Gabarito C):** $M = \frac{V}{0{,}75} = \frac{4.336\pi}{9}\text{ g} \approx 1.513{,}55\text{ g}$.
+
+### Parte 4 — Aplicação Inédita: Reservatório Esférico de Concreto (Slides 11 a 14)
+* **Dados:** câmara interna de água $r = 2{,}0\text{ m}$, parede $e = 0{,}5\text{ m} \implies R = 2{,}5\text{ m}$, solicitando apenas o **volume de concreto ($V_{\text{concreto}}$)** após modelagem 4-em-1 no GeoGebra (Slide 12).
+* **Integral definida (Slide 13):**
+  $$V_{\text{concreto}} = \pi\int_{-2{,}5}^{2{,}5}(6{,}25-x^2)\,dx - \pi\int_{-2{,}0}^{2{,}0}(4-x^2)\,dx = \frac{30{,}5\pi}{3}\text{ m}^3 \approx 31{,}94\text{ m}^3 \;\;(\approx 4\text{ betoneiras de }8\text{ m}^3)$$
+  *(Referência interna: $V_{\text{água}} = \frac{4}{3}\pi(2{,}0)^3 \approx 33{,}51\text{ m}^3 = 33.510\text{ L}$.)*
+* **Limitações (Slide 14):** fundação estrutural e aberturas reais de canos/tampa que perfuram a casca contínua.
+
+### Parte 5 — Conclusão e Encerramento (Tela 15)
+* Retomada da jornada completa e arguição da banca.

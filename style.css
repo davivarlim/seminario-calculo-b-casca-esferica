@@ -56,10 +56,23 @@ html, body {
 }
 
 .katex-display {
-  margin: 0.22em 0 !important;
+  margin: 0.16em 0 !important;
 }
 .katex {
-  font-size: 1.02em !important;
+  font-size: 1.15em !important;
+}
+.var-ref-bar .katex {
+  font-size: 1.08em !important;
+}
+.nav-sections .katex,
+.viz-title .katex,
+.viz-actions .katex,
+.viz-status-bar .katex,
+.viz-legend-bar .katex,
+.canvas-badge .katex,
+.slot-header .katex,
+.cover-stages-card .katex {
+  font-size: 1em !important;
 }
 
 /* ==========================================================================
@@ -305,16 +318,20 @@ body.on-cover .nav-tab-mini {
 
 .slide-container {
   display: grid;
-  grid-template-columns: 1.05fr 0.98fr;
-  gap: 1rem;
+  grid-template-columns: 1.32fr 0.74fr;
+  gap: 0.9rem;
   height: 100%;
   max-height: 100%;
   overflow: hidden;
 }
 
-/* Slide 17 de 23 (Resolução Passo a Passo Problema 1): maior ênfase na resolução e interação 3D compacta */
-#sec-16 .slide-container {
-  grid-template-columns: 1.45fr 0.72fr;
+/* Slide 8 e Slide 10: fórmulas e resolução em destaque maior com painel 3D compacto */
+#sec-8 .slide-container {
+  grid-template-columns: 1.40fr 0.70fr;
+}
+
+#sec-10 .slide-container {
+  grid-template-columns: 1.52fr 0.64fr;
 }
 
 .slide-container.full-width-layout {
@@ -601,8 +618,8 @@ body.on-cover .nav-tab-mini {
 
 .stages-list {
   display: grid;
-  grid-template-rows: repeat(4, 1fr);
-  gap: 0.55rem;
+  grid-template-rows: repeat(5, minmax(0, 1fr));
+  gap: 0.42rem;
   flex: 1;
   min-height: 0;
 }
@@ -611,12 +628,13 @@ body.on-cover .nav-tab-mini {
   background: var(--bg-inset);
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
-  padding: 0.65rem 0.85rem;
+  padding: 0.48rem 0.78rem;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.68rem;
   cursor: pointer;
   transition: border-color 0.15s ease, background 0.15s ease;
+  min-height: 0;
 }
 
 .stage-item-card:hover {
@@ -660,7 +678,7 @@ body.on-cover .nav-tab-mini {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 0.65rem;
+  gap: 0.48rem;
 }
 
 .section-tag-row {
@@ -699,11 +717,11 @@ body.on-cover .nav-tab-mini {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 10px;
-  padding: 0.95rem 1.15rem;
+  padding: 0.78rem 1.05rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 0.65rem;
+  gap: 0.48rem;
   flex: 1;
   min-height: 0;
   box-shadow: var(--shadow-card);
@@ -718,15 +736,15 @@ body.on-cover .nav-tab-mini {
 }
 
 .card-title {
-  font-size: clamp(1.02rem, 1.2vw, 1.24rem);
+  font-size: clamp(1.04rem, 1.24vw, 1.28rem);
   font-weight: 700;
   color: var(--accent-cyan);
   flex-shrink: 0;
 }
 
 .enunciado-text {
-  font-size: clamp(1.02rem, 1.18vw, 1.22rem);
-  line-height: 1.56;
+  font-size: clamp(1.02rem, 1.18vw, 1.24rem);
+  line-height: 1.46;
   color: var(--text-primary);
   margin: auto 0;
 }
@@ -737,48 +755,250 @@ body.on-cover .nav-tab-mini {
   flex-direction: column;
   justify-content: space-evenly;
   flex: 1;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
 .cue-list li {
-  font-size: clamp(0.95rem, 1.12vw, 1.16rem);
+  font-size: clamp(1.02rem, 1.2vw, 1.26rem);
   color: var(--text-secondary);
-  line-height: 1.48;
+  line-height: 1.42;
   position: relative;
   padding-left: 1.15rem;
 }
 
 #sec-1 .cue-list li,
-#sec-3 .cue-list li {
-  font-size: clamp(1.06rem, 1.24vw, 1.3rem);
-  line-height: 1.54;
-}
-
 #sec-2 .cue-list li,
-#sec-4 .cue-list li,
+#sec-3 .cue-list li,
 #sec-5 .cue-list li,
 #sec-6 .cue-list li,
+#sec-8 .cue-list li,
 #sec-9 .cue-list li,
-#sec-10 .cue-list li,
-#sec-14 .cue-list li,
-#sec-15 .cue-list li,
-#sec-17 .cue-list li,
-#sec-21 .cue-list li {
-  font-size: clamp(0.98rem, 1.16vw, 1.2rem);
-  line-height: 1.5;
+#sec-11 .cue-list li,
+#sec-14 .cue-list li {
+  font-size: clamp(1.02rem, 1.2vw, 1.26rem);
+  line-height: 1.4;
 }
 
-#sec-2 .math-step-line {
-  font-size: clamp(0.92rem, 1.06vw, 1.12rem);
-  padding: 0.34rem 0.6rem;
+#sec-1 .cue-list .katex,
+#sec-2 .cue-list .katex,
+#sec-3 .cue-list .katex,
+#sec-5 .cue-list .katex,
+#sec-6 .cue-list .katex,
+#sec-8 .cue-list .katex,
+#sec-11 .cue-list .katex,
+#sec-14 .cue-list .katex {
+  font-size: 1.18em !important;
+  color: #f8fafc;
 }
 
-#sec-2 .math-step-line > span:first-child {
-  font-size: clamp(0.84rem, 0.96vw, 1.02rem);
+/* Sub-barra de botões 3D dentro da dual-pane de Riemann + Discos (#sec-3) */
+.canvas-3d-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-#sec-2 .math-step-line.highlight strong {
-  font-size: clamp(0.96rem, 1.14vw, 1.18rem);
+.canvas-3d-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  padding: 5px 8px;
+  background: rgba(6, 20, 35, 0.88);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+  flex-shrink: 0;
+  z-index: 6;
+}
+
+.canvas-3d-topbar .canvas-badge {
+  position: static;
+  flex-shrink: 0;
+}
+
+.viz-sub-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.viz-sub-actions .btn-tool {
+  font-size: 0.68rem;
+  padding: 0.14rem 0.42rem;
+  background: rgba(13, 33, 56, 0.92);
+}
+
+.viz-status-bar.dual-status {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+/* Grid 2x2 para as 4 capturas GeoGebra do Reservatório (#sec-12) */
+.geogebra-grid-2x2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 0.65rem;
+  flex: 1;
+  min-height: 0;
+}
+
+.geogebra-grid-2x2 .geogebra-slot-card {
+  padding: 0.45rem 0.65rem;
+  gap: 0.35rem;
+}
+
+.geogebra-grid-2x2 .slot-body {
+  padding: 0.2rem;
+}
+
+.geogebra-grid-2x2 .geogebra-print-img {
+  max-height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
+
+/* Ajustes para telas compactas de notebook (ex. 1280x680) nas telas 2-colunas densas */
+#sec-10 .steps-stack,
+#sec-13 .steps-stack {
+  gap: 0.22rem;
+}
+
+/* Slide 4: Dedução do Volume da Esfera (Passo 1 + Passo 2 TFC lado a lado) */
+#sec-4 .slide-container.full-width-layout {
+  gap: 0.48rem;
+}
+
+#sec-4 .var-ref-bar {
+  padding: 0.36rem 0.85rem;
+}
+
+#sec-4 .math-steps-grid {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.85rem;
+}
+
+#sec-4 .math-step-card,
+#sec-4 .tfc-card {
+  padding: 0.65rem 0.95rem;
+  gap: 0.42rem;
+}
+
+#sec-4 .math-box {
+  font-size: clamp(1.12rem, 1.38vw, 1.48rem);
+  padding: 0.36rem 0.65rem;
+  line-height: 1.28;
+}
+
+#sec-4 .sec4-rules-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.55rem;
+}
+
+#sec-4 .sec4-rules-row .math-box {
+  font-size: clamp(1.06rem, 1.3vw, 1.4rem);
+  padding: 0.28rem 0.55rem 0.32rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.14rem;
+}
+
+#sec-4 .sec4-rules-row .rule-tag {
+  font-size: clamp(0.74rem, 0.86vw, 0.9rem);
+}
+
+#sec-4 .primitive-result-box {
+  padding: 0.42rem 0.8rem;
+  flex: none;
+  gap: 0.16rem;
+}
+
+#sec-4 .primitive-result-box .math-box-hero {
+  background: transparent;
+  border: none;
+  padding: 0.1rem 0.35rem;
+  font-size: clamp(1.26rem, 1.58vw, 1.68rem);
+  line-height: 1.24;
+}
+
+@media (max-height: 700px) {
+  #sec-4 .slide-container.full-width-layout {
+    gap: 0.36rem;
+  }
+  #sec-4 .var-ref-bar {
+    padding: 0.28rem 0.8rem;
+  }
+  #sec-4 .math-step-card,
+  #sec-4 .tfc-card {
+    padding: 0.5rem 0.85rem;
+    gap: 0.3rem;
+  }
+  #sec-4 .steps-stack {
+    gap: 0.25rem;
+  }
+  #sec-4 .math-box {
+    font-size: 1.06rem;
+    padding: 0.26rem 0.52rem;
+  }
+  #sec-4 .sec4-rules-row .math-box {
+    font-size: 1.02rem;
+    padding: 0.22rem 0.45rem;
+  }
+  #sec-4 .primitive-result-box {
+    padding: 0.32rem 0.7rem;
+  }
+  #sec-4 .primitive-result-box .math-box-hero {
+    font-size: 1.18rem;
+  }
+  #sec-4 .tfc-result-banner {
+    font-size: 1.24rem;
+    padding: 0.36rem;
+  }
+}
+
+#sec-9 .content-pane {
+  gap: 0.48rem;
+}
+
+#sec-9 .card {
+  padding: 0.7rem 0.95rem;
+  gap: 0.3rem;
+}
+
+#sec-9 .enunciado-text {
+  font-size: clamp(0.96rem, 1.12vw, 1.18rem);
+  line-height: 1.42;
+  margin: 0;
+}
+
+#sec-9 .cue-list li {
+  font-size: clamp(0.96rem, 1.1vw, 1.16rem);
+  line-height: 1.38;
+}
+
+@media (max-height: 700px) {
+  #sec-9 .content-pane {
+    gap: 0.36rem;
+  }
+  #sec-9 .card {
+    padding: 0.55rem 0.82rem;
+  }
+  #sec-9 .enunciado-text {
+    font-size: 0.94rem;
+    line-height: 1.36;
+  }
+  #sec-9 .cue-list {
+    gap: 0.28rem;
+  }
+  #sec-9 .cue-list li {
+    font-size: 0.92rem;
+    line-height: 1.34;
+  }
 }
 
 .cue-list li::before {
@@ -799,7 +1019,7 @@ body.on-cover .nav-tab-mini {
   justify-content: space-evenly;
   flex: 1;
   min-height: 0;
-  gap: 0.45rem;
+  gap: 0.38rem;
 }
 
 .math-nowrap {
@@ -812,17 +1032,17 @@ body.on-cover .nav-tab-mini {
   border: 1px solid rgba(56, 189, 248, 0.24);
   border-left: 3px solid var(--accent-amber);
   border-radius: 8px;
-  padding: 0.78rem 1rem;
+  padding: 0.65rem 0.9rem;
 }
 
 .cue-highlight-box .cue-list {
   flex: none;
   justify-content: flex-start;
-  gap: 0.48rem;
+  gap: 0.4rem;
 }
 
 .cue-highlight-box .cue-list li {
-  font-size: clamp(0.96rem, 1.1vw, 1.14rem);
+  font-size: clamp(1rem, 1.18vw, 1.24rem);
   color: var(--text-primary);
 }
 
@@ -831,19 +1051,19 @@ body.on-cover .nav-tab-mini {
   background: rgba(6, 20, 35, 0.9);
   border: 1px solid rgba(56, 189, 248, 0.24);
   border-radius: 8px;
-  padding: 0.5rem 0.9rem;
+  padding: 0.45rem 0.85rem;
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 0.3rem 0.9rem;
-  font-size: clamp(0.76rem, 0.88vw, 0.9rem);
+  gap: 0.25rem 0.85rem;
+  font-size: clamp(0.84rem, 0.96vw, 1rem);
   line-height: 1.35;
   color: var(--text-secondary);
 }
 
 .var-ref-title {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.74rem;
   font-weight: 700;
   color: var(--accent-amber);
   text-transform: uppercase;
@@ -859,20 +1079,37 @@ body.on-cover .nav-tab-mini {
   background: var(--bg-inset);
   border: 1px solid rgba(56, 189, 248, 0.24);
   border-radius: 7px;
-  padding: 0.5rem 0.75rem;
+  padding: 0.44rem 0.72rem;
   text-align: center;
-  font-size: clamp(0.95rem, 1.12vw, 1.16rem);
+  font-size: clamp(1.18rem, 1.48vw, 1.56rem);
+  line-height: 1.38;
   max-width: 100%;
-  overflow-x: auto;
+  overflow: visible;
 }
 
 .math-box-hero {
   background: var(--bg-inset);
   border: 1.5px solid var(--accent-cyan);
   border-radius: 8px;
-  padding: 0.65rem 0.9rem;
+  padding: 0.52rem 0.85rem;
   text-align: center;
-  font-size: clamp(1.04rem, 1.24vw, 1.28rem);
+  font-size: clamp(1.26rem, 1.6vw, 1.72rem);
+  line-height: 1.38;
+  max-width: 100%;
+  overflow: visible;
+}
+
+@media (max-height: 700px) {
+  #sec-3 .card,
+  #sec-5 .card {
+    padding: 0.56rem 0.88rem;
+    gap: 0.34rem;
+  }
+  #sec-3 .math-box-hero,
+  #sec-5 .math-box-hero {
+    padding: 0.38rem 0.7rem;
+    font-size: 1.18rem;
+  }
 }
 
 /* ==========================================================================
@@ -1089,20 +1326,31 @@ body.on-cover .nav-tab-mini {
   border-radius: 4px;
 }
 
-.slot-footer {
-  padding: 0.78rem 1rem;
+.slot-footer,
+.slot-calc-top {
+  padding: 0.68rem 1rem;
   background: rgba(10, 28, 48, 0.96);
   border-top: 2px solid rgba(56, 189, 248, 0.35);
   display: flex;
   flex-direction: column;
-  gap: 0.32rem;
+  gap: 0.28rem;
   flex-shrink: 0;
 }
 
+.slot-calc-top {
+  border-top: none;
+  border-bottom: 2px solid rgba(56, 189, 248, 0.35);
+}
+
+.geo-dom {
+  color: var(--text-muted);
+  font-size: 0.88em;
+}
+
 .geo-footer-line {
-  font-size: clamp(0.86rem, 0.98vw, 1rem);
+  font-size: clamp(0.98rem, 1.16vw, 1.22rem);
   color: var(--text-primary);
-  line-height: 1.42;
+  line-height: 1.4;
 }
 
 .geo-footer-line strong, .geo-footer-sub strong {
@@ -1110,9 +1358,9 @@ body.on-cover .nav-tab-mini {
 }
 
 .geo-footer-sub {
-  font-size: clamp(0.82rem, 0.94vw, 0.94rem);
+  font-size: clamp(0.94rem, 1.1vw, 1.16rem);
   color: var(--text-secondary);
-  line-height: 1.4;
+  line-height: 1.38;
 }
 
 /* ==========================================================================
@@ -1121,22 +1369,25 @@ body.on-cover .nav-tab-mini {
 
 .math-steps-grid, .tfc-calculation-grid, .cryo-calc-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0.9rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.85rem;
   flex: 1;
   min-height: 0;
+  min-width: 0;
 }
 
 .math-step-card, .tfc-card, .cryo-calc-card {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: 10px;
-  padding: 1.05rem 1.25rem;
+  padding: 0.74rem 1rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  gap: 0.7rem;
+  gap: 0.45rem;
   min-height: 0;
+  min-width: 0;
+  overflow: hidden;
   box-shadow: var(--shadow-card);
 }
 
@@ -1148,7 +1399,7 @@ body.on-cover .nav-tab-mini {
 
 .tfc-header {
   border-bottom: 1px solid var(--border-subtle);
-  padding-bottom: 0.45rem;
+  padding-bottom: 0.36rem;
 }
 
 .step-num-badge {
@@ -1162,7 +1413,7 @@ body.on-cover .nav-tab-mini {
 }
 
 .step-title-badge, .calc-card-header h4, .tfc-header h4 {
-  font-size: clamp(0.95rem, 1.12vw, 1.16rem);
+  font-size: clamp(0.98rem, 1.16vw, 1.2rem);
   font-weight: 700;
   color: #ffffff;
 }
@@ -1171,9 +1422,9 @@ body.on-cover .nav-tab-mini {
   background: var(--bg-inset);
   border: 1px solid rgba(56, 189, 248, 0.28);
   border-radius: 8px;
-  padding: 0.72rem 0.9rem;
+  padding: 0.6rem 0.85rem;
   text-align: center;
-  font-size: clamp(1.04rem, 1.24vw, 1.28rem);
+  font-size: clamp(1.22rem, 1.54vw, 1.62rem);
 }
 
 .math-box-large.highlight {
@@ -1226,14 +1477,18 @@ body.on-cover .nav-tab-mini {
   background: var(--bg-card);
   border: 1.5px solid var(--accent-cyan);
   border-radius: 10px;
-  padding: 1.1rem 1.35rem;
+  padding: 0.72rem 1rem;
   text-align: center;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   flex: 1;
   min-height: 0;
-  gap: 0.55rem;
+  gap: 0.42rem;
+}
+
+#sec-4 .primitive-result-box .math-box-hero {
+  font-size: clamp(1.26rem, 1.58vw, 1.68rem);
 }
 
 .res-tag {
@@ -1249,7 +1504,7 @@ body.on-cover .nav-tab-mini {
   color: var(--text-secondary);
 }
 
-/* TFC (Slide 8) */
+/* TFC (Slide 4) */
 .tfc-badge {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -1264,20 +1519,25 @@ body.on-cover .nav-tab-mini {
 .tfc-step {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.2rem;
+}
+
+#sec-4 .tfc-card .math-box {
+  font-size: clamp(1.1rem, 1.32vw, 1.4rem);
+  padding: 0.36rem 0.55rem;
 }
 
 .step-lbl {
-  font-size: clamp(0.8rem, 0.94vw, 0.94rem);
+  font-size: clamp(0.86rem, 0.98vw, 1.02rem);
   font-weight: 600;
   color: var(--text-muted);
 }
 
 .tfc-result-banner {
   border-radius: 7px;
-  padding: 0.55rem;
+  padding: 0.44rem;
   text-align: center;
-  font-size: clamp(1.06rem, 1.24vw, 1.26rem);
+  font-size: clamp(1.3rem, 1.62vw, 1.7rem);
   font-weight: 700;
 }
 
@@ -1287,38 +1547,135 @@ body.on-cover .nav-tab-mini {
   color: var(--accent-cyan);
 }
 
+/* Badge de meta antes da dedução e caixa em destaque da fórmula deduzida */
+.goal-pill {
+  background: rgba(245, 158, 11, 0.14);
+  border: 1px solid rgba(245, 158, 11, 0.55);
+  color: #fde68a;
+  font-size: clamp(0.76rem, 0.88vw, 0.9rem);
+  font-weight: 600;
+  padding: 0.14rem 0.6rem;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.goal-pill strong {
+  color: #ffffff;
+}
+
+.goal-pill .katex {
+  font-size: 1.06em !important;
+}
+
+.deduced-formula-box {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(56, 189, 248, 0.16));
+  border: 2px solid #34d399;
+  border-radius: 10px;
+  padding: 0.42rem 0.85rem 0.48rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.16rem;
+  box-shadow: 0 0 18px rgba(52, 211, 153, 0.2);
+}
+
+.deduced-tag {
+  font-family: var(--font-mono);
+  font-size: clamp(0.68rem, 0.8vw, 0.82rem);
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #061423;
+  background: linear-gradient(90deg, #34d399, #38bdf8);
+  padding: 0.1rem 0.65rem;
+  border-radius: 4px;
+}
+
+.deduced-math {
+  font-size: clamp(1.36rem, 1.72vw, 1.84rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.25;
+}
+
+@media (max-height: 700px) {
+  .deduced-formula-box {
+    padding: 0.3rem 0.7rem 0.34rem;
+    gap: 0.1rem;
+  }
+  .deduced-math {
+    font-size: 1.24rem;
+  }
+}
+
+@media (max-height: 760px) {
+  #sec-4 .math-step-card,
+  #sec-4 .tfc-card {
+    padding: 0.45rem 0.72rem;
+  }
+  #sec-4 .tfc-header {
+    margin-bottom: 0.22rem;
+  }
+  #sec-4 .steps-stack {
+    gap: 0.26rem;
+  }
+  #sec-4 .tfc-step .step-lbl {
+    margin-bottom: 0.14rem;
+  }
+  #sec-4 .tfc-card .math-box {
+    padding: 0.22rem 0.5rem;
+    font-size: clamp(0.86rem, 1vw, 0.98rem);
+  }
+  #sec-4 .tfc-card .math-box .katex {
+    font-size: 1.03em !important;
+  }
+  #sec-4 .tfc-card .math-box .katex-display {
+    margin: 0.05em 0 !important;
+  }
+  #sec-4 .deduced-formula-box {
+    margin-top: 0.3rem;
+    padding: 0.28rem 0.7rem 0.34rem;
+  }
+  #sec-4 .deduced-math {
+    font-size: 1.26rem;
+  }
+}
+
 .tfc-result-banner.int {
   background: rgba(248, 113, 113, 0.12);
   border: 1px solid var(--accent-red);
   color: var(--accent-red);
 }
 
-/* Linhas numéricas (Slides 11 e 15) */
+/* Linhas numéricas (Slides 10 e 13) */
 .math-step-line {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.55rem;
-  padding: 0.28rem 0.45rem;
+  padding: 0.26rem 0.5rem;
   border-bottom: 1px dashed rgba(148, 163, 184, 0.18);
-  font-size: clamp(0.86rem, 1vw, 1.02rem);
+  font-size: clamp(1.08rem, 1.32vw, 1.38rem);
 }
 
 .math-step-line > span:first-child {
   color: var(--text-muted);
-  font-size: clamp(0.8rem, 0.92vw, 0.94rem);
+  font-size: clamp(0.9rem, 1.04vw, 1.1rem);
 }
 
 .math-step-line.highlight {
   background: rgba(56, 189, 248, 0.12);
   border-radius: 6px;
   border-bottom: none;
-  padding: 0.4rem 0.65rem;
+  padding: 0.36rem 0.65rem;
 }
 
 .math-step-line.highlight strong {
   color: var(--accent-cyan);
-  font-size: clamp(0.92rem, 1.08vw, 1.1rem);
+  font-size: clamp(1.18rem, 1.44vw, 1.52rem);
 }
 
 .badge-num {
@@ -1340,54 +1697,103 @@ body.on-cover .nav-tab-mini {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 0.55rem;
-  font-size: clamp(0.84rem, 0.98vw, 1rem);
-  padding: 0.42rem 0.65rem;
+  gap: 0.5rem;
+  font-size: clamp(0.98rem, 1.18vw, 1.26rem);
+  padding: 0.34rem 0.58rem;
   background: var(--bg-inset);
   border-radius: 6px;
+  min-width: 0;
 }
 
-.calc-step-line > span:first-child { color: var(--text-muted); }
+.calc-step-line > span:first-child {
+  color: var(--text-muted);
+  font-size: clamp(0.86rem, 0.98vw, 1.04rem);
+}
 .calc-step-line strong { color: var(--text-primary); }
 
 .mass-estimate-box {
   background: rgba(245, 158, 11, 0.08);
   border: 1px solid rgba(245, 158, 11, 0.3);
   border-radius: 8px;
-  padding: 0.8rem;
+  padding: 0.52rem 0.72rem;
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.34rem;
+  min-width: 0;
+}
+
+#sec-13 .mass-estimate-box .math-box {
+  font-size: clamp(1.08rem, 1.3vw, 1.38rem);
+  padding: 0.34rem 0.6rem;
+}
+
+#sec-13 .cryo-calc-card .math-box {
+  font-size: clamp(1.1rem, 1.36vw, 1.44rem);
+  padding: 0.34rem 0.6rem;
 }
 
 .mass-tag {
   font-family: var(--font-mono);
-  font-size: clamp(0.76rem, 0.9vw, 0.92rem);
+  font-size: clamp(0.78rem, 0.92vw, 0.96rem);
   font-weight: 700;
   color: var(--accent-amber);
 }
 
-/* Slide 17 de 23 (Resolução Problema 1): maior destaque para os passos */
-#sec-16 .math-step-line {
-  font-size: clamp(0.92rem, 1.06vw, 1.1rem);
-  padding: 0.34rem 0.55rem;
+/* Slide 10 (Resolução Problema 1): destaque nos passos sem comprimir o Card 1 */
+#sec-10 .content-pane {
+  justify-content: flex-start;
+  gap: 0.42rem;
 }
 
-#sec-16 .math-step-line > span:first-child {
-  font-size: clamp(0.84rem, 0.96vw, 1rem);
+#sec-10 .card {
+  flex: 0 1 auto;
+  padding: 0.56rem 0.92rem;
+  gap: 0.28rem;
 }
 
-#sec-16 .math-step-line.highlight strong {
-  font-size: clamp(0.98rem, 1.16vw, 1.2rem);
-}
-
-#sec-16 .cue-list {
+#sec-10 .steps-stack {
   flex: none;
-  margin-top: 0.25rem;
+  gap: 0.14rem;
 }
 
-#sec-16 .cue-list li {
-  font-size: clamp(0.9rem, 1.05vw, 1.08rem);
+#sec-10 .math-step-line {
+  font-size: clamp(1.06rem, 1.3vw, 1.38rem);
+  padding: 0.18rem 0.48rem;
+}
+
+#sec-10 .math-step-line > span:first-child {
+  font-size: clamp(0.9rem, 1.04vw, 1.1rem);
+}
+
+#sec-10 .math-step-line.highlight {
+  padding: 0.24rem 0.56rem;
+}
+
+#sec-10 .math-step-line.highlight strong {
+  font-size: clamp(1.14rem, 1.42vw, 1.5rem);
+}
+
+#sec-10 .cue-list {
+  flex: none;
+  margin-top: 0.18rem;
+}
+
+#sec-10 .cue-list li {
+  font-size: clamp(0.96rem, 1.14vw, 1.18rem);
+}
+
+@media (max-height: 700px) {
+  #sec-10 .card {
+    padding: 0.46rem 0.85rem;
+    gap: 0.22rem;
+  }
+  #sec-10 .math-step-line {
+    font-size: 1.02rem;
+    padding: 0.14rem 0.44rem;
+  }
+  #sec-10 .math-step-line.highlight strong {
+    font-size: 1.1rem;
+  }
 }
 
 /* ==========================================================================
@@ -1940,9 +2346,10 @@ kbd {
   }
 
   .slide-container,
-  #sec-16 .slide-container,
+  #sec-10 .slide-container,
   .cover-main-grid,
   .geogebra-slots-grid,
+  .geogebra-grid-2x2,
   .math-steps-grid,
   .tfc-calculation-grid,
   .cryo-calc-grid,
