@@ -24,11 +24,11 @@
 *(Alterne `1. Triângulo → f(x)`, `2. Eixo x ⇒ f(x)`, `3. Só y ≥ 0`)*
 
 ### SLIDE 02 (3/16 — PARTE 1 / Etapa 2): Rotação $360^\circ$ do Semicírculo: Surge a Esfera
-* **Fala:** *"Ao girar a função $f(x) = \sqrt{R^2-x^2}$ em $360^\circ$ ao redor do eixo $x$, nasce a **esfera sólida no $\mathbb{R}^3$**. Para achar seu volume, imaginamos cortar a esfera em fatias finíssimas como se fossem **moedas (cilindros finos)** de raio $f(x)$ e espessura $\Delta x$, onde cada moeda vale aproximadamente $\Delta V \approx \pi[f(x)]^2\Delta x$."*  
+* **Fala:** *"Ao girar a função $f(x) = \sqrt{R^2-x^2}$ em $360^\circ$ ao redor do eixo $x$, nasce a **esfera sólida no $\mathbb{R}^3$**. Para achar seu volume, cortamos a esfera em fatias verticais bem finas — **cada fatia funciona como um disco cilíndrico** de raio $f(x)$ e espessura $\Delta x$, valendo aproximadamente $\Delta V \approx \pi[f(x)]^2\Delta x$."*  
 *(Mostre a esfera única se formando em 3D)*
 
 ### SLIDE 03 (4/16 — PARTE 2 / Etapa 3a): Substituir $f(x)$, Cancelar a Raiz e Somar os Discos
-* **Fala:** *"Abrindo a Parte 2, anunciamos no topo o objetivo: **deduzir $V_{\text{esfera}} = \frac{4}{3}\pi R^3$**. Substituímos $f(x) = \sqrt{R^2-x^2}$ na moeda $\pi[f(x)]^2\Delta x$ e o quadrado **cancela a raiz na hora**: $\pi(R^2-x^2)\Delta x$. Somando todas as fatias com $\Delta x \to 0$ e tirando a constante $\pi$ da integral, chegamos a $\pi\int_{-R}^R (R^2-x^2)\,dx$."*  
+* **Fala:** *"Abrindo a Parte 2, anunciamos no topo o objetivo: **deduzir $V_{\text{esfera}} = \frac{4}{3}\pi R^3$**. Substituímos $f(x) = \sqrt{R^2-x^2}$ no volume da fatia $\pi[f(x)]^2\Delta x$ e o quadrado **cancela a raiz na hora**: $\pi(R^2-x^2)\Delta x$. Somando todas as fatias com $\Delta x \to 0$ e tirando a constante $\pi$ da integral, chegamos a $\pi\int_{-R}^R (R^2-x^2)\,dx$."*  
 *(Arraste `Fatias n` de `8` a `40` e mostre o disco varrendo a esfera 3D)*
 
 ### SLIDE 04 (5/16 — PARTE 2 / Etapa 3b): Dedução do Volume da Esfera ($\frac{4}{3}\pi R^3$)

@@ -289,25 +289,25 @@
 
           <div class="var-ref-bar">
             <span class="var-ref-title">Retomando do Slide 1:</span>
-            <span class="var-ref-item"><strong>$f(x) = \sqrt{R^2-x^2}$</strong> = raio da moeda</span>
+            <span class="var-ref-item"><strong>$f(x) = \sqrt{R^2-x^2}$</strong> = raio da fatia</span>
             <span class="var-ref-item"><strong>$x \in [-R, R]$</strong> = domínio</span>
             <span class="var-ref-item"><strong>$\Delta x$</strong> = espessura da fatia</span>
-            <span class="var-ref-item"><strong>$\Delta V \approx \pi[f(x)]^2\Delta x$</strong> = moeda</span>
+            <span class="var-ref-item"><strong>$\Delta V \approx \pi[f(x)]^2\Delta x$</strong> = disco fino</span>
           </div>
 
           <div class="card card-accent-blue">
-            <h4 class="card-title">Rotação $360^\circ$ + Fatia em Forma de "Moeda"</h4>
+            <h4 class="card-title">Rotação $360^\circ$ + Fatia Cilíndrica (Disco Fino)</h4>
             <div class="math-box-hero">
               $$f(x) = \sqrt{R^2 - x^2} \;\xrightarrow{360^\circ}\; \text{Esfera} \qquad\Longrightarrow\qquad \Delta V \approx \pi \left[f(x)\right]^2 \Delta x$$
             </div>
             <ul class="cue-list">
               <li><strong>Nasce a esfera em $\mathbb{R}^3$:</strong> girando o gráfico de $f(x)$ em torno do eixo $x$, formamos a esfera sólida de raio $R$.</li>
-              <li><strong>A ideia da moeda (cilindro fino):</strong> cada fatia vertical de espessura mínima $\Delta x$ funciona como uma moeda de raio $f(x)$ e altura $\Delta x$ — volume $\pi \cdot \text{raio}^2 \cdot \text{altura}$.</li>
+              <li><strong>Aproximação por fatia cilíndrica:</strong> cada corte vertical de espessura mínima $\Delta x$ aproxima um <strong>disco cilíndrico</strong> de raio $f(x)$ e altura $\Delta x$ — volume $\pi \cdot \text{raio}^2 \cdot \text{altura}$.</li>
             </ul>
           </div>
 
           <div class="card card-subtle">
-            <h4 class="card-title">Como Somar Infinitas Moedas? (Ligação com a Parte 2)</h4>
+            <h4 class="card-title">Como Somar Infinitas Fatias? (Ligação com a Parte 2)</h4>
             <ul class="cue-list">
               <li>Já temos o volume aproximado de <strong>uma fatia</strong>: $\Delta V \approx \pi[f(x)]^2 \Delta x$.</li>
               <li><strong>Próximo passo (Slides 3 e 4):</strong> substituir $f(x)$ para cancelar a raiz, somar todas as fatias de $-R$ até $R$ e deduzir $V_{\text{esfera}} = \frac{4}{3}\pi R^3$!</li>
@@ -360,7 +360,7 @@
           <div class="var-ref-bar">
             <span class="var-ref-title">Retomando do Slide 2:</span>
             <span class="var-ref-item"><strong>$f(x) = \sqrt{R^2-x^2}$</strong> = raio</span>
-            <span class="var-ref-item"><strong>$\Delta V \approx \pi[f(x)]^2\Delta x$</strong> = moeda</span>
+            <span class="var-ref-item"><strong>$\Delta V \approx \pi[f(x)]^2\Delta x$</strong> = disco fino</span>
             <span class="var-ref-item"><strong>$n$</strong> = nº de fatias</span>
             <span class="var-ref-item"><strong>$\Delta x = \frac{2R}{n}$</strong> = espessura</span>
           </div>
@@ -368,7 +368,7 @@
           <div class="card card-accent-blue">
             <h4 class="card-title">Substituir $f(x)$, Cancelar a Raiz e Somar os Discos</h4>
             <ul class="cue-list">
-              <li><strong>Cancelando a raiz:</strong> substituindo $f(x)=\sqrt{R^2-x^2}$ na moeda, o quadrado elimina a raiz: <span class="math-nowrap">$\Delta V \approx \pi(\sqrt{R^2-x^2})^2\Delta x = \pi(R^2-x^2)\Delta x$</span>.</li>
+              <li><strong>Cancelando a raiz:</strong> substituindo $f(x)=\sqrt{R^2-x^2}$ na expressão da fatia, o quadrado elimina a raiz: <span class="math-nowrap">$\Delta V \approx \pi(\sqrt{R^2-x^2})^2\Delta x = \pi(R^2-x^2)\Delta x$</span>.</li>
               <li><strong>Riemann $\to$ Integral:</strong> somando as $n$ fatias com $\Delta x \to 0$ e tirando a constante $\pi$ da integral:</li>
             </ul>
             <div class="math-box-hero">

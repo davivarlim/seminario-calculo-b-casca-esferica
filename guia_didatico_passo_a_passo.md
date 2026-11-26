@@ -21,16 +21,16 @@ Este guia segue a **sequência progressiva recomendada** (5 Partes / 6 Etapas): 
 
 ### Slide 2 — Rotação $360^\circ$ do Semicírculo: Surge a Esfera ($\mathbb{R}^2 \to \mathbb{R}^3$)
 * Giramos $f(x) = \sqrt{R^2-x^2}$ em $360^\circ$ ao redor do eixo $x$, gerando a **esfera sólida completa no $\mathbb{R}^3$**.
-* **Ideia da "moeda" (cilindro fino):** cada fatia vertical bem fina funciona como uma moeda de raio $f(x)$ e espessura/altura $\Delta x$, logo seu volume aproximado é:
+* **Ideia da fatia cilíndrica (disco fino):** cada fatia vertical bem fina aproxima um **disco cilíndrico** de raio $f(x)$ e espessura/altura $\Delta x$, logo seu volume aproximado é:
   $$\Delta V \approx \pi\left[f(x)\right]^2 \Delta x$$
-* **Pergunta que puxa a Parte 2:** *como somar infinitas moedas de $-R$ até $R$ sem depender de fórmula pronta?*
+* **Pergunta que puxa a Parte 2:** *como somar infinitas fatias de $-R$ até $R$ sem depender de fórmula pronta?*
 
 ---
 
 ## 📈 Etapa 3 — Dedução do Volume de Uma Esfera (PARTE 2 — Slides 3 e 4)
 
 ### Slide 3 — Substituir $f(x)$, Cancelar a Raiz e Somar os Discos
-1. **Cancelamento imediato da raiz:** substituindo $f(x)=\sqrt{R^2-x^2}$ na fórmula da moeda $\Delta V \approx \pi[f(x)]^2\Delta x$:
+1. **Cancelamento imediato da raiz:** substituindo $f(x)=\sqrt{R^2-x^2}$ na expressão da fatia $\Delta V \approx \pi[f(x)]^2\Delta x$:
    $$\Delta V \approx \pi\left(\sqrt{R^2-x^2}\right)^2\Delta x = \pi\left(R^2 - x^2\right)\Delta x$$
 2. **Soma de Riemann $\to$ Integral Definida:** somamos as $n$ fatias ($\Delta x = \frac{2R}{n}$), tomamos o limite $\Delta x \to 0$ e colocamos a constante $\pi$ fora da integral:
    $$V_{\text{esfera}} = \lim_{n \to \infty} \sum_{i=1}^{n} \pi \left(R^2 - (x_i^*)^2\right) \Delta x = \pi \int_{-R}^{R} \left(R^2 - x^2\right) dx$$
